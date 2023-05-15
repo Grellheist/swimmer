@@ -1,6 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Sidebar from '@/components/Sidebar'
+import Feed from '@/components/Feed'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,8 +17,9 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className={inter.className}>
+            <body className={`${inter.className} flex min-h-screen mx-auto`}>
                 <Sidebar />
+                <Feed />
                 {children}
             </body>
 
