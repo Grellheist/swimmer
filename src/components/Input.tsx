@@ -18,7 +18,7 @@ export default function Input() {
                         <HiPhotograph className="h-10 w-10 hoverEffect p-2 text-sky-400 hover:bg-gray-900"/>
                         <BsFillEmojiSmileFill className="h-10 w-10 hoverEffect p-2 text-sky-400 hover:bg-gray-900"/>
                     </div>
-                    <button className="bg-blue-400 text-white px-4 py-1.5 rounded full font-bold shadow-md hover:brightness-95 disabled:opacity-50">Tweet</button>
+                    <button className="bg-blue-400 text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50">Tweet</button>
                 </div>
             </div>
         </div>
