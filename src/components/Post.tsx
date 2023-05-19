@@ -1,5 +1,5 @@
-export default function Post() {
-  return (
-    <div>This is a twitter post!!!</div>
-  )
+export default function Post({post}: any) {
+    return (
+        <div>{post.id}</div>
+    )
 }
