@@ -1,5 +1,5 @@
 export default function Post() {
   return (
-    <div>Post</div>
+    <div>This is a twitter post!!!</div>
   )
 }
