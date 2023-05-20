@@ -19,7 +19,7 @@ type PostProps = {
 
 export default function Post({ post }: PostProps) {
     return (
-        <div className="flex p-3 cursor-pointer border-b border-gray-600">
+        <div className="flex p-3 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
             <img src={post.userImg} alt="User image" className="rounded-full h-11 w-11 mr-4 hover:brightness-95" />
             <div>
                 <div className="flex items-center justify-between">
