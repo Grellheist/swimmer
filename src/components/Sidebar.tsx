@@ -8,7 +8,7 @@ import { HiDotsCircleHorizontal, HiDotsHorizontal } from "react-icons/hi"
 
 export default function Sidebar() {
     return (
-        <div className="hidden sm:flex flex-col p-2 xl:items-start fixed h-full">
+        <div className="hidden sm:flex flex-col p-2 xl:ml-6 xl:items-start fixed h-full">
             <div className="hoverEffect xl:mt-0.5">
                 <BsTwitter className="w-7 h-8" />
             </div>
@@ -24,7 +24,7 @@ export default function Sidebar() {
                 <SidebarMenuItem text="More" Icon={HiDotsCircleHorizontal} />
             </div>
 
-            <button className="bg-blue-400 rounded-full w-56 h-12 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Tweet</button>
+            <button className="bg-blue-400 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Tweet</button>
 
             <div className="hoverEffect flex items-center justify-center xl:justify-start mt-auto">
                 <img
