@@ -1,4 +1,3 @@
-import React from 'react'
 import { HiSparkles } from 'react-icons/hi'
 import Input from './Input'
 import Post from './Post'
@@ -6,7 +5,7 @@ import Post from './Post'
 export default function Feed() {
     const posts = [
         {
-            id: "1",
+            id: 1,
             name: "grellheist",
             username: "grellheist",
             userimg: "https://preview.redd.it/wk01okjvpar61.jpg?width=960&crop=smart&auto=webp&s=12cc4ee8093e75a6e0e69f24beefae50cfbfa2e2",
@@ -15,7 +14,7 @@ export default function Feed() {
             timestamp: "2 hours ago"
         },
         {
-            id: "2",
+            id: 2,
             name: "grellheist",
             username: "grellheist",
             userimg: "https://preview.redd.it/wk01okjvpar61.jpg?width=960&crop=smart&auto=webp&s=12cc4ee8093e75a6e0e69f24beefae50cfbfa2e2",
@@ -34,7 +33,16 @@ export default function Feed() {
             </div>
             <Input />
             {posts.map((post) => (
-                <Post key={post.id} post={post}/>
+                <Post
+                    id={post.id}
+                    name={post.name}
+                    username={post.username}
+                    userimg={post.userimg}
+                    img={post.img}
+                    text={post.text}
+                    timestamp={post.timestamp}
+                    key={post.id}
+                />
             ))}
         </div>
     )

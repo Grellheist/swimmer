@@ -1,4 +1,3 @@
-import Image from "next/image"
 import SidebarMenuItem from "./SidebarMenuItem"
 import { AiFillHome, AiFillBell } from "react-icons/ai"
 import { FaHashtag, FaUserAlt } from "react-icons/fa"
