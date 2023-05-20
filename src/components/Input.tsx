@@ -7,7 +7,7 @@ export default function Input() {
             <img
                 src="https://preview.redd.it/wk01okjvpar61.jpg?width=960&crop=smart&auto=webp&s=12cc4ee8093e75a6e0e69f24beefae50cfbfa2e2"
                 alt="user image"
-                className="h-11 w-11 rounded-full cursor-pointer hover:brightness-95"
+                className="h-12 w-12 rounded-full cursor-pointer hover:brightness-95"
             />
             <div className="w-full divide-y divide-gray-600">
                 <div className="">

@@ -20,8 +20,8 @@ type PostProps = {
 export default function Post({ post }: PostProps) {
     const hasPostImage = post.img !== "";
     return (
-        <div className="flex p-3 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
-            <img src={post.userImg} alt="User image" className="rounded-full h-11 w-11 mr-4 hover:brightness-95" />
+        <div className="flex p-4 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
+            <img src={post.userImg} alt="User image" className="rounded-full h-12 w-12 mr-4 hover:brightness-95" />
             <div className="flex flex-col flex-grow">
                 <div className="flex items-center justify-between">
                     <div className="flex space-x-1 items-center whitespace-nowrap">
@@ -47,7 +47,7 @@ export default function Post({ post }: PostProps) {
                         </div>
                     </div>
                 )}
-                <div className="flex justify-between p-2">
+                <div className="flex justify-between pt-2">
                     <BsFillChatDotsFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
                     <FaRetweet className="h-9 w-9 hoverEffect p-2 hover:text-green-500 hover:bg-green-950" />
                     <AiFillHeart className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
