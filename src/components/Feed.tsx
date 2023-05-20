@@ -35,13 +35,6 @@ export default function Feed() {
             {posts.map((post) => (
                 <Post
                     post={post}
-                    id={post.id}
-                    name={post.name}
-                    username={post.username}
-                    userImg={post.userImg}
-                    img={post.img}
-                    text={post.text}
-                    timestamp={post.timestamp}
                     key={post.id}
                 />
             ))}
