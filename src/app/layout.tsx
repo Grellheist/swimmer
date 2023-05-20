@@ -21,7 +21,6 @@ export default function RootLayout({
             <body className={`${inter.className} flex min-h-screen mx-auto`}>
                 <Sidebar />
                 <Feed />
-                <Post />
                 {children}
             </body>
 
