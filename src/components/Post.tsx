@@ -18,10 +18,11 @@ type PostProps = {
 }
 
 export default function Post({ post }: PostProps) {
+    const hasPostImage = post.img !== "";
     return (
         <div className="flex p-3 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
             <img src={post.userImg} alt="User image" className="rounded-full h-11 w-11 mr-4 hover:brightness-95" />
-            <div>
+            <div className="flex flex-col flex-grow">
                 <div className="flex items-center justify-between">
                     <div className="flex space-x-1 items-center whitespace-nowrap">
                         <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">{post.name}</h4>
@@ -32,7 +33,20 @@ export default function Post({ post }: PostProps) {
                 </div>
 
                 <p className="text-[15px] sm:text-[16px] mb-2">{post.text}</p>
-                <img src={post.img} alt="post image" className="rounded-2xl" />
+                {hasPostImage && (
+                    <div className="relative w-full">
+                        <div
+                            className="pb-[100%] overflow-hidden rounded-2xl"
+                            style={{ position: "relative" }}
+                        >
+                            <img
+                                src={post.img}
+                                alt="post image"
+                                className="absolute inset-0 object-cover w-full h-full"
+                            />
+                        </div>
+                    </div>
+                )}
                 <div className="flex justify-between p-2">
                     <BsFillChatDotsFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
                     <FaRetweet className="h-9 w-9 hoverEffect p-2 hover:text-green-500 hover:bg-green-950" />
@@ -42,5 +56,6 @@ export default function Post({ post }: PostProps) {
                 </div>
             </div>
         </div>
-    )
+    );
 }
+
