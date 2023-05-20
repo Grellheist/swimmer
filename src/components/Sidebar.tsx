@@ -15,13 +15,13 @@ export default function Sidebar() {
 
             <div className="mt-4 mb-2.5 xl:items-start">
                 <SidebarMenuItem text="Home" Icon={AiFillHome} active />
-                <SidebarMenuItem text="Explore" Icon={FaHashtag} active />
-                <SidebarMenuItem text="Notifications" Icon={AiFillBell} active />
-                <SidebarMenuItem text="Messages" Icon={GrMail} active />
-                <SidebarMenuItem text="Lists" Icon={RiFileListFill} active />
-                <SidebarMenuItem text="Bookmarks" Icon={BsFillBookmarkFill} active />
-                <SidebarMenuItem text="Profile" Icon={FaUserAlt} active />
-                <SidebarMenuItem text="More" Icon={HiDotsCircleHorizontal} active />
+                <SidebarMenuItem text="Explore" Icon={FaHashtag} />
+                <SidebarMenuItem text="Notifications" Icon={AiFillBell} />
+                <SidebarMenuItem text="Messages" Icon={GrMail} />
+                <SidebarMenuItem text="Lists" Icon={RiFileListFill} />
+                <SidebarMenuItem text="Bookmarks" Icon={BsFillBookmarkFill} />
+                <SidebarMenuItem text="Profile" Icon={FaUserAlt} />
+                <SidebarMenuItem text="More" Icon={HiDotsCircleHorizontal} />
             </div>
 
             <button className="bg-blue-400 rounded-full w-56 h-12 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Tweet</button>
