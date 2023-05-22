@@ -1,11 +1,5 @@
 import React from 'react'
-import { IconType } from 'react-icons'
-
-type SidebarMenuItemProps = {
-    text: string;
-    Icon: IconType;
-    active?: boolean;
-}
+import {SidebarMenuItemProps} from "./types"
 
 export default function SidebarMenuItem({ text, Icon, active }: SidebarMenuItemProps) {
     return (

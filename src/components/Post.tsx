@@ -4,20 +4,7 @@ import { AiFillHeart } from "react-icons/ai";
 import { BsFillBarChartFill, BsFillChatDotsFill, BsFillTrashFill } from "react-icons/bs";
 import { FaRetweet } from "react-icons/fa";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-
-type PostType = {
-    id: number;
-    name: string;
-    username: string;
-    userImg: string;
-    img: string;
-    text: string;
-    timestamp: string;
-};
-
-type PostProps = {
-    post: PostType;
-};
+import { PostProps } from "./types"
 
 export default function Post({ post }: PostProps) {
     const hasPostImage = post.img !== "";

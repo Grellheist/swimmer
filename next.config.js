@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images:{
-        domains:["logos-download.com"]
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: '**',
+                port: '',
+                pathname: '**',
+            },
+        ],
     }
 }
 
