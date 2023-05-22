@@ -8,7 +8,7 @@ import { HiDotsCircleHorizontal, HiDotsHorizontal } from "react-icons/hi"
 
 export default function Sidebar() {
     return (
-        <div className="hidden sm:flex flex-col p-2 sm:ml-3 xl:items-start fixed h-full">
+        <div className="select-none hidden sm:flex flex-col p-2 sm:ml-3 xl:items-start fixed h-full">
             <div className="hoverEffect xl:mt-0.5">
                 <BsTwitter className="w-7 h-8" />
             </div>
