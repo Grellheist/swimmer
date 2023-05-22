@@ -11,7 +11,7 @@ export default function Input() {
             />
             <div className="w-full divide-y divide-gray-600">
                 <div className="">
-                    <textarea className="w-full border-none focus:ring-0 text-gray-200 bg-black text-lg tracking-wide min-h-[50px]" placeholder="What is happening?!" rows={2} />
+                    <textarea className="w-full border-none focus:ring-0 text-gray-200 bg-black text-lg tracking-wide min-h-[50px] resize-none" placeholder="What is happening?!" rows={2} />
                 </div>
                 <div className="flex items-center justify-between pt-2.5">
                     <div className="flex">
