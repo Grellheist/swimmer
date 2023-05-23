@@ -5,6 +5,7 @@ import News from "./News";
 import { Article, NewsData } from './types'
 
 export default function Widgets() {
+    const [articleNumber, setArticleNumber] = useState(3);
     const [inputFocused, setInputFocused] = useState(false);
     const [newsData, setNewsData] = useState<NewsData | null>(null);
 
@@ -55,14 +56,14 @@ export default function Widgets() {
                 <h4 className="text-gray-200 text-[20px] font-bold px-4">What&apos;s happening</h4>
                 {newsData ? (
                     <div>
-                        {newsData.articles.map((article: Article) => (
+                        {newsData.articles.slice(0, articleNumber).map((article: Article) => (
                             <News key={article.title} article={article} />
                         ))}
                     </div>
                 ) : (
-                    <div>Loading...</div>
+                    <div className="flex items-center justify-center font-bold">Loading...</div>
                 )}
-                <button className="text-blue-400 pl-4 pb-3">Show more</button>
+                <button onClick={() => setArticleNumber(articleNumber + 3)} className="text-blue-400 pl-4 pb-3">Show more</button>
             </div>
 
         </div >
