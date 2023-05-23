@@ -1,16 +1,17 @@
 import SidebarMenuItem from "./SidebarMenuItem"
 import { AiFillHome, AiFillBell } from "react-icons/ai"
-import { FaFish, FaHashtag, FaUserAlt } from "react-icons/fa"
+import { FaHashtag, FaUserAlt } from "react-icons/fa"
 import { GrMail } from "react-icons/gr"
-import { BsFillBookmarkFill, BsTwitter } from "react-icons/bs"
+import { BsFillBookmarkFill } from "react-icons/bs"
 import { RiFileListFill } from "react-icons/ri"
 import { HiDotsCircleHorizontal, HiDotsHorizontal } from "react-icons/hi"
+import { IoLogoOctocat } from "react-icons/io"
 
 export default function Sidebar() {
     return (
         <div className="select-none hidden sm:flex flex-col p-2 sm:ml-3 xl:items-start fixed h-full" >
             <div className="hoverEffect xl:mt-0.5">
-                <FaFish className="w-7 h-8" />
+                <IoLogoOctocat className="w-7 h-8" />
             </div>
 
             <div className="mt-4 mb-2.5 xl:items-start">
@@ -28,7 +29,7 @@ export default function Sidebar() {
                 <SidebarMenuItem text="More" Icon={HiDotsCircleHorizontal} />
             </div>
 
-            <button className="bg-blue-500 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Swim</button>
+            <button className="bg-blue-500 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Meow</button>
 
             <div className="hoverEffect flex items-center justify-center xl:justify-start mt-auto">
                 <img
