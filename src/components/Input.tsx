@@ -1,5 +1,5 @@
-import { BsFillEmojiSmileFill } from "react-icons/bs";
-import { HiPhotograph } from "react-icons/hi";
+import { BsEmojiSmile } from "react-icons/bs";
+import { HiOutlinePhotograph } from "react-icons/hi";
 
 export default function Input() {
     return (
@@ -15,10 +15,10 @@ export default function Input() {
                 </div>
                 <div className="flex items-center justify-between pt-2.5">
                     <div className="flex">
-                        <HiPhotograph className="h-10 w-10 hoverEffect p-2 text-sky-400 hover:bg-gray-900" />
-                        <BsFillEmojiSmileFill className="h-10 w-10 hoverEffect p-2 text-sky-400 hover:bg-gray-900" />
+                        <HiOutlinePhotograph className="h-10 w-10 hoverEffect p-2 text-blue-500 hover:bg-gray-900" />
+                        <BsEmojiSmile className="h-10 w-10 hoverEffect p-2 text-blue-500 hover:bg-gray-900" />
                     </div>
-                    <button className="bg-blue-400 text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50">Tweet</button>
+                    <button className="bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50">Tweet</button>
                 </div>
             </div>
         </div>

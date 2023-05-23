@@ -52,7 +52,7 @@ export default function Feed() {
     ];
     return (
         <div className='sm:mr-auto xl:ml-[330px] border-l border-gray-600 border-r xl:min-w-[630px] sm:ml-[73px] flex-grow max-w-xl'>
-            <div className='flex py-2 px-3 sticky top-0 z-50 bg-black border-b border-gray-600'>
+            <div className='flex py-2 px-3 sticky top-0 z-50 bg-black border-b border-gray-600 bg-opacity-70 backdrop-blur'>
                 <h2 className='text-lg sm:text-xl font-bold cursor-pointer flex items-center justify-center'>Home</h2>
                 <div className='hoverEffect flex items-center justify-center px-0 ml-auto w-9 h-9'>
                     <HiSparkles className='h-7' />
