@@ -8,7 +8,7 @@ import { HiDotsCircleHorizontal, HiDotsHorizontal } from "react-icons/hi"
 
 export default function Sidebar() {
     return (
-        <div className="select-none hidden sm:flex flex-col p-2 sm:ml-3 xl:items-start fixed h-full">
+        <div className="select-none hidden sm:flex flex-col p-2 sm:ml-3 xl:items-start fixed h-full" >
             <div className="hoverEffect xl:mt-0.5">
                 <BsTwitter className="w-7 h-8" />
             </div>
@@ -18,8 +18,12 @@ export default function Sidebar() {
                 <SidebarMenuItem text="Explore" Icon={FaHashtag} />
                 <SidebarMenuItem text="Notifications" Icon={AiFillBell} />
                 <SidebarMenuItem text="Messages" Icon={GrMail} />
-                <SidebarMenuItem text="Lists" Icon={RiFileListFill} />
-                <SidebarMenuItem text="Bookmarks" Icon={BsFillBookmarkFill} />
+                <div className="hidden 2xl:block">
+                    <SidebarMenuItem text="Lists" Icon={RiFileListFill} />
+                </div>
+                <div className="hidden 2xl:block">
+                    <SidebarMenuItem text="Bookmarks" Icon={BsFillBookmarkFill} />
+                </div>
                 <SidebarMenuItem text="Profile" Icon={FaUserAlt} />
                 <SidebarMenuItem text="More" Icon={HiDotsCircleHorizontal} />
             </div>
