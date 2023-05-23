@@ -12,7 +12,7 @@ import Link from "next/link"
 export default function Sidebar() {
     return (
         <div className="select-none hidden sm:flex flex-col p-2 sm:ml-3 xl:items-start fixed h-full" >
-            <Link href="/" className="hoverEffect xl:mt-0.5">
+            <Link href="/home" className="hoverEffect xl:mt-0.5">
                 <IoLogoOctocat className="w-7 h-8" />
             </Link>
 
