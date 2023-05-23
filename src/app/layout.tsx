@@ -7,8 +7,8 @@ import Widgets from '@/components/Widgets'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-    title: 'Twitter Clone',
-    description: 'This is a Twitter clone',
+    title: 'Swimmer',
+    description: 'This is a Twitter Clone, not to be taken serious. Developed by @Grellheist.',
 }
 
 export default function RootLayout({

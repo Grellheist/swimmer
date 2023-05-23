@@ -42,7 +42,7 @@ export default function Widgets() {
                     </div>
                     <input
                         type="text"
-                        placeholder="Search Twitter"
+                        placeholder="Search Swimmer"
                         className="absolute inset-0 rounded-full text-gray-200 pl-11 border-transparent focus:ring-blue-400 focus:shadow-lg focus:bg-black"
                         style={{ backgroundColor: "rgb(32,35,39)" }}
                         onFocus={handleInputFocus}
