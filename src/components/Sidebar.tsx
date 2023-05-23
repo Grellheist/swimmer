@@ -1,3 +1,4 @@
+"use client"
 import SidebarMenuItem from "./SidebarMenuItem"
 import { AiFillHome, AiFillBell } from "react-icons/ai"
 import { FaHashtag, FaUserAlt } from "react-icons/fa"
@@ -6,16 +7,17 @@ import { BsFillBookmarkFill } from "react-icons/bs"
 import { RiFileListFill } from "react-icons/ri"
 import { HiDotsCircleHorizontal, HiDotsHorizontal } from "react-icons/hi"
 import { IoLogoOctocat } from "react-icons/io"
+import Link from "next/link"
 
 export default function Sidebar() {
     return (
         <div className="select-none hidden sm:flex flex-col p-2 sm:ml-3 xl:items-start fixed h-full" >
-            <div className="hoverEffect xl:mt-0.5">
+            <Link href="/" className="hoverEffect xl:mt-0.5">
                 <IoLogoOctocat className="w-7 h-8" />
-            </div>
+            </Link>
 
             <div className="mt-4 mb-2.5 xl:items-start">
-                <SidebarMenuItem text="Home" Icon={AiFillHome} active />
+                <SidebarMenuItem text="Home" Icon={AiFillHome} />
                 <SidebarMenuItem text="Explore" Icon={FaHashtag} />
                 <SidebarMenuItem text="Notifications" Icon={AiFillBell} />
                 <SidebarMenuItem text="Messages" Icon={GrMail} />
