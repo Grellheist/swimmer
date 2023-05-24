@@ -13,7 +13,7 @@ export default function News({ article }: NewsProps) {
                     <h6 className='text-sm font-bold'>{article.title}</h6>
                     <p className='text-xs font-medium text-gray-500'>{article.source.name}</p>
                 </div>
-                <Image src={article.urlToImage} alt={article.title} className='rounded-xl' width="70" height="70"/>
+                <Image src={article.urlToImage} alt={article.title} className='rounded-xl' width="70" height="70" loading="lazy" />
             </div>
         </a>
     )

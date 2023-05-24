@@ -76,8 +76,10 @@ export default function Post({ post }: PostProps) {
                                 src={post.img}
                                 alt="post image"
                                 className="absolute inset-0 object-cover w-full h-full"
-                                width="45"
-                                height="45"
+                                width="800"
+                                height="800"
+                                priority={true}
+                                quality={75}
                             />
                         </div>
                     </div>
