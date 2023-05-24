@@ -15,6 +15,24 @@ export interface NewsData {
     article: Article[];
 }
 
+export interface User {
+    name: {
+        first: string,
+        last: string,
+    };
+    login: {
+        uuid: string,
+        username: string,
+    };
+    picture: {
+        thumbnail: string,
+    }
+}
+
+export interface UserData {
+    results: User[];
+}
+
 export type PostType = {
     id: number;
     name: string;
