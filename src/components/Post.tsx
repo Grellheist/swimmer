@@ -5,6 +5,7 @@ import { BsFillBarChartFill, BsFillChatDotsFill, BsFillTrashFill } from "react-i
 import { FaRetweet } from "react-icons/fa";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { PostProps } from "./types"
+import Image from "next/image";
 
 export default function Post({ post }: PostProps) {
     const hasPostImage = post.img !== "";
@@ -16,10 +17,12 @@ export default function Post({ post }: PostProps) {
 
     return (
         <div className="flex p-3 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
-            <img
+            <Image
                 src={post.userImg}
                 alt="User image"
                 className="rounded-full h-12 w-12 mr-4 hover:brightness-95"
+                width="45"
+                height="45"
             />
             <div className="flex flex-col flex-grow">
                 {/* Post header */}
@@ -69,10 +72,12 @@ export default function Post({ post }: PostProps) {
                             className="pb-[100%] overflow-hidden rounded-2xl"
                             style={{ position: "relative" }}
                         >
-                            <img
+                            <Image
                                 src={post.img}
                                 alt="post image"
                                 className="absolute inset-0 object-cover w-full h-full"
+                                width="45"
+                                height="45"
                             />
                         </div>
                     </div>
