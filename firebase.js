@@ -3,7 +3,7 @@ import { getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
 
 const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
     authDomain: "whisker-67c7d.firebaseapp.com",
     projectId: "whisker-67c7d",
     storageBucket: "whisker-67c7d.appspot.com",
