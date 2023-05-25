@@ -78,7 +78,7 @@ export default function Widgets() {
             </div>
 
             {/* Random User Section */}
-            <div className="space-y-3 rounded-xl pt-2 w-[75%] xl:w-[100%]" style={{ backgroundColor: "rgb(22,24,28)" }}>
+            <div className="sticky top-16 space-y-3 rounded-xl pt-2 w-[75%] xl:w-[100%]" style={{ backgroundColor: "rgb(22,24,28)" }}>
                 <h4 className="text-gray-200 text-[20px] font-bold px-4">Who to follow</h4>
                 {userData ? (
                     <div>
