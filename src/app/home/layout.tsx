@@ -1,13 +1,15 @@
 // import Sidebar from "../../components/Sidebar"
-import Feed from "../../components/Feed"
 import Widgets from "../../components/Widgets"
 
-export default function HomeLayout() {
+export default function DashboardLayout({
+    children, // will be a page or nested layout
+}: {
+    children: React.ReactNode;
+}) {
     return (
         <>
-            {/*<Sidebar />*/} 
-            <Feed />
-            <Widgets />
+            {children}
+            < Widgets />
         </>
     );
 }
