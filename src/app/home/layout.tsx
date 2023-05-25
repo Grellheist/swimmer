@@ -1,11 +1,11 @@
-import Sidebar from "../../components/Sidebar"
+// import Sidebar from "../../components/Sidebar"
 import Feed from "../../components/Feed"
 import Widgets from "../../components/Widgets"
 
 export default function HomeLayout() {
     return (
         <>
-            <Sidebar />
+            {/*<Sidebar />*/} 
             <Feed />
             <Widgets />
         </>
