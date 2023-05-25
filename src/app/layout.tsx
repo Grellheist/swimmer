@@ -1,3 +1,4 @@
+import Sidebar from '@/components/Sidebar'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -16,6 +17,7 @@ export default function RootLayout({
     return (
         <html lang="en" className='scroll-smooth'>
             <body className={`${inter.className} flex min-h-screen mx-auto`}>
+                <Sidebar />
                 {children}
             </body>
 
