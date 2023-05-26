@@ -63,25 +63,6 @@ export default function Sidebar() {
                 <button className="bg-blue-500 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Meow</button>
 
                 <div className="hoverEffect flex items-center justify-center xl:justify-start mt-auto">
-                    {user?.imageUrl ?
-                        (
-                            <Image
-                                src={user?.imageUrl}
-                                alt="user image"
-                                className="rounded-full xl:mr-2 w-11 h-11"
-                                width="150"
-                                height="150"
-                            />
-                        ) : (
-                            <Image
-                                src="https://ombud.alaska.gov/wp-content/uploads/2018/01/no-user.jpg"
-                                alt="user image"
-                                className="rounded-full xl:mr-2 w-11 h-11"
-                                width="150"
-                                height="150"
-                            />
-                        )
-                    }
                     <ClerkLoading>
                         <SignedIn>
                             <div className="ml-10 mt-8 mx-auto">
@@ -91,6 +72,25 @@ export default function Sidebar() {
                     </ClerkLoading>
                     <ClerkLoaded>
                         <SignedIn>
+                            {user?.imageUrl ?
+                                (
+                                    <Image
+                                        src={user?.imageUrl}
+                                        alt="user image"
+                                        className="rounded-full xl:mr-2 w-11 h-11"
+                                        width="150"
+                                        height="150"
+                                    />
+                                ) : (
+                                    <Image
+                                        src="https://ombud.alaska.gov/wp-content/uploads/2018/01/no-user.jpg"
+                                        alt="user image"
+                                        className="rounded-full xl:mr-2 w-11 h-11"
+                                        width="150"
+                                        height="150"
+                                    />
+                                )
+                            }
                             <div className="leading-5 hidden xl:inline">
                                 <h4 className="font-bold">{user?.firstName}</h4>
                                 <p className="text-md text-gray-500">@{user?.username}</p>
