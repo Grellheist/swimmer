@@ -23,9 +23,11 @@ export default function Sidebar() {
                 <SidebarMenuItem text="Home" Icon={AiFillHome} />
                 <SidebarMenuItem text="Explore" Icon={FaHashtag} />
                 <ClerkLoading>
-                    <div className="ml-24 mt-8 mx-auto">
-                        <Image src={Spinner} height={45} width={45} alt="Loading..." />
-                    </div>
+                    <SignedOut>
+                        <div className="ml-24 mt-8 mx-auto">
+                            <Image src={Spinner} height={45} width={45} alt="Loading..." />
+                        </div>
+                    </SignedOut>
                 </ClerkLoading>
                 <ClerkLoaded>
                     <SignedOut>
