@@ -17,7 +17,7 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <ClerkProvider appearance={{ baseTheme: dark }}>
+        <ClerkProvider appearance={{ baseTheme: dark, variables: { colorInputText: "black" } }}>
             <html lang="en" className='scroll-smooth'>
                 <body className={`${inter.className} flex min-h-screen mx-auto`}>
                     <Sidebar />
