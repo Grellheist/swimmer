@@ -4,6 +4,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import News from "./News";
 import { Article, NewsData, User, UserData } from './types'
 import Image from "next/image";
+import Spinner from "../../public/spinner.svg"
 
 export default function Widgets() {
     const [articleNumber, setArticleNumber] = useState(3);
@@ -72,7 +73,9 @@ export default function Widgets() {
                         ))}
                     </div>
                 ) : (
-                    <div className="flex items-center justify-center font-bold">Loading...</div>
+                    <div className="flex items-center justify-center font-bold">
+                        <Image src={Spinner} height={45} width={45} alt="Loading..." />
+                    </div>
                 )}
                 <button onClick={() => setArticleNumber(articleNumber + 3)} className="text-blue-400 pl-4 pb-3">Show more</button>
             </div>
@@ -94,7 +97,9 @@ export default function Widgets() {
                         ))}
                     </div>
                 ) : (
-                    <div className="flex items-center justify-center font-bold">Loading...</div>
+                    <div className="flex items-center justify-center font-bold">
+                        <Image src={Spinner} height={45} width={45} alt="Loading..." />
+                    </div>
 
                 )}
                 <button onClick={() => setUserNumber(userNumber + 3)} className="text-blue-400 pl-4 pb-3">Show more</button>

@@ -9,7 +9,8 @@ import { HiDotsCircleHorizontal, HiDotsHorizontal } from "react-icons/hi"
 import { IoLogoOctocat } from "react-icons/io"
 import Link from "next/link"
 import Image from "next/image"
-import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react"
+import { SignedIn, SignedOut, SignInButton, ClerkLoading, ClerkLoaded } from "@clerk/clerk-react"
+import Spinner from "../../public/spinner.svg"
 
 export default function Sidebar() {
     return (
@@ -21,11 +22,18 @@ export default function Sidebar() {
             <div className="mt-4 mb-2.5 xl:items-start">
                 <SidebarMenuItem text="Home" Icon={AiFillHome} />
                 <SidebarMenuItem text="Explore" Icon={FaHashtag} />
-                <SignedOut>
-                    <SignInButton mode="modal">
-                        <button className="bg-blue-500 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Login</button>
-                    </SignInButton>
-                </SignedOut>
+                <ClerkLoading>
+                    <div className="ml-24 mt-8 mx-auto">
+                        <Image src={Spinner} height={45} width={45} alt="Loading..." />
+                    </div>
+                </ClerkLoading>
+                <ClerkLoaded>
+                    <SignedOut>
+                        <SignInButton mode="modal">
+                            <button className="bg-blue-500 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Login</button>
+                        </SignInButton>
+                    </SignedOut>
+                </ClerkLoaded>
                 <SignedIn>
                     <SidebarMenuItem text="Notifications" Icon={AiFillBell} />
                     <SidebarMenuItem text="Messages" Icon={GrMail} />
@@ -42,22 +50,22 @@ export default function Sidebar() {
 
             <SignedIn>
                 <button className="bg-blue-500 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Meow</button>
-            </SignedIn>
 
-            <div className="hoverEffect flex items-center justify-center xl:justify-start mt-auto">
-                <Image
-                    src="https://preview.redd.it/wk01okjvpar61.jpg?width=960&crop=smart&auto=webp&s=12cc4ee8093e75a6e0e69f24beefae50cfbfa2e2"
-                    alt="user image"
-                    className="rounded-full xl:mr-2"
-                    width="43"
-                    height="43"
-                />
-                <div className="leading-5 hidden xl:inline">
-                    <h4 className="font-bold">Grellheist</h4>
-                    <p className="">@grellheist</p>
+                <div className="hoverEffect flex items-center justify-center xl:justify-start mt-auto">
+                    <Image
+                        src="https://preview.redd.it/wk01okjvpar61.jpg?width=960&crop=smart&auto=webp&s=12cc4ee8093e75a6e0e69f24beefae50cfbfa2e2"
+                        alt="user image"
+                        className="rounded-full xl:mr-2"
+                        width="43"
+                        height="43"
+                    />
+                    <div className="leading-5 hidden xl:inline">
+                        <h4 className="font-bold">Grellheist</h4>
+                        <p className="">@grellheist</p>
+                    </div>
+                    <HiDotsHorizontal className="h-5 xl:ml-8 hidden xl:inline" />
                 </div>
-                <HiDotsHorizontal className="h-5 xl:ml-8 hidden xl:inline" />
-            </div>
+            </SignedIn>
         </div>
     )
 }
