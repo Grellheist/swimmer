@@ -1,5 +1,4 @@
 "use client"
-import { HiSparkles } from 'react-icons/hi'
 import Input from '@/components/Input'
 import Post from '@/components/Post'
 

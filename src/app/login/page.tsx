@@ -1,10 +1,9 @@
-import { SignUp } from "@clerk/nextjs"
+import { SignIn } from '@clerk/nextjs'
 
 export default function Login() {
-    return (
-        <div>
-            <SignUp />
-        </div>
-    )
+  return (
+    <div>
+        <SignIn />
+    </div>
+  )
 }
-

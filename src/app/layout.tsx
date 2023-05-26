@@ -1,7 +1,7 @@
 import Sidebar from '@/components/Sidebar'
 import './globals.css'
 import { Inter } from 'next/font/google'
-import { ClerkProvider } from '@clerk/nextjs'
+import { ClerkProvider, UserButton } from '@clerk/nextjs'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,6 +21,7 @@ export default function RootLayout({
                 <body className={`${inter.className} flex min-h-screen mx-auto`}>
                     <Sidebar />
                     {children}
+                    <UserButton />
                 </body>
             </html>
         </ClerkProvider>
