@@ -1,7 +1,8 @@
 import { BsEmojiSmile } from "react-icons/bs";
 import { HiOutlinePhotograph } from "react-icons/hi";
 import Image from "next/image";
-import { useUser, SignedOut, SignedIn, SignInButton } from "@clerk/nextjs";
+import { useUser, SignedOut, SignedIn } from "@clerk/nextjs";
+import Link from "next/link";
 
 export default function Input() {
     const { user } = useUser();
@@ -32,7 +33,7 @@ export default function Input() {
                         <textarea className="w-full border-none focus:ring-0 text-gray-200 bg-black text-lg tracking-wide min-h-[50px] resize-none" placeholder="What is happening?!" rows={2} />
                     </SignedIn>
                     <SignedOut>
-                        <textarea className="w-full border-none focus:ring-0 text-gray-200 bg-black text-lg tracking-wide min-h-[50px] resize-none" placeholder="Sign in to share your thoughts..." rows={2} />
+                        <textarea className="w-full border-none focus:ring-0 text-gray-200 bg-black text-lg tracking-wide min-h-[50px] resize-none" placeholder="Register to share your thoughts..." rows={2} />
                     </SignedOut>
                 </div>
                 <div className="flex items-center justify-between pt-2.5">
@@ -41,9 +42,9 @@ export default function Input() {
                         <BsEmojiSmile className="h-10 w-10 hoverEffect p-2 text-blue-500 hover:bg-gray-900" />
                     </div>
                     <SignedOut>
-                        <SignInButton mode="modal">
-                            <button className="bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md">Sign In</button>
-                        </SignInButton>
+                        <Link href="https://social-racer-66.accounts.dev/sign-up">
+                            <button className="bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md">Register</button>
+                        </Link>
                     </SignedOut>
                     <SignedIn>
                         <button className="bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95">Meow</button>
