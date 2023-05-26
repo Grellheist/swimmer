@@ -16,7 +16,6 @@ import {
     ClerkLoading,
     ClerkLoaded,
     useUser,
-    UserButton
 } from "@clerk/nextjs"
 import Spinner from "../../public/spinner.svg"
 
@@ -41,7 +40,7 @@ export default function Sidebar() {
                 <ClerkLoaded>
                     <SignedOut>
                         <SignInButton mode="modal">
-                            <button className="bg-blue-500 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Login</button>
+                            <button className="bg-blue-500 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Sign In</button>
                         </SignInButton>
                     </SignedOut>
                 </ClerkLoaded>

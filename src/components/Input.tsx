@@ -1,7 +1,7 @@
 import { BsEmojiSmile } from "react-icons/bs";
 import { HiOutlinePhotograph } from "react-icons/hi";
 import Image from "next/image";
-import { useUser } from "@clerk/nextjs";
+import { useUser, SignedOut, SignedIn, SignInButton } from "@clerk/nextjs";
 
 export default function Input() {
     const { user } = useUser();
@@ -28,14 +28,26 @@ export default function Input() {
             }
             <div className="w-full divide-y divide-gray-600">
                 <div className="">
-                    <textarea className="w-full border-none focus:ring-0 text-gray-200 bg-black text-lg tracking-wide min-h-[50px] resize-none" placeholder="What is happening?!" rows={2} />
+                    <SignedIn>
+                        <textarea className="w-full border-none focus:ring-0 text-gray-200 bg-black text-lg tracking-wide min-h-[50px] resize-none" placeholder="What is happening?!" rows={2} />
+                    </SignedIn>
+                    <SignedOut>
+                        <textarea className="w-full border-none focus:ring-0 text-gray-200 bg-black text-lg tracking-wide min-h-[50px] resize-none" placeholder="Sign in to share your thoughts..." rows={2} />
+                    </SignedOut>
                 </div>
                 <div className="flex items-center justify-between pt-2.5">
                     <div className="flex">
                         <HiOutlinePhotograph className="h-10 w-10 hoverEffect p-2 text-blue-500 hover:bg-gray-900" />
                         <BsEmojiSmile className="h-10 w-10 hoverEffect p-2 text-blue-500 hover:bg-gray-900" />
                     </div>
-                    <button className="bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50">Meow</button>
+                    <SignedOut>
+                        <SignInButton mode="modal">
+                            <button className="bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md">Sign In</button>
+                        </SignInButton>
+                    </SignedOut>
+                    <SignedIn>
+                        <button className="bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95">Meow</button>
+                    </SignedIn>
                 </div>
             </div>
         </div>
