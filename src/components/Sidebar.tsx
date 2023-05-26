@@ -9,8 +9,7 @@ import { HiDotsCircleHorizontal, HiDotsHorizontal } from "react-icons/hi"
 import { IoLogoOctocat } from "react-icons/io"
 import Link from "next/link"
 import Image from "next/image"
-import { SignedIn } from "@clerk/clerk-react"
-import { SignedOut } from "@clerk/clerk-react"
+import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react"
 
 export default function Sidebar() {
     return (
@@ -23,9 +22,9 @@ export default function Sidebar() {
                 <SidebarMenuItem text="Home" Icon={AiFillHome} />
                 <SidebarMenuItem text="Explore" Icon={FaHashtag} />
                 <SignedOut>
-                    <Link href="/login">
+                    <SignInButton mode="modal">
                         <button className="bg-blue-500 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Login</button>
-                    </Link>
+                    </SignInButton>
                 </SignedOut>
                 <SignedIn>
                     <SidebarMenuItem text="Notifications" Icon={AiFillBell} />
