@@ -33,7 +33,7 @@ export default function Input() {
                         <textarea className="w-full border-none focus:ring-0 text-gray-200 bg-black text-lg tracking-wide min-h-[50px] resize-none" placeholder="What is happening?!" rows={2} />
                     </SignedIn>
                     <SignedOut>
-                        <textarea className="w-full border-none focus:ring-0 text-gray-200 bg-black text-lg tracking-wide min-h-[50px] resize-none" placeholder="Register to share your thoughts..." rows={2} />
+                        <textarea className="w-full border-none focus:ring-0 text-gray-200 bg-black text-lg tracking-wide min-h-[50px] resize-none" disabled placeholder="Sign in or register to share your thoughts..." rows={2} />
                     </SignedOut>
                 </div>
                 <div className="flex items-center justify-between pt-2.5">
