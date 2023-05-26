@@ -9,10 +9,19 @@ import { HiDotsCircleHorizontal, HiDotsHorizontal } from "react-icons/hi"
 import { IoLogoOctocat } from "react-icons/io"
 import Link from "next/link"
 import Image from "next/image"
-import { SignedIn, SignedOut, SignInButton, ClerkLoading, ClerkLoaded } from "@clerk/clerk-react"
+import {
+    SignedIn,
+    SignedOut,
+    SignInButton,
+    ClerkLoading,
+    ClerkLoaded,
+    useUser,
+    UserButton
+} from "@clerk/nextjs"
 import Spinner from "../../public/spinner.svg"
 
 export default function Sidebar() {
+    const { user } = useUser();
     return (
         <div className="select-none hidden sm:flex flex-col p-2 sm:ml-3 xl:items-start fixed h-full" >
             <Link href="/home" className="hoverEffect xl:mt-0.5">
@@ -54,18 +63,41 @@ export default function Sidebar() {
                 <button className="bg-blue-500 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Meow</button>
 
                 <div className="hoverEffect flex items-center justify-center xl:justify-start mt-auto">
-                    <Image
-                        src="https://preview.redd.it/wk01okjvpar61.jpg?width=960&crop=smart&auto=webp&s=12cc4ee8093e75a6e0e69f24beefae50cfbfa2e2"
-                        alt="user image"
-                        className="rounded-full xl:mr-2"
-                        width="43"
-                        height="43"
-                    />
-                    <div className="leading-5 hidden xl:inline">
-                        <h4 className="font-bold">Grellheist</h4>
-                        <p className="">@grellheist</p>
-                    </div>
-                    <HiDotsHorizontal className="h-5 xl:ml-8 hidden xl:inline" />
+                    {user?.imageUrl ?
+                        (
+                            <Image
+                                src={user?.imageUrl}
+                                alt="user image"
+                                className="rounded-full xl:mr-2 w-11 h-11"
+                                width="150"
+                                height="150"
+                            />
+                        ) : (
+                            <Image
+                                src="https://ombud.alaska.gov/wp-content/uploads/2018/01/no-user.jpg"
+                                alt="user image"
+                                className="rounded-full xl:mr-2 w-11 h-11"
+                                width="150"
+                                height="150"
+                            />
+                        )
+                    }
+                    <ClerkLoading>
+                        <SignedIn>
+                            <div className="ml-10 mt-8 mx-auto">
+                                <Image src={Spinner} height={35} width={35} alt="Loading..." />
+                            </div>
+                        </SignedIn>
+                    </ClerkLoading>
+                    <ClerkLoaded>
+                        <SignedIn>
+                            <div className="leading-5 hidden xl:inline">
+                                <h4 className="font-bold">{user?.firstName}</h4>
+                                <p className="text-md text-gray-500">@{user?.username}</p>
+                            </div>
+                            <HiDotsHorizontal className="h-5 xl:ml-8 hidden xl:inline" />
+                        </SignedIn>
+                    </ClerkLoaded>
                 </div>
             </SignedIn>
         </div>
