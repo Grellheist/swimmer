@@ -9,6 +9,8 @@ import { HiDotsCircleHorizontal, HiDotsHorizontal } from "react-icons/hi"
 import { IoLogoOctocat } from "react-icons/io"
 import Link from "next/link"
 import Image from "next/image"
+import { SignedIn } from "@clerk/clerk-react"
+import { SignedOut } from "@clerk/clerk-react"
 
 export default function Sidebar() {
     return (
@@ -20,19 +22,28 @@ export default function Sidebar() {
             <div className="mt-4 mb-2.5 xl:items-start">
                 <SidebarMenuItem text="Home" Icon={AiFillHome} />
                 <SidebarMenuItem text="Explore" Icon={FaHashtag} />
-                <SidebarMenuItem text="Notifications" Icon={AiFillBell} />
-                <SidebarMenuItem text="Messages" Icon={GrMail} />
-                <div className="hidden 2xl:block">
-                    <SidebarMenuItem text="Lists" Icon={RiFileListFill} />
-                </div>
-                <div className="hidden 2xl:block">
-                    <SidebarMenuItem text="Bookmarks" Icon={BsFillBookmarkFill} />
-                </div>
-                <SidebarMenuItem text="Profile" Icon={FaUserAlt} />
-                <SidebarMenuItem text="More" Icon={HiDotsCircleHorizontal} />
+                <SignedOut>
+                    <Link href="/login">
+                        <button className="bg-blue-500 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Login</button>
+                    </Link>
+                </SignedOut>
+                <SignedIn>
+                    <SidebarMenuItem text="Notifications" Icon={AiFillBell} />
+                    <SidebarMenuItem text="Messages" Icon={GrMail} />
+                    <div className="hidden 2xl:block">
+                        <SidebarMenuItem text="Lists" Icon={RiFileListFill} />
+                    </div>
+                    <div className="hidden 2xl:block">
+                        <SidebarMenuItem text="Bookmarks" Icon={BsFillBookmarkFill} />
+                    </div>
+                    <SidebarMenuItem text="Profile" Icon={FaUserAlt} />
+                    <SidebarMenuItem text="More" Icon={HiDotsCircleHorizontal} />
+                </SignedIn>
             </div>
 
-            <button className="bg-blue-500 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Meow</button>
+            <SignedIn>
+                <button className="bg-blue-500 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Meow</button>
+            </SignedIn>
 
             <div className="hoverEffect flex items-center justify-center xl:justify-start mt-auto">
                 <Image
