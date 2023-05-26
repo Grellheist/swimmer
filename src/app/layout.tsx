@@ -1,6 +1,7 @@
 import Sidebar from '@/components/Sidebar'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import { ClerkProvider } from '@clerk/nextjs'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,12 +16,13 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en" className='scroll-smooth'>
-            <body className={`${inter.className} flex min-h-screen mx-auto`}>
-                <Sidebar />
-                {children}
-            </body>
-
-        </html>
+        <ClerkProvider>
+            <html lang="en" className='scroll-smooth'>
+                <body className={`${inter.className} flex min-h-screen mx-auto`}>
+                    <Sidebar />
+                    {children}
+                </body>
+            </html>
+        </ClerkProvider>
     )
 }
