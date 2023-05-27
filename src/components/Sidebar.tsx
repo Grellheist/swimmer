@@ -67,7 +67,7 @@ export default function Sidebar() {
 
                 <ClerkLoading>
                     <SignedIn>
-                        <div className="ml-10 mt-8 mx-auto">
+                        <div className="ml-24 mt-auto mb-4 mx-auto">
                             <Image src={Spinner} height={35} width={35} alt="Loading..." />
                         </div>
                     </SignedIn>
