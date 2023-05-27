@@ -18,9 +18,21 @@ import {
     useUser,
 } from "@clerk/nextjs"
 import Spinner from "../../public/spinner.svg"
+import { useClerk } from "@clerk/clerk-react"
+import { useEffect, useRef } from "react"
 
 export default function Sidebar() {
     const { user } = useUser();
+    const clerk = useClerk();
+
+    const customButtonRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (customButtonRef.current) {
+            clerk.mountUserButton(customButtonRef.current, { userProfileMode: 'modal' });
+        }
+    }, [clerk]);
+
     return (
         <div className="select-none hidden sm:flex flex-col p-2 sm:ml-3 xl:items-start fixed h-full" >
             <Link href="/home" className="hoverEffect xl:mt-0.5">
@@ -61,16 +73,16 @@ export default function Sidebar() {
             <SignedIn>
                 <button className="bg-blue-500 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Meow</button>
 
-                <div className="hoverEffect flex items-center justify-center xl:justify-start mt-auto">
-                    <ClerkLoading>
-                        <SignedIn>
-                            <div className="ml-10 mt-8 mx-auto">
-                                <Image src={Spinner} height={35} width={35} alt="Loading..." />
-                            </div>
-                        </SignedIn>
-                    </ClerkLoading>
-                    <ClerkLoaded>
-                        <SignedIn>
+                <ClerkLoading>
+                    <SignedIn>
+                        <div className="ml-10 mt-8 mx-auto">
+                            <Image src={Spinner} height={35} width={35} alt="Loading..." />
+                        </div>
+                    </SignedIn>
+                </ClerkLoading>
+                <ClerkLoaded>
+                    <SignedIn>
+                        <div className="hoverEffect flex items-center justify-center xl:justify-start mt-auto" ref={customButtonRef}>
                             {user?.imageUrl ?
                                 (
                                     <Image
@@ -95,9 +107,9 @@ export default function Sidebar() {
                                 <p className="text-md text-gray-500">@{user?.username}</p>
                             </div>
                             <HiDotsHorizontal className="h-5 xl:ml-8 hidden xl:inline" />
-                        </SignedIn>
-                    </ClerkLoaded>
-                </div>
+                        </div>
+                    </SignedIn>
+                </ClerkLoaded>
             </SignedIn>
         </div>
     )
