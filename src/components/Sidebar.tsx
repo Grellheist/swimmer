@@ -16,22 +16,12 @@ import {
     ClerkLoading,
     ClerkLoaded,
     useUser,
+    UserButton
 } from "@clerk/nextjs"
 import Spinner from "../../public/spinner.svg"
-import { useClerk } from "@clerk/clerk-react"
-import { useEffect, useRef } from "react"
 
 export default function Sidebar() {
     const { user } = useUser();
-    const clerk = useClerk();
-
-    const customButtonRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (customButtonRef.current) {
-            clerk.mountUserButton(customButtonRef.current, { userProfileMode: 'modal' });
-        }
-    }, [clerk]);
 
     return (
         <div className="select-none hidden sm:flex flex-col p-2 sm:ml-3 xl:items-start fixed h-full" >
@@ -82,26 +72,8 @@ export default function Sidebar() {
                 </ClerkLoading>
                 <ClerkLoaded>
                     <SignedIn>
-                        <div className="hoverEffect flex items-center justify-center xl:justify-start mt-auto" ref={customButtonRef}>
-                            {user?.imageUrl ?
-                                (
-                                    <Image
-                                        src={user?.imageUrl}
-                                        alt="user image"
-                                        className="rounded-full xl:mr-2 w-11 h-11"
-                                        width="150"
-                                        height="150"
-                                    />
-                                ) : (
-                                    <Image
-                                        src="https://ombud.alaska.gov/wp-content/uploads/2018/01/no-user.jpg"
-                                        alt="user image"
-                                        className="rounded-full xl:mr-2 w-11 h-11"
-                                        width="150"
-                                        height="150"
-                                    />
-                                )
-                            }
+                        <div className="hoverEffect flex items-center justify-center xl:justify-start mt-auto">
+                            <UserButton appearance={{ elements: { avatarBox: 'xl:mr-2 w-11 h-11' } }} />
                             <div className="leading-5 hidden xl:inline">
                                 <h4 className="font-bold">{user?.firstName}</h4>
                                 <p className="text-md text-gray-500">@{user?.username}</p>
