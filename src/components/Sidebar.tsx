@@ -5,6 +5,7 @@ import { FaHashtag, FaUserAlt } from "react-icons/fa"
 import { GrMail } from "react-icons/gr"
 import { BsFillBookmarkFill } from "react-icons/bs"
 import { RiFileListFill } from "react-icons/ri"
+import { RxCross2 } from "react-icons/rx"
 import { HiDotsCircleHorizontal, HiDotsHorizontal } from "react-icons/hi"
 import { IoLogoOctocat } from "react-icons/io"
 import Link from "next/link"
@@ -16,9 +17,10 @@ import {
     ClerkLoading,
     ClerkLoaded,
     useUser,
-    UserButton
+    SignOutButton
 } from "@clerk/nextjs"
 import Spinner from "../../public/spinner.svg"
+import * as Popover from "@radix-ui/react-popover"
 
 export default function Sidebar() {
     const { user } = useUser();
@@ -72,14 +74,60 @@ export default function Sidebar() {
                 </ClerkLoading>
                 <ClerkLoaded>
                     <SignedIn>
-                        <div className="hoverEffect flex items-center justify-center xl:justify-start mt-auto">
-                            <UserButton appearance={{ elements: { avatarBox: 'xl:mr-2 w-11 h-11' } }} />
-                            <div className="leading-5 hidden xl:inline">
-                                <h4 className="font-bold">{user?.firstName}</h4>
-                                <p className="text-md text-gray-500">@{user?.username}</p>
-                            </div>
-                            <HiDotsHorizontal className="h-5 xl:ml-8 hidden xl:inline" />
-                        </div>
+                        <Popover.Root>
+                            <Popover.Trigger asChild>
+                                <button className="hoverEffect flex items-center justify-center xl:justify-start mt-auto">
+                                    {user?.imageUrl ?
+                                        (
+                                            <Image
+                                                src={user?.imageUrl}
+                                                alt="user image"
+                                                className="rounded-full xl:mr-2 w-11 h-11"
+                                                width="150"
+                                                height="150"
+                                            />
+                                        ) : (
+                                            <Image
+                                                src="https://ombud.alaska.gov/wp-content/uploads/2018/01/no-user.jpg"
+                                                alt="user image"
+                                                className="rounded-full xl:mr-2 w-11 h-11"
+                                                width="150"
+                                                height="150"
+                                            />
+                                        )
+                                    }
+                                    <div className="leading-5 hidden xl:inline">
+                                        <h4 className="font-bold">{user?.firstName}</h4>
+                                        <p className="text-md text-gray-500">@{user?.username}</p>
+                                    </div>
+                                    <HiDotsHorizontal className="h-5 xl:ml-8 hidden xl:inline" />
+                                </button>
+                            </Popover.Trigger>
+                            <Popover.Portal>
+                                <Popover.Content
+                                    className="select-none rounded p-5 w-[260px] bg-black shadow-[0_10px_38px_-10px_rgba(255,255,255,.2),0_10px_20px_-15px_rgba(255,255,255,.2)] will-change-[transform,opacity] data-[state=open]:data-[side=top]:animate-slideDownAndFade data-[state=open]:data-[side=right]:animate-slideLeftAndFade data-[state=open]:data-[side=bottom]:animate-slideUpAndFade data-[state=open]:data-[side=left]:animate-slideRightAndFade"
+                                    sideOffset={5}
+                                >
+                                    <div className="flex flex-col gap-2.5">
+                                        <p className="border-b border-gray-600 p-1 text-gray-200 text-[17px] leading-[19px] mb-2.5 mx-auto">Feeling tired?</p>
+                                        <fieldset className="flex gap-5 items-center">
+                                            <SignOutButton>
+                                                <button className="text-[18px] font-bold text-sky-500 mx-auto hover:underline">
+                                                    Sign Out
+                                                </button>
+                                            </SignOutButton>
+                                        </fieldset>
+                                    </div>
+                                    <Popover.Close
+                                        className="rounded-full h-[25px] w-[25px] inline-flex items-center justify-center text-violet11 absolute top-[5px] right-[5px] hover:bg-violet4 focus:shadow-[0_0_0_2px] focus:shadow-black outline-none cursor-default"
+                                        aria-label="Close"
+                                    >
+                                        <RxCross2 />
+                                    </Popover.Close>
+                                    <Popover.Arrow className="fill-black" />
+                                </Popover.Content>
+                            </Popover.Portal>
+                        </Popover.Root>
                     </SignedIn>
                 </ClerkLoaded>
             </SignedIn>
