@@ -96,9 +96,9 @@ export default function Sidebar() {
                                             />
                                         )
                                     }
-                                    <div className="leading-5 hidden xl:inline">
-                                        <h4 className="font-bold">{user?.firstName}</h4>
-                                        <p className="text-md text-gray-500">@{user?.username}</p>
+                                    <div className="leading-5 hidden w-[160px] xl:inline overflow-hidden">
+                                        <h4 className="font-bold truncate line-clamp-none text-left">{user?.fullName}</h4>
+                                        <p className="text-[15px] text-gray-500 text-left">@{user?.username}</p>
                                     </div>
                                     <HiDotsHorizontal className="h-5 xl:ml-8 hidden xl:inline" />
                                 </button>
