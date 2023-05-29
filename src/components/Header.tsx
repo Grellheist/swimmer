@@ -46,7 +46,7 @@ export default function Header({ children }: { children: ReactNode }) {
                         <button className="flex py-2 px-4 text-gray-200 hover:text-white border-b border-gray-600 w-full justify-start">Explore</button>
                     </Link>
                     <SignedOut>
-                        <SignInButton>
+                        <SignInButton mode="modal">
                             <button className="flex py-2 px-4 text-gray-200 hover:text-white border-b border-gray-600 w-full justify-start">Sign in</button>
                         </SignInButton>
                     </SignedOut>
