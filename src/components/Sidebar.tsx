@@ -32,7 +32,9 @@ export default function Sidebar() {
             </Link>
 
             <div className="mt-4 mb-2.5 xl:items-start">
-                <SidebarMenuItem text="Home" Icon={AiFillHome} />
+                <SignedIn>
+                    <SidebarMenuItem text="Home" Icon={AiFillHome} />
+                </SignedIn>
                 <SidebarMenuItem text="Explore" Icon={FaHashtag} />
                 <ClerkLoading>
                     <SignedOut>
