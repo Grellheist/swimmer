@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useUser, SignedIn } from "@clerk/nextjs";
 import { MdBrokenImage } from "react-icons/md"
 import EmojiPicker from "emoji-picker-react";
+import { Theme } from "emoji-picker-react";
 import * as Popover from '@radix-ui/react-popover';
 
 export default function Input() {
@@ -40,7 +41,7 @@ export default function Input() {
                                 </Popover.Trigger>
                                 <Popover.Portal>
                                     <Popover.Content>
-                                        <EmojiPicker />
+                                        <EmojiPicker theme={Theme.DARK} />
                                     </Popover.Content>
                                 </Popover.Portal>
                             </Popover.Root>
