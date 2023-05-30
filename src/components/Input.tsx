@@ -55,10 +55,11 @@ export default function Input() {
                                         <BsEmojiSmile className="h-10 w-10 hoverEffect p-2 text-blue-500 hover:bg-gray-900" />
                                     </button>
                                 </Popover.Trigger>
-                                <Popover.Content style={{ position: "absolute", zIndex: 1 }}>
+                                <Popover.Content style={{ zIndex: 1 }}>
                                     <EmojiPicker
                                         onEmojiClick={handleEmojiSelect}
                                         theme={Theme.DARK}
+                                        lazyLoadEmojis={true}
                                     />
                                 </Popover.Content>
                             </Popover.Root>
