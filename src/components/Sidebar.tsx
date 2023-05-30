@@ -8,6 +8,7 @@ import { RiFileListFill } from "react-icons/ri"
 import { RxCross2 } from "react-icons/rx"
 import { HiDotsCircleHorizontal, HiDotsHorizontal } from "react-icons/hi"
 import { IoLogoOctocat } from "react-icons/io"
+import { MdBrokenImage } from "react-icons/md"
 import Link from "next/link"
 import Image from "next/image"
 import {
@@ -79,27 +80,23 @@ export default function Sidebar() {
                         <Popover.Root>
                             <Popover.Trigger asChild>
                                 <button className="hoverEffect flex items-center justify-center xl:justify-start mt-auto">
-                                    {user?.imageUrl ?
-                                        (
-                                            <Image
-                                                src={user?.imageUrl}
-                                                alt="user image"
-                                                className="rounded-full xl:mr-2 w-11 h-11"
-                                                width="150"
-                                                height="150"
-                                            />
-                                        ) : (
-                                            <Image
-                                                src="https://ombud.alaska.gov/wp-content/uploads/2018/01/no-user.jpg"
-                                                alt="user image"
-                                                className="rounded-full xl:mr-2 w-11 h-11"
-                                                width="150"
-                                                height="150"
-                                            />
-                                        )
-                                    }
+                                    {user && user.imageUrl ? (
+                                        <Image
+                                            src={user.imageUrl}
+                                            alt="user image"
+                                            className="rounded-full xl:mr-2 w-11 h-11"
+                                            width="150"
+                                            height="150"
+                                        />
+                                    ) : (
+                                        <MdBrokenImage className="h-7 w-7" />
+                                    )}
                                     <div className="leading-5 hidden w-[160px] xl:inline overflow-hidden">
-                                        <h4 className="font-bold truncate line-clamp-none text-left">{user?.fullName}</h4>
+                                        {user && user.fullName ? (
+                                                <h4 className="font-bold truncate line-clamp-none text-left">{user?.fullName}</h4>
+                                            ) : (
+                                                <h4 className="font-bold truncate line-clamp-none text-left">{user?.username}</h4>
+                                            )}
                                         <p className="text-[15px] text-gray-500 text-left">@{user?.username}</p>
                                     </div>
                                     <HiDotsHorizontal className="h-5 xl:ml-8 hidden xl:inline" />

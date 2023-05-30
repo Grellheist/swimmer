@@ -2,31 +2,24 @@ import { BsEmojiSmile } from "react-icons/bs";
 import { HiOutlinePhotograph } from "react-icons/hi";
 import Image from "next/image";
 import { useUser, SignedIn } from "@clerk/nextjs";
+import { MdBrokenImage } from "react-icons/md"
 
 export default function Input() {
     const { user } = useUser();
     return (
         <SignedIn>
             <div className='flex border-b border-gray-600 p-3 space-x-3'>
-                {user?.imageUrl ?
-                    (
-                        <Image
-                            src={user?.imageUrl}
-                            alt="user image"
-                            className="rounded-full h-12 w-12 cursor-pointer hover:brightness-95"
-                            width="150"
-                            height="150"
-                        />
-                    ) : (
-                        <Image
-                            src="https://ombud.alaska.gov/wp-content/uploads/2018/01/no-user.jpg"
-                            alt="user image"
-                            className="rounded-full h-12 w-12 cursor-pointer hover:brightness-95"
-                            width="150"
-                            height="150"
-                        />
-                    )
-                }
+                {user && user.imageUrl ? (
+                    <Image
+                        src={user.imageUrl}
+                        alt="user image"
+                        className="rounded-full xl:mr-2 w-11 h-11"
+                        width="150"
+                        height="150"
+                    />
+                ) : (
+                    <MdBrokenImage className="h-7 w-7"/>
+                )}
                 <div className="w-full divide-y divide-gray-600">
                     <div className="">
                         <textarea className="w-full border-none focus:ring-0 text-gray-200 bg-black text-lg tracking-wide min-h-[50px] resize-none" placeholder="What is happening?!" rows={2} />
