@@ -1,7 +1,7 @@
 "use client"
 import SidebarMenuItem from "./SidebarMenuItem"
 import { AiFillHome, AiFillBell } from "react-icons/ai"
-import { FaHashtag, FaUserAlt } from "react-icons/fa"
+import { FaHashtag, FaSignInAlt, FaUserAlt } from "react-icons/fa"
 import { GrMail } from "react-icons/gr"
 import { BsFillBookmarkFill } from "react-icons/bs"
 import { RiFileListFill } from "react-icons/ri"
@@ -63,6 +63,11 @@ export default function Sidebar() {
                     <SidebarMenuItem text="Profile" Icon={FaUserAlt} />
                     <SidebarMenuItem text="More" Icon={HiDotsCircleHorizontal} />
                 </SignedIn>
+                <SignedOut>
+                    <SignInButton mode="modal">
+                        <FaSignInAlt className="hidden sm:block xl:hidden w-7 h-7 text-blue-500 cursor-pointer hover:brightness-95 fixed bottom-10" />
+                    </SignInButton>
+                </SignedOut>
             </div>
 
             <SignedIn>
@@ -93,10 +98,10 @@ export default function Sidebar() {
                                     )}
                                     <div className="leading-5 hidden w-[160px] xl:inline overflow-hidden">
                                         {user && user.fullName ? (
-                                                <h4 className="font-bold truncate line-clamp-none text-left">{user?.fullName}</h4>
-                                            ) : (
-                                                <h4 className="font-bold truncate line-clamp-none text-left">{user?.username}</h4>
-                                            )}
+                                            <h4 className="font-bold truncate line-clamp-none text-left">{user?.fullName}</h4>
+                                        ) : (
+                                            <h4 className="font-bold truncate line-clamp-none text-left">{user?.username}</h4>
+                                        )}
                                         <p className="text-[15px] text-gray-500 text-left">@{user?.username}</p>
                                     </div>
                                     <HiDotsHorizontal className="h-5 xl:ml-8 hidden xl:inline" />

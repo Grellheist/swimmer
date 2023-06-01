@@ -26,6 +26,9 @@ export default function Widgets() {
             const NEWS_URL =
                 "https://saurav.tech/NewsAPI/top-headlines/category/health/in.json";
             const response = await fetch(NEWS_URL);
+            if (!response.ok) {
+                throw new Error("Failed to fetch news.")
+            }
             const data = await response.json();
             setNewsData(data);
         };
@@ -33,6 +36,9 @@ export default function Widgets() {
         const randomUserResults = async () => {
             const USERS_URL = "https://randomuser.me/api/?results=30&inc=name,login,picture";
             const response = await fetch(USERS_URL);
+            if (!response.ok) {
+                throw new Error("Failed to fetch users.")
+            }
             const data = await response.json();
             setUserData(data)
         }
