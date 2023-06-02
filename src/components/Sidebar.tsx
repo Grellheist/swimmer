@@ -64,7 +64,7 @@ export default function Sidebar() {
                     {user && user.id ? (
                         <Link href={`/profile/${user.id}`} className='hoverEffect flex items-center justify-center xl:justify-start space-x-3' >
                             <FaUserAlt className='mr-3 text-[28px]' />
-                            <span className={`${usePathname() === `/profile}` ? "font-semibold" : ""} hidden xl:inline text-[22px]`}>Profile</span>
+                            <span className={'hidden xl:inline text-[22px]'}>Profile</span>
                         </Link >
                     ) : (
                         <div>huh</div>
