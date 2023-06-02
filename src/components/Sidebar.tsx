@@ -22,7 +22,6 @@ import {
 } from "@clerk/nextjs"
 import Spinner from "../../public/spinner.svg"
 import * as Popover from "@radix-ui/react-popover"
-import { usePathname } from "next/navigation"
 
 export default function Sidebar() {
     const { user } = useUser();
@@ -61,14 +60,7 @@ export default function Sidebar() {
                     <div className="hidden 2xl:block">
                         <SidebarMenuItem text="Bookmarks" Icon={BsFillBookmarkFill} />
                     </div>
-                    {user && user.id ? (
-                        <Link href={`/profile/${user.id}`} className='hoverEffect flex items-center justify-center xl:justify-start space-x-3' >
-                            <FaUserAlt className='mr-3 text-[28px]' />
-                            <span className={'hidden xl:inline text-[22px]'}>Profile</span>
-                        </Link >
-                    ) : (
-                        <div>huh</div>
-                    )}
+                    <SidebarMenuItem text="Profile" Icon={FaUserAlt} />
                     <SidebarMenuItem text="More" Icon={HiDotsCircleHorizontal} />
                 </SignedIn>
                 <SignedOut>
