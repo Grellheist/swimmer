@@ -9,7 +9,7 @@ import { SignInButton, SignOutButton, SignedIn, SignedOut } from "@clerk/nextjs"
 
 export default function Header({ children }: { children: ReactNode }) {
     const pathName = usePathname().substring(1);
-    const formattedName = `${pathName.charAt(0).toUpperCase()}${pathName.slice(1)}`;
+    const formattedName = pathName.split("/")[0].charAt(0).toUpperCase() + pathName.split("/")[0].slice(1);
     const [navbar, setNavbar] = useState(false);
 
     const handleClick = () => {

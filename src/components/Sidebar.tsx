@@ -60,14 +60,16 @@ export default function Sidebar() {
                     <div className="hidden 2xl:block">
                         <SidebarMenuItem text="Bookmarks" Icon={BsFillBookmarkFill} />
                     </div>
-                    {user && user.id ? (
-                        <Link href={`/profile/${user.id}`} className='hoverEffect flex items-center justify-center xl:justify-start space-x-3' >
-                            <FaUserAlt className='mr-3 text-[28px]' />
-                            <span className={'hidden xl:inline text-[22px]'}>Profile</span>
-                        </Link >
-                    ) : (
-                        <div>huh</div>
-                    )}
+                    <ClerkLoaded>
+                        {user && user.id ? (
+                            <Link href={`/profile/${user.id}`} className='hoverEffect flex items-center justify-center xl:justify-start space-x-3' >
+                                <FaUserAlt className='mr-3 text-[28px]' />
+                                <span className={'hidden xl:inline text-[22px]'}>Profile</span>
+                            </Link >
+                        ) : (
+                            <div>you should not be seeing this</div>
+                        )}
+                    </ClerkLoaded>
                     <SidebarMenuItem text="More" Icon={HiDotsCircleHorizontal} />
                 </SignedIn>
                 <SignedOut>
