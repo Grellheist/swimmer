@@ -4,7 +4,6 @@ import { HiOutlinePhotograph } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
 import { useUser, SignedIn } from "@clerk/nextjs";
-import { MdBrokenImage } from "react-icons/md";
 import { useState } from "react";
 import EmojiPicker from "emoji-picker-react";
 import type { EmojiClickData } from "emoji-picker-react";
@@ -20,21 +19,19 @@ export default function Input() {
         setTextValue((prevTextValue) => prevTextValue + emoji);
     };
 
+    if (!user) return <div>404</div>
+
     return (
         <SignedIn>
             <div className="flex border-b border-gray-600 p-3 space-x-3">
                 <Link href="/profile">
-                    {user && user.imageUrl ? (
-                        <Image
-                            src={user.imageUrl}
-                            alt="user image"
-                            className="rounded-full xl:mr-2 w-11 h-11"
-                            width="150"
-                            height="150"
-                        />
-                    ) : (
-                        <MdBrokenImage className="h-7 w-7" />
-                    )}
+                    <Image
+                        src={user.imageUrl}
+                        alt="user image"
+                        className="rounded-full xl:mr-2 w-11 h-11"
+                        width="150"
+                        height="150"
+                    />
                 </Link>
                 <div className="w-full divide-y divide-gray-600">
                     <div className="">
