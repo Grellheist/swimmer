@@ -1,9 +1,8 @@
-// import Sidebar from "../../components/Sidebar"
 import Widgets from "@/components/Widgets"
 import Header from "@/components/Header";
 
 export default function NotificationsLayout({
-    children, // will be a page or nested layout
+    children, 
 }: {
     children: React.ReactNode;
 }) {
