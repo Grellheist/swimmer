@@ -4,14 +4,13 @@ const prisma = new PrismaClient();
 
 export default async function handler(req: any, res: any) {
     if (req.method === "POST") {
-        const { textValue, imgUrl, authorId } = req.body;
+        const { textValue } = req.body;
 
         try {
             const entry = await prisma.post.create({
                 data: {
-                    authorId: authorId,
+                    authorId: "hahah",
                     content: textValue,
-                    imgUrl: imgUrl
                 },
             });
 
