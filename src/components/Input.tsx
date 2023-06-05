@@ -4,16 +4,16 @@ import { HiOutlinePhotograph } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
 import { useUser, SignedIn } from "@clerk/nextjs";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import EmojiPicker from "emoji-picker-react";
 import type { EmojiClickData } from "emoji-picker-react";
 import { Theme } from "emoji-picker-react";
 import * as Popover from "@radix-ui/react-popover";
-import Router from "next/router";
 
 export default function Input() {
     const { user } = useUser();
     const [textValue, setTextValue] = useState("");
+    const imagePickerRef = useRef(null)
 
     const handleEmojiSelect = (emojiObject: EmojiClickData) => {
         const emoji = emojiObject.emoji;
@@ -36,7 +36,6 @@ export default function Input() {
             console.error("Failed to create entry:", error);
         }
         setTextValue("")
-        Router.reload()
     };
 
     if (!user) return <div>404</div>
@@ -65,7 +64,10 @@ export default function Input() {
                     </div>
                     <div className="flex items-center justify-between pt-2.5">
                         <div className="flex">
-                            <HiOutlinePhotograph className="h-10 w-10 hoverEffect p-2 text-blue-500 hover:bg-gray-900" />
+                            <div>
+                                <HiOutlinePhotograph className="h-10 w-10 hoverEffect p-2 text-blue-500 hover:bg-gray-900" />
+                                <input type="file" hidden ref={imagePickerRef} />
+                            </div>
                             <Popover.Root>
                                 <Popover.Trigger asChild>
                                     <button>
