@@ -38,6 +38,8 @@ export default function Input() {
         setTextValue("")
     };
 
+    const handleImageClick = () => {}
+
     if (!user) return <div>404</div>
 
     return (
@@ -64,9 +66,9 @@ export default function Input() {
                     </div>
                     <div className="flex items-center justify-between pt-2.5">
                         <div className="flex">
-                            <div>
+                            <div onClick={() => imagePickerRef.current.click()}>
                                 <HiOutlinePhotograph className="h-10 w-10 hoverEffect p-2 text-blue-500 hover:bg-gray-900" />
-                                <input type="file" hidden ref={imagePickerRef} />
+                                <input type="file" hidden ref={imagePickerRef} onClick={handleImageClick} />
                             </div>
                             <Popover.Root>
                                 <Popover.Trigger asChild>
