@@ -8,6 +8,7 @@ import { RiFileListFill } from "react-icons/ri"
 import { RxCross2 } from "react-icons/rx"
 import { HiDotsCircleHorizontal, HiDotsHorizontal } from "react-icons/hi"
 import { IoLogoOctocat } from "react-icons/io"
+import { MdBrokenImage } from "react-icons/md"
 import Link from "next/link"
 import Image from "next/image"
 import {
@@ -24,7 +25,6 @@ import * as Popover from "@radix-ui/react-popover"
 
 export default function Sidebar() {
     const { user } = useUser();
-    if (!user) return <div>404</div>
 
     return (
         <div className="select-none hidden sm:flex flex-col p-2 sm:ml-3 xl:items-start fixed h-full" >
@@ -61,10 +61,14 @@ export default function Sidebar() {
                         <SidebarMenuItem text="Bookmarks" Icon={BsFillBookmarkFill} />
                     </div>
                     <ClerkLoaded>
-                        <Link href={`/profile/${user.id}`} className='hoverEffect flex items-center justify-center xl:justify-start space-x-3' >
-                            <FaUserAlt className='mr-3 text-[28px]' />
-                            <span className={'hidden xl:inline text-[22px]'}>Profile</span>
-                        </Link >
+                        {user && user.id ? (
+                            <Link href={`/profile/${user.id}`} className='hoverEffect flex items-center justify-center xl:justify-start space-x-3' >
+                                <FaUserAlt className='mr-3 text-[28px]' />
+                                <span className={'hidden xl:inline text-[22px]'}>Profile</span>
+                            </Link >
+                        ) : (
+                            <div>you should not be seeing this</div>
+                        )}
                     </ClerkLoaded>
                     <SidebarMenuItem text="More" Icon={HiDotsCircleHorizontal} />
                 </SignedIn>
@@ -90,15 +94,19 @@ export default function Sidebar() {
                         <Popover.Root>
                             <Popover.Trigger asChild>
                                 <button className="hoverEffect flex items-center justify-center xl:justify-start mt-auto">
-                                    <Image
-                                        src={user.imageUrl}
-                                        alt="user image"
-                                        className="rounded-full xl:mr-2 w-11 h-11"
-                                        width="150"
-                                        height="150"
-                                    />
+                                    {user && user.imageUrl ? (
+                                        <Image
+                                            src={user.imageUrl}
+                                            alt="user image"
+                                            className="rounded-full xl:mr-2 w-11 h-11"
+                                            width="150"
+                                            height="150"
+                                        />
+                                    ) : (
+                                        <MdBrokenImage className="h-7 w-7" />
+                                    )}
                                     <div className="leading-5 hidden w-[160px] xl:inline overflow-hidden">
-                                        {user.fullName ? (
+                                        {user && user.fullName ? (
                                             <h4 className="font-bold truncate line-clamp-none text-left">{user?.fullName}</h4>
                                         ) : (
                                             <h4 className="font-bold truncate line-clamp-none text-left">{user?.username}</h4>
