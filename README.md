@@ -25,6 +25,13 @@ pretty good.
 - Prisma I'm still looking at the docs to figure out how I'm going to proceed,
   and I will update this README when I do figure it out.
 
+- After finally figuring out how to use Prisma with NextJS 13.3 to create a
+  post, now the problem is fetching all the existing posts. However, I do feel
+  like I have a pretty good idea on how to do that and that one shouldn't take
+  too long. Creating a post was super hard to figure out though, because
+  documentation isn't very available for the newest versions and most tutorials
+  are super outdated.
+
 ### Disclaimer
 
 I was going to brand this as Swimmer with a fish as the pet but my
