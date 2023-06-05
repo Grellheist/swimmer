@@ -16,7 +16,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             console.error(error);
             res.status(500).json({ error: "Failed to create entry" });
         }
-    } else {
-        res.status(405).json({ error: "Method not allowed" });
-    }
+    } 
 }
