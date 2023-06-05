@@ -13,7 +13,7 @@ import * as Popover from "@radix-ui/react-popover";
 export default function Input() {
     const { user } = useUser();
     const [textValue, setTextValue] = useState("");
-    const imagePickerRef = useRef(null)
+    const imagePickerRef = useRef<HTMLInputElement>(null)
 
     const handleEmojiSelect = (emojiObject: EmojiClickData) => {
         const emoji = emojiObject.emoji;
@@ -38,7 +38,7 @@ export default function Input() {
         setTextValue("")
     };
 
-    const handleImageClick = () => {}
+    const handleImageClick = () => { }
 
     if (!user) return <div>404</div>
 
@@ -66,7 +66,7 @@ export default function Input() {
                     </div>
                     <div className="flex items-center justify-between pt-2.5">
                         <div className="flex">
-                            <div onClick={() => imagePickerRef.current.click()}>
+                            <div onClick={() => imagePickerRef?.current?.click()}>
                                 <HiOutlinePhotograph className="h-10 w-10 hoverEffect p-2 text-blue-500 hover:bg-gray-900" />
                                 <input type="file" hidden ref={imagePickerRef} onClick={handleImageClick} />
                             </div>
