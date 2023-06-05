@@ -24,7 +24,7 @@ export default function Input() {
     return (
         <SignedIn>
             <div className="flex border-b border-gray-600 p-3 space-x-3">
-                <Link href="/profile">
+                <Link href={`/profile/${user.id}`}>
                     <Image
                         src={user.imageUrl}
                         alt="user image"
