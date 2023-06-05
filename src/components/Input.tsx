@@ -26,7 +26,7 @@ export default function Input() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ textValue }),
+                body: JSON.stringify({ authorId: user?.id, content: textValue }),
             });
             if (!response.ok) {
                 throw new Error("Something went wrong")
