@@ -9,6 +9,7 @@ import EmojiPicker from "emoji-picker-react";
 import type { EmojiClickData } from "emoji-picker-react";
 import { Theme } from "emoji-picker-react";
 import * as Popover from "@radix-ui/react-popover";
+import { prisma } from "@/lib/prisma";
 
 export default function Input() {
     const { user } = useUser();
@@ -17,6 +18,18 @@ export default function Input() {
     const handleEmojiSelect = (emojiObject: EmojiClickData) => {
         const emoji = emojiObject.emoji;
         setTextValue((prevTextValue) => prevTextValue + emoji);
+    };
+
+    const createPost = async () => {
+        if (user) {
+            const post = await prisma.post.create({
+                data: {
+                    authorId: user.id,
+                    content: textValue,
+                }
+            })
+            return post
+        }
     };
 
     if (!user) return <div>404</div>
@@ -61,7 +74,7 @@ export default function Input() {
                                 </Popover.Content>
                             </Popover.Root>
                         </div>
-                        <button disabled={textValue.trim().length === 0} className="disabled:opacity-75 bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md enabled:hover:brightness-95">
+                        <button onClick={createPost} disabled={textValue.trim().length === 0} className="disabled:opacity-75 bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md enabled:hover:brightness-95">
                             Meow
                         </button>
                     </div>
