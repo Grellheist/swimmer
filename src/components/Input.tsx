@@ -20,17 +20,17 @@ export default function Input() {
         setTextValue((prevTextValue) => prevTextValue + emoji);
     };
 
-    const createPost = async () => {
-        if (user) {
-            const post = await prisma.post.create({
-                data: {
-                    authorId: user.id,
-                    content: textValue,
-                }
-            })
-            return post
-        }
-    };
+    // const createPost = async () => {
+    //     if (user) {
+    //         const post = await prisma.post.create({
+    //             data: {
+    //                 authorId: user.id,
+    //                 content: textValue,
+    //             }
+    //         })
+    //         return post
+    //     }
+    // };
 
     if (!user) return <div>404</div>
 
@@ -74,7 +74,7 @@ export default function Input() {
                                 </Popover.Content>
                             </Popover.Root>
                         </div>
-                        <button onClick={createPost} disabled={textValue.trim().length === 0} className="disabled:opacity-75 bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md enabled:hover:brightness-95">
+                        <button disabled={textValue.trim().length === 0} className="disabled:opacity-75 bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md enabled:hover:brightness-95">
                             Meow
                         </button>
                     </div>
