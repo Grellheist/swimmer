@@ -21,7 +21,7 @@ export default function Input() {
 
     const handleMeow = async () => {
         try {
-            const response = await fetch("/api/newpost", {
+            const response = await fetch("/api", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

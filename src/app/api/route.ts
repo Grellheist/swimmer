@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export default async function POST(req: any, res: any) {
+export async function POST(req: any, res: any) {
     if (req.method === "POST") {
         const { textValue } = req.body;
 
