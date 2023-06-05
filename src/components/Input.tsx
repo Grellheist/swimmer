@@ -34,6 +34,7 @@ export default function Input() {
         } catch (error) {
             console.error("Failed to create entry:", error);
         }
+        setTextValue("")
     };
 
     if (!user) return <div>404</div>
