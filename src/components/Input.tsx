@@ -18,7 +18,7 @@ export default function Input() {
         const emoji = emojiObject.emoji;
         setTextValue((prevTextValue) => prevTextValue + emoji);
     };
-    const isDisabled = textValue.trim().length === 0
+
     if (!user) return <div>404</div>
 
     return (
@@ -61,16 +61,9 @@ export default function Input() {
                                 </Popover.Content>
                             </Popover.Root>
                         </div>
-                        {isDisabled ? (
-                            <button className="bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95" disabled>
-                                Meow
-                            </button>
-
-                        ) : (
-                            <button className="bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95">
-                                Meow
-                            </button>
-                        )}
+                        <button disabled={textValue.trim().length === 0} className="bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95">
+                            Meow
+                        </button>
                     </div>
                 </div>
             </div>
