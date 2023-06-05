@@ -21,12 +21,12 @@ export default function Input() {
 
     const handleMeow = async () => {
         try {
-            const response = await fetch("/api/createEntry", {
+            const response = await fetch("../app/api/createEntry", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ content: textValue }),
+                body: JSON.stringify({ textValue }),
             });
             if (!response.ok) {
                 throw new Error("Something went wrong")
