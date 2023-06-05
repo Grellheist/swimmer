@@ -61,7 +61,7 @@ export default function Input() {
                                 </Popover.Content>
                             </Popover.Root>
                         </div>
-                        <button className="bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95">
+                        <button disabled={textValue.length === 0} className="bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95">
                             Meow
                         </button>
                     </div>
