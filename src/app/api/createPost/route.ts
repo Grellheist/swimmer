@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import Router from "next/router";
 
 export async function POST(request: Request) {
     const body = await request.json()
@@ -10,5 +11,6 @@ export async function POST(request: Request) {
             content,
         },
     });
+    Router.reload()
     return NextResponse.json(data)
 }

@@ -1,24 +1,15 @@
-"use client"
 import Input from '@/components/Input'
-import Post from '@/components/Post'
-import { useUser } from '@clerk/nextjs'
+import getPosts from '../actions/getPosts'
 
-async function getPosts() {
-    const response = await fetch("/api/getPosts")
-    if (!response.ok) {
-        console.log(response)
-    }
-    return response.json()
-
-}
 export default async function Home() {
-    const { user } = useUser()
-    const data: { id: string, content: string, imgUrl: string, authorId: string }[] = await getPosts()
-
+    const posts = await getPosts()
+    if (!posts) {
+        throw new Error("Something went wrong")
+    }
     return (
         <>
             <Input />
-            {data.map((post) => (
+            {posts.map((post) => (
                 <h1 key={post.id}>{post.content}</h1>
             ))}
         </>
