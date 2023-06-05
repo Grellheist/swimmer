@@ -10,6 +10,5 @@ export async function POST(request: Request) {
             content,
         },
     });
-    NextResponse.redirect("/home")
     return NextResponse.json(data)
 }

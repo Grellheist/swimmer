@@ -9,6 +9,7 @@ import EmojiPicker from "emoji-picker-react";
 import type { EmojiClickData } from "emoji-picker-react";
 import { Theme } from "emoji-picker-react";
 import * as Popover from "@radix-ui/react-popover";
+import Router from "next/router";
 
 export default function Input() {
     const { user } = useUser();
@@ -35,6 +36,7 @@ export default function Input() {
             console.error("Failed to create entry:", error);
         }
         setTextValue("")
+        Router.reload()
     };
 
     if (!user) return <div>404</div>
