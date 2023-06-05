@@ -21,7 +21,7 @@ export default function Input() {
 
     const handleMeow = async () => {
         try {
-            const response = await fetch("../app/api/createEntry", {
+            const response = await fetch("../app/api/createEntry.ts", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
