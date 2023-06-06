@@ -11,6 +11,7 @@ import { Theme } from "emoji-picker-react";
 import * as Popover from "@radix-ui/react-popover";
 
 export default function Input() {
+    const ENTER = 13
     const { user } = useUser();
     const [textValue, setTextValue] = useState("");
     const imagePickerRef = useRef<HTMLInputElement>(null)
@@ -38,6 +39,14 @@ export default function Input() {
         setTextValue("")
     };
 
+    const handleKeyPress = (e: any) => {
+        if (e.keyCode === ENTER) {
+            if (textValue.length > 0) {
+                handleMeow()
+            }
+        }
+    }
+
     const handleImageClick = () => { }
 
     if (!user) return <div>404</div>
@@ -62,6 +71,7 @@ export default function Input() {
                             rows={2}
                             value={textValue}
                             onChange={(e) => setTextValue(e.target.value)}
+                            onKeyUp={handleKeyPress}
                         />
                     </div>
                     <div className="flex items-center justify-between pt-2.5">
@@ -94,4 +104,3 @@ export default function Input() {
         </SignedIn>
     );
 }
-
