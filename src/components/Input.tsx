@@ -11,7 +11,6 @@ import { Theme } from "emoji-picker-react";
 import * as Popover from "@radix-ui/react-popover";
 
 export default function Input() {
-    const ENTER = 13
     const { user } = useUser();
     const [textValue, setTextValue] = useState("");
     const imagePickerRef = useRef<HTMLInputElement>(null)
