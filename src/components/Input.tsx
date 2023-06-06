@@ -41,7 +41,7 @@ export default function Input() {
 
     const handleKeyPress = (e: any) => {
         if (e.keyCode === ENTER) {
-            if (textValue.length > 0) {
+            if (textValue) {
                 handleMeow()
             }
         }
