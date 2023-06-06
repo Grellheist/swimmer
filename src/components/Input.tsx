@@ -39,11 +39,10 @@ export default function Input() {
         setTextValue("")
     };
 
-    const handleKeyPress = (e: any) => {
-        if (e.keyCode === ENTER) {
-            if (textValue) {
-                handleMeow()
-            }
+    const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault()
+            handleMeow()
         }
     }
 
