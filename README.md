@@ -32,6 +32,10 @@ pretty good.
   documentation isn't very available for the newest versions and most tutorials
   are super outdated.
 
+- Alright, figured out how to fetch the posts and what not, but I've created
+  kind of a mess. Using my Post component will be a little hard the way things
+  are right now, let's see how I solve this.
+
 ### Disclaimer
 
 I was going to brand this as Swimmer with a fish as the pet but my

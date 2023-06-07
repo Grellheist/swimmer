@@ -6,16 +6,10 @@ import { FaRetweet } from "react-icons/fa";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { PostProps } from "./types"
 import Image from "next/image";
-import getUser from "@/utils/getUser"
 
 export default function Post({ post }: PostProps) {
     const hasPostImage = post.img !== "";
     const [showFullText, setShowFullText] = useState(false);
-    const fetchUser = async () => {
-        const user = await getUser("user_2QoWNPbSjkgxjpnEOgsug1qbncx");
-        console.log(user)
-    }
-    fetchUser()
     const toggleText = () => {
         setShowFullText((prevShowFullText) => !prevShowFullText);
     };
