@@ -6,10 +6,12 @@ import { FaRetweet } from "react-icons/fa";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { PostProps } from "./types"
 import Image from "next/image";
+import getUser from "@/utils/getUser"
 
-export default function Post({ post }: PostProps) {
+export default async function Post({ post }: PostProps) {
     const hasPostImage = post.img !== "";
     const [showFullText, setShowFullText] = useState(false);
+    const user = await getUser("user_2QoWNPbSjkgxjpnEOgsug1qbncx");
 
     const toggleText = () => {
         setShowFullText((prevShowFullText) => !prevShowFullText);
@@ -18,7 +20,7 @@ export default function Post({ post }: PostProps) {
     return (
         <div className="flex p-3 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
             <Image
-                src={post.userImg}
+                src={user.imageUrl}
                 alt="User image"
                 className="rounded-full h-12 w-12 mr-4 hover:brightness-95"
                 width="45"
@@ -30,11 +32,11 @@ export default function Post({ post }: PostProps) {
                     <div className="flex space-x-1 whitespace-nowrap">
                         {/* Name */}
                         <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">
-                            {post.name}
+                            {user.firstName}
                         </h4>
                         {/* Username */}
                         <span className="text-sm sm:text-[15px] text-gray-500">
-                            @{post.username} ·{" "}
+                            @{user.username} ·{" "}
                         </span>
                         {/* Timestamp */}
                         <span className="text-sm sm:text-[15px] hover:underline text-gray-500">

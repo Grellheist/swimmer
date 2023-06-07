@@ -1,5 +1,5 @@
 import Input from '@/components/Input'
-import getPosts from '../actions/getPosts'
+import getPosts from '@/utils/getPosts'
 
 export default async function Home() {
     const posts = await getPosts()
