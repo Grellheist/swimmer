@@ -8,11 +8,14 @@ import { PostProps } from "./types"
 import Image from "next/image";
 import getUser from "@/utils/getUser"
 
-export default async function Post({ post }: PostProps) {
+export default function Post({ post }: PostProps) {
     const hasPostImage = post.img !== "";
     const [showFullText, setShowFullText] = useState(false);
-    const user = await getUser("user_2QoWNPbSjkgxjpnEOgsug1qbncx");
-
+    const fetchUser = async () => {
+        const user = await getUser("user_2QoWNPbSjkgxjpnEOgsug1qbncx");
+        console.log(user)
+    }
+    fetchUser()
     const toggleText = () => {
         setShowFullText((prevShowFullText) => !prevShowFullText);
     };
@@ -20,7 +23,7 @@ export default async function Post({ post }: PostProps) {
     return (
         <div className="flex p-3 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
             <Image
-                src={user.imageUrl}
+                src={post.userImg}
                 alt="User image"
                 className="rounded-full h-12 w-12 mr-4 hover:brightness-95"
                 width="45"
@@ -32,11 +35,11 @@ export default async function Post({ post }: PostProps) {
                     <div className="flex space-x-1 whitespace-nowrap">
                         {/* Name */}
                         <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">
-                            {user.firstName}
+                            {post.name}
                         </h4>
                         {/* Username */}
                         <span className="text-sm sm:text-[15px] text-gray-500">
-                            @{user.username} ·{" "}
+                            @{post.username} ·{" "}
                         </span>
                         {/* Timestamp */}
                         <span className="text-sm sm:text-[15px] hover:underline text-gray-500">
