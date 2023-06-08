@@ -35,6 +35,7 @@ export default function Input() {
         } catch (error) {
             console.error("Failed to create entry:", error);
         }
+        window.location.reload()
         setTextValue("")
     };
 
