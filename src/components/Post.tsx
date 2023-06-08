@@ -8,7 +8,7 @@ import { PostProps } from "./types"
 import Image from "next/image";
 
 export default function Post({ post }: PostProps) {
-    const hasPostImage = post.img !== "";
+    const hasPostImage = post.imgUrl !== "";
     const [showFullText, setShowFullText] = useState(false);
     const toggleText = () => {
         setShowFullText((prevShowFullText) => !prevShowFullText);
@@ -16,28 +16,50 @@ export default function Post({ post }: PostProps) {
 
     return (
         <div className="flex p-3 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
-            <Image
-                src={post.userImg}
-                alt="User image"
-                className="rounded-full h-12 w-12 mr-4 hover:brightness-95"
-                width="45"
-                height="45"
-            />
+            {post.userImg ? (
+                <Image
+                    src={post.userImg}
+                    alt="User image"
+                    className="rounded-full h-12 w-12 mr-4 hover:brightness-95"
+                    width="45"
+                    height="45"
+                />
+            ) : (
+                <Image
+                    src="https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.jpg"
+                    alt="User image"
+                    className="rounded-full h-12 w-12 mr-4 hover:brightness-95"
+                    width="45"
+                    height="45"
+                />
+            )}
             <div className="flex flex-col flex-grow">
                 {/* Post header */}
                 <div className="flex justify-between">
                     <div className="flex space-x-1 whitespace-nowrap">
                         {/* Name */}
-                        <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">
-                            {post.name}
-                        </h4>
+                        {post.name ? (
+                            <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">
+                                {post.name}
+                            </h4>
+                        ) : (
+                            <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">
+                                Placeholder
+                            </h4>
+                        )}
                         {/* Username */}
-                        <span className="text-sm sm:text-[15px] text-gray-500">
-                            @{post.username} ·{" "}
-                        </span>
+                        {post.username ? (
+                            <span className="text-sm sm:text-[15px] text-gray-500">
+                                @{post.username} ·{" "}
+                            </span>
+                        ) : (
+                            <span className="text-sm sm:text-[15px] text-gray-500">
+                                @Placeholder ·{" "}
+                            </span>
+                        )}
                         {/* Timestamp */}
                         <span className="text-sm sm:text-[15px] hover:underline text-gray-500">
-                            {post.timestamp}
+                            {post.createdAt}
                         </span>
                     </div>
                     {/* Icon */}
@@ -51,11 +73,11 @@ export default function Post({ post }: PostProps) {
                     className={`text-[15px] mt-0 sm:text-[16px] mb-2 overflow-hidden ${showFullText ? "" : "line-clamp-2"
                         }`}
                 >
-                    {post.text}
+                    {post.content}
                 </p>
 
                 {/* Show more button */}
-                {!showFullText && post.text.length > 100 && (
+                {!showFullText && post.content && post.content?.length > 100 && (
                     <button
                         className="flex justify-end text-sm text-sky-500 hover:underline mb-1"
                         onClick={toggleText}
@@ -65,14 +87,14 @@ export default function Post({ post }: PostProps) {
                 )}
 
                 {/* Post image */}
-                {hasPostImage && (
+                {hasPostImage && post.imgUrl && (
                     <div className="relative w-full">
                         <div
                             className="pb-[100%] overflow-hidden rounded-2xl"
                             style={{ position: "relative" }}
                         >
                             <Image
-                                src={post.img}
+                                src={post.imgUrl}
                                 alt="post image"
                                 className="absolute inset-0 object-cover w-full h-full"
                                 width="500"

@@ -34,13 +34,12 @@ export interface UserData {
 }
 
 export type PostType = {
-    id: number;
     name: string;
     username: string;
     userImg: string;
-    img: string;
-    text: string;
-    timestamp: string;
+    imgUrl: string | null;
+    content: string | null;
+    createdAt: string;
 };
 
 export type PostProps = {
