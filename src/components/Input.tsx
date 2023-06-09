@@ -9,58 +9,46 @@ import EmojiPicker from "emoji-picker-react";
 import type { EmojiClickData } from "emoji-picker-react";
 import { Theme } from "emoji-picker-react";
 import * as Popover from "@radix-ui/react-popover";
-import { useMutation, useQueryClient } from "react-query";
 
 export default function Input() {
     const { user } = useUser();
-    const queryClient = useQueryClient()
     const [textValue, setTextValue] = useState("");
-    const imagePickerRef = useRef<HTMLInputElement>(null);
+    const imagePickerRef = useRef<HTMLInputElement>(null)
 
     const handleEmojiSelect = (emojiObject: EmojiClickData) => {
         const emoji = emojiObject.emoji;
         setTextValue((prevTextValue) => prevTextValue + emoji);
     };
 
-    const createPostMutation = useMutation(
-        (postData: { authorId: string | undefined; content: string }) =>
-            fetch("/api/createPost", {
+    const handleMeow = async () => {
+        try {
+            const response = await fetch("/api/createPost", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(postData),
-            }),
-        {
-            onSuccess: () => {
-                // Invalidate and refetch the posts query
-                queryClient.invalidateQueries("posts");
-            },
-        }
-    );
-
-    const handleMeow = async () => {
-        try {
-            await createPostMutation.mutateAsync({
-                authorId: user?.id,
-                content: textValue,
+                body: JSON.stringify({ authorId: user?.id, content: textValue }),
             });
-            setTextValue("");
+            if (!response.ok) {
+                throw new Error("Something went wrong")
+            }
         } catch (error) {
             console.error("Failed to create entry:", error);
         }
+        window.location.reload()
+        setTextValue("")
     };
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === "Enter" && !e.shiftKey) {
-            e.preventDefault();
-            handleMeow();
+            e.preventDefault()
+            handleMeow()
         }
-    };
+    }
 
-    const handleImageClick = () => { };
+    const handleImageClick = () => { }
 
-    if (!user) return <div>404</div>;
+    if (!user) return <div>404</div>
 
     return (
         <SignedIn>
@@ -89,12 +77,7 @@ export default function Input() {
                         <div className="flex">
                             <div onClick={() => imagePickerRef?.current?.click()}>
                                 <HiOutlinePhotograph className="h-10 w-10 hoverEffect p-2 text-blue-500 hover:bg-gray-900" />
-                                <input
-                                    type="file"
-                                    hidden
-                                    ref={imagePickerRef}
-                                    onClick={handleImageClick}
-                                />
+                                <input type="file" hidden ref={imagePickerRef} onClick={handleImageClick} />
                             </div>
                             <Popover.Root>
                                 <Popover.Trigger asChild>
@@ -111,11 +94,7 @@ export default function Input() {
                                 </Popover.Content>
                             </Popover.Root>
                         </div>
-                        <button
-                            onClick={handleMeow}
-                            disabled={textValue.trim().length === 0}
-                            className="disabled:opacity-75 bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md enabled:hover:brightness-95"
-                        >
+                        <button onClick={handleMeow} disabled={textValue.trim().length === 0} className="disabled:opacity-75 bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md enabled:hover:brightness-95">
                             Meow
                         </button>
                     </div>
