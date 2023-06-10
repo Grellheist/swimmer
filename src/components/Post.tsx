@@ -6,6 +6,7 @@ import { FaRetweet } from "react-icons/fa";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { PostProps } from "./types"
 import Image from "next/image";
+import formatDate from "@/utils/formatDate"
 
 export default function Post({ post }: PostProps) {
     const hasPostImage = post.imgUrl !== "";
@@ -13,6 +14,7 @@ export default function Post({ post }: PostProps) {
     const toggleText = () => {
         setShowFullText((prevShowFullText) => !prevShowFullText);
     };
+    const dateOfPost = formatDate(post.createdAt)
 
     return (
         <div className="flex p-3 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
@@ -47,7 +49,7 @@ export default function Post({ post }: PostProps) {
                         </span>
                         {/* Timestamp */}
                         <span className="text-sm sm:text-[15px] hover:underline text-gray-500">
-                            02 Jun 22
+                            {dateOfPost}
                         </span>
                     </div>
                     {/* Icon */}
