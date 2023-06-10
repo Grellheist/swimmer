@@ -36,9 +36,9 @@ export default function Post({ post }: PostProps) {
             <div className="flex flex-col flex-grow">
                 {/* Post header */}
                 <div className="flex justify-between">
-                    <div className="flex space-x-1 whitespace-nowrap">
+                    <div className="flex space-x-1 whitespace-nowrap overflow-hidden">
                         {/* Name */}
-                        <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">
+                        <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline truncate line-clamp-none">
                             {post.name}
                         </h4>
                         {/* Username */}
