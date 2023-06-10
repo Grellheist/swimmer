@@ -51,7 +51,7 @@ export default function Input() {
 
     if (!user) {
         return (
-            <div className="ml-24 mt-8 mx-auto">
+            <div className="flex items-center justify-center mb-4">
                 <Image src={Spinner} height={45} width={45} alt="Loading..." />
             </div>
         )
