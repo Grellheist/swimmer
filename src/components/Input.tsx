@@ -9,6 +9,7 @@ import EmojiPicker from "emoji-picker-react";
 import type { EmojiClickData } from "emoji-picker-react";
 import { Theme } from "emoji-picker-react";
 import * as Popover from "@radix-ui/react-popover";
+import Spinner from "../../public/spinner.svg"
 
 export default function Input() {
     const { user } = useUser();
@@ -48,7 +49,13 @@ export default function Input() {
 
     const handleImageClick = () => { }
 
-    if (!user) return <div>404</div>
+    if (!user) {
+        return (
+            <div className="ml-24 mt-8 mx-auto">
+                <Image src={Spinner} height={45} width={45} alt="Loading..." />
+            </div>
+        )
+    }
 
     return (
         <SignedIn>
