@@ -44,7 +44,7 @@ export default function Post({ post }: PostProps) {
                             {post.name}
                         </h4>
                         {/* Username */}
-                        <span className="text-sm sm:text-[16px] text-gray-500 truncate line-clamp-none max-w-[60px] md:max-w-[150px]">
+                        <span className="text-sm sm:text-[15px] text-gray-500 truncate line-clamp-none max-w-[60px] md:max-w-[150px]">
                             @{post.username} ·{" "}
                         </span>
                         {/* Timestamp */}
