@@ -60,7 +60,7 @@ export default function Input() {
     return (
         <SignedIn>
             <div className="flex border-b border-gray-600 p-3 space-x-3">
-                <Link href={`/profile/${user.id}`}>
+                <Link href={`/profile/${user.username}`}>
                     <Image
                         src={user.imageUrl}
                         alt="user image"
