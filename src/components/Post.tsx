@@ -38,25 +38,13 @@ export default function Post({ post }: PostProps) {
                 <div className="flex justify-between">
                     <div className="flex space-x-1 whitespace-nowrap">
                         {/* Name */}
-                        {post.name ? (
-                            <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">
-                                {post.name}
-                            </h4>
-                        ) : (
-                            <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">
-                                Placeholder
-                            </h4>
-                        )}
+                        <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">
+                            {post.name}
+                        </h4>
                         {/* Username */}
-                        {post.username ? (
-                            <span className="text-sm sm:text-[15px] text-gray-500">
-                                @{post.username} ·{" "}
-                            </span>
-                        ) : (
-                            <span className="text-sm sm:text-[15px] text-gray-500">
-                                @Placeholder ·{" "}
-                            </span>
-                        )}
+                        <span className="text-sm sm:text-[16px] text-gray-500">
+                            @{post.username} ·{" "}
+                        </span>
                         {/* Timestamp */}
                         <span className="text-sm sm:text-[15px] hover:underline text-gray-500">
                             {post.createdAt}
