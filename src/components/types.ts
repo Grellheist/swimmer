@@ -34,8 +34,8 @@ export interface UserData {
 }
 
 export type PostType = {
-    name?: string;
-    username?: string;
+    name: string | null;
+    username: string | null;
     userImg?: string;
     imgUrl: string | null;
     content: string | null;
