@@ -36,6 +36,9 @@ pretty good.
   kind of a mess. Using my Post component will be a little hard the way things
   are right now, let's see how I solve this.
 
+- Figured out how to fetch all the info I need, now just the final push. All
+  that's left now is to allow users to post images, and create the other routes.
+
 ### Disclaimer
 
 I was going to brand this as Swimmer with a fish as the pet but my
