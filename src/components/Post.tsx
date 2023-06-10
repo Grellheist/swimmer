@@ -47,7 +47,7 @@ export default function Post({ post }: PostProps) {
                         </span>
                         {/* Timestamp */}
                         <span className="text-sm sm:text-[15px] hover:underline text-gray-500">
-                            {post.createdAt}
+                            2h
                         </span>
                     </div>
                     {/* Icon */}
