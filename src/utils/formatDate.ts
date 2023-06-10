@@ -9,6 +9,9 @@ export default function formatDate(dateString: string) {
     } else if (timeDifferenceInSeconds < 3600) {
         const minutesPassed = Math.floor(timeDifferenceInSeconds / 60);
         return `${minutesPassed}m`;
+    } else if (timeDifferenceInSeconds < 86400) {
+        const minutesPassed = Math.floor(timeDifferenceInSeconds / 60);
+        return `${minutesPassed}h`;
     } else if (currentDate.getFullYear() === date.getFullYear()) {
         const options: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric' };
         return date.toLocaleDateString(undefined, options);
