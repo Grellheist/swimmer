@@ -1,4 +1,4 @@
-function formatTwitterDate(dateString: string) {
+export default function formatDate(dateString: string) {
     const date = new Date(dateString);
     const currentDate = new Date();
 
