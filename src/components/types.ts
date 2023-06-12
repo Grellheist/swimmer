@@ -40,6 +40,8 @@ export type PostType = {
     imgUrl: string | null;
     content: string | null;
     createdAt: string;
+    authorId: string;
+    id: string;
 };
 
 export type PostProps = {

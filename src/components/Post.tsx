@@ -7,9 +7,11 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { PostProps } from "./types"
 import Image from "next/image";
 import formatDate from "@/utils/formatDate"
+import { useUser } from "@clerk/nextjs";
 
 export default function Post({ post }: PostProps) {
     const hasPostImage = post.imgUrl !== "";
+    const { user } = useUser()
     const [showFullText, setShowFullText] = useState(false);
     const toggleText = () => {
         setShowFullText((prevShowFullText) => !prevShowFullText);
@@ -102,7 +104,9 @@ export default function Post({ post }: PostProps) {
                     <FaRetweet className="h-9 w-9 hoverEffect p-2 hover:text-green-500 hover:bg-green-950" />
                     <AiFillHeart className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
                     <BsFillBarChartFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500 " />
-                    <BsFillTrashFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500 " />
+                    {user?.id === post.authorId &&
+                        <BsFillTrashFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500 " />
+                    }
                 </div>
             </div>
         </div>
