@@ -14,6 +14,7 @@ import Spinner from "../../public/spinner.svg"
 export default function Input() {
     const { user } = useUser();
     const [textValue, setTextValue] = useState("");
+    const [imgSrc, setImgSrc] = useState<string | null>(null);
     const imagePickerRef = useRef<HTMLInputElement>(null)
 
     const handleEmojiSelect = (emojiObject: EmojiClickData) => {
@@ -28,7 +29,7 @@ export default function Input() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ authorId: user?.id, content: textValue }),
+                body: JSON.stringify({ authorId: user?.id, content: textValue, imgUrl: imgSrc }),
             });
             if (!response.ok) {
                 throw new Error("Something went wrong")
@@ -53,7 +54,7 @@ export default function Input() {
             const reader = new FileReader()
             reader.onloadend = () => {
                 const imageData = reader.result as string;
-                console.log(imageData)
+                setImgSrc(imageData)
             }
             reader.readAsDataURL(file)
         }
