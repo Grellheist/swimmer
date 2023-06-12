@@ -47,7 +47,17 @@ export default function Input() {
         }
     }
 
-    const handleImageClick = () => { }
+    const handleImageClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0]
+        if (file) {
+            const reader = new FileReader()
+            reader.onloadend = () => {
+                const imageData = reader.result as string;
+                console.log(imageData)
+            }
+            reader.readAsDataURL(file)
+        }
+    }
 
     if (!user) {
         return (
@@ -84,7 +94,7 @@ export default function Input() {
                         <div className="flex">
                             <div onClick={() => imagePickerRef?.current?.click()}>
                                 <HiOutlinePhotograph className="h-10 w-10 hoverEffect p-2 text-blue-500 hover:bg-gray-900" />
-                                <input type="file" hidden ref={imagePickerRef} onClick={handleImageClick} />
+                                <input type="file" hidden ref={imagePickerRef} onChange={handleImageClick} />
                             </div>
                             <Popover.Root>
                                 <Popover.Trigger asChild>
