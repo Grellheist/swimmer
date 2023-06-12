@@ -105,7 +105,7 @@ export default function Post({ post }: PostProps) {
                     <AiFillHeart className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
                     <BsFillBarChartFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500 " />
                     {user?.id === post.authorId &&
-                        <BsFillTrashFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500 " />
+                        <BsFillTrashFill className="h-9 w-9 hoverEffect p-2 hover:text-red-500 " />
                     }
                 </div>
             </div>
