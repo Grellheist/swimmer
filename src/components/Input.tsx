@@ -14,7 +14,7 @@ import Spinner from "../../public/spinner.svg"
 export default function Input() {
     const { user } = useUser();
     const [textValue, setTextValue] = useState("");
-    const [imgSrc, setImgSrc] = useState<string | null>(null);
+    const [imgSrc, setImgSrc] = useState<string | null>("");
     const imagePickerRef = useRef<HTMLInputElement>(null)
 
     const handleEmojiSelect = (emojiObject: EmojiClickData) => {
@@ -57,7 +57,6 @@ export default function Input() {
                 setImgSrc(imageData)
             }
             reader.readAsDataURL(file)
-            console.log(imgSrc)
         }
     }
 
