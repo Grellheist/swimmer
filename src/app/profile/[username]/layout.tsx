@@ -7,11 +7,11 @@ export default function ProfileLayout({
     children: React.ReactNode;
 }) {
     return (
-        <>
+        <div>
             <Header>
                 {children}
             </Header>
             <Widgets />
-        </>
+        </div>
     );
 }
