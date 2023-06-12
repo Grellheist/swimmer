@@ -10,6 +10,7 @@ import type { EmojiClickData } from "emoji-picker-react";
 import { Theme } from "emoji-picker-react";
 import * as Popover from "@radix-ui/react-popover";
 import Spinner from "../../public/spinner.svg"
+import { AiFillCloseCircle  } from "react-icons/ai";
 
 export default function Input() {
     const { user } = useUser();
@@ -39,6 +40,7 @@ export default function Input() {
         }
         window.location.reload()
         setTextValue("")
+        setImgSrc("")
     };
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -58,6 +60,10 @@ export default function Input() {
             }
             reader.readAsDataURL(file)
         }
+    }
+
+    const deleteImage = () => {
+        setImgSrc("")
     }
 
     if (!user) {
@@ -91,6 +97,20 @@ export default function Input() {
                             onKeyUp={handleKeyPress}
                         />
                     </div>
+                    {imgSrc && (
+                        <div className="mt-2 relative">
+                            <div className="bg-white backdrop-blur w-8 h-8 rounded-full absolute top-2 left-6 z-10 opacity-80 hover:brightness-125">
+                                <AiFillCloseCircle onClick={deleteImage} className="hover:cursor-pointer w-full h-full text-black hover:brightness-125 opacity-80" />
+                            </div>
+                            <Image
+                                src={imgSrc}
+                                alt="uploaded image"
+                                className="mx-auto rounded"
+                                width={500}
+                                height={500}
+                            />
+                        </div>
+                    )}
                     <div className="flex items-center justify-between pt-2.5">
                         <div className="flex">
                             <div onClick={() => imagePickerRef?.current?.click()}>
@@ -112,7 +132,7 @@ export default function Input() {
                                 </Popover.Content>
                             </Popover.Root>
                         </div>
-                        <button onClick={handleMeow} disabled={textValue.trim().length === 0} className="disabled:opacity-75 bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md enabled:hover:brightness-95">
+                        <button onClick={handleMeow} disabled={textValue.trim().length === 0 && imgSrc === ""} className="disabled:opacity-75 bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md enabled:hover:brightness-95">
                             Meow
                         </button>
                     </div>
