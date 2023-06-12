@@ -57,6 +57,7 @@ export default function Input() {
                 setImgSrc(imageData)
             }
             reader.readAsDataURL(file)
+            console.log(imgSrc)
         }
     }
 

@@ -83,14 +83,11 @@ export default function Sidebar() {
                 <button className="bg-blue-500 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Meow</button>
 
                 <ClerkLoading>
-                    <SignedIn>
                         <div className="ml-24 mt-auto mb-4 mx-auto">
                             <Image src={Spinner} height={35} width={35} alt="Loading..." />
                         </div>
-                    </SignedIn>
                 </ClerkLoading>
                 <ClerkLoaded>
-                    <SignedIn>
                         <Popover.Root>
                             <Popover.Trigger asChild>
                                 <button className="hoverEffect flex items-center justify-center xl:justify-start mt-auto">
@@ -141,7 +138,6 @@ export default function Sidebar() {
                                 </Popover.Content>
                             </Popover.Portal>
                         </Popover.Root>
-                    </SignedIn>
                 </ClerkLoaded>
             </SignedIn>
         </div>
