@@ -10,7 +10,7 @@ import type { EmojiClickData } from "emoji-picker-react";
 import { Theme } from "emoji-picker-react";
 import * as Popover from "@radix-ui/react-popover";
 import Spinner from "../../public/spinner.svg"
-import { AiFillCloseCircle  } from "react-icons/ai";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 export default function Input() {
     const { user } = useUser();
@@ -51,16 +51,22 @@ export default function Input() {
     }
 
     const handleImageClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0]
+        const file = event.target.files?.[0];
         if (file) {
-            const reader = new FileReader()
-            reader.onloadend = () => {
-                const imageData = reader.result as string;
-                setImgSrc(imageData)
+            const fileType = file.type;
+            if (fileType.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    const imageData = reader.result as string;
+                    setImgSrc(imageData);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                throw new Error("Invalid file type. Please upload an image.");
             }
-            reader.readAsDataURL(file)
         }
-    }
+    };
+
 
     const deleteImage = () => {
         setImgSrc("")
