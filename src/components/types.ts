@@ -42,6 +42,7 @@ export type PostType = {
     createdAt: string;
     authorId: string;
     id: string;
+    likes: number;
 };
 
 export type PostProps = {
