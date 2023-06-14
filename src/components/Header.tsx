@@ -6,6 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Link from "next/link";
 import { AiOutlineClose } from "react-icons/ai";
 import { SignInButton, SignOutButton, SignedIn, SignedOut } from "@clerk/nextjs";
+import { BsArrowLeft } from "react-icons/bs";
 
 export default function Header({ children }: { children: ReactNode }) {
     const pathName = usePathname().substring(1);
@@ -22,8 +23,16 @@ export default function Header({ children }: { children: ReactNode }) {
                 <Link href="/home">
                     <IoLogoOctocat className="ml-2 mr-6 sm:hidden w-8 h-8 text-gray-200" />
                 </Link>
+                {
+                    formattedName === "Post" &&
+                    <Link href="/home">
+                        <BsArrowLeft className="hoverEffect mr-3 hidden xl:inline" />
+                    </Link>
+                }
                 <h2 className="text-lg sm:text-xl font-bold my-auto items-center select-none justify-center">
-                    {formattedName}
+                    {formattedName === "Post" ?
+                        "Thread" : formattedName
+                    }
                 </h2>
                 <div className="hoverEffect flex items-center justify-center px-0 ml-auto w-9 h-9 sm:hidden">
                     <button className="p-2 text-gray-200 rounded-md outline-none focus:border-gray-400 focus:border" onClick={handleClick}>

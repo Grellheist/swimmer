@@ -8,6 +8,7 @@ import { PostProps } from "./types"
 import Image from "next/image";
 import formatDate from "@/utils/formatDate"
 import { useUser } from "@clerk/nextjs";
+import Link from "next/link";
 
 export default function Post({ post }: PostProps) {
     const hasPostImage = post.imgUrl !== "";
@@ -17,8 +18,10 @@ export default function Post({ post }: PostProps) {
         setShowFullText((prevShowFullText) => !prevShowFullText);
     };
     const dateOfPost = formatDate(post.createdAt)
+    const postRoute = `/post/${post.id}`
 
     return (
+        <Link href={postRoute} >
         <div className="flex p-3 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
             {post.userImg ? (
                 <Image
@@ -110,5 +113,7 @@ export default function Post({ post }: PostProps) {
                 </div>
             </div>
         </div>
+
+        </Link >
     );
 }
