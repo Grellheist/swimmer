@@ -121,7 +121,7 @@ export default function Input() {
                         <div className="flex">
                             <div onClick={() => imagePickerRef?.current?.click()}>
                                 <HiOutlinePhotograph className="h-10 w-10 hoverEffect p-2 text-blue-500 hover:bg-gray-900" />
-                                <input type="file" hidden ref={imagePickerRef} onChange={handleImageClick} />
+                                <input type="file" accept="image/*" hidden ref={imagePickerRef} onChange={handleImageClick} />
                             </div>
                             <Popover.Root>
                                 <Popover.Trigger asChild>
