@@ -11,6 +11,7 @@ import { Theme } from "emoji-picker-react";
 import * as Popover from "@radix-ui/react-popover";
 import Spinner from "../../public/spinner.svg"
 import { AiFillCloseCircle } from "react-icons/ai";
+import { toast } from "react-hot-toast";
 
 export default function Input() {
     const { user } = useUser();
@@ -33,7 +34,7 @@ export default function Input() {
                 body: JSON.stringify({ authorId: user?.id, content: textValue, imgUrl: imgSrc }),
             });
             if (!response.ok) {
-                throw new Error("Something went wrong")
+                toast.error("Something went wrong")
             }
         } catch (error) {
             console.error("Failed to create entry:", error);
@@ -62,7 +63,7 @@ export default function Input() {
                 };
                 reader.readAsDataURL(file);
             } else {
-                throw new Error("Invalid file type. Please upload an image.");
+                toast.error("Invalid file type. Please upload an image.");
             }
         }
     };
