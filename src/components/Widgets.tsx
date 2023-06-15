@@ -5,6 +5,7 @@ import News from "./News";
 import { Article, NewsData, User, UserData } from './types'
 import Image from "next/image";
 import Spinner from "../../public/spinner.svg"
+import { toast } from "react-hot-toast";
 
 export default function Widgets() {
     const [articleNumber, setArticleNumber] = useState(3);
@@ -46,6 +47,10 @@ export default function Widgets() {
         randomUserResults();
         fetchNewsData();
     }, []);
+
+    const handleClick = () => {
+        toast.error("Sorry, these are not real people.")
+    }
 
     return (
         <div className="xl:w-[600px] hidden xl:inline ml-8 space-y-5">
@@ -90,7 +95,7 @@ export default function Widgets() {
             <div className="sticky top-16 space-y-3 rounded-xl pt-2 w-[75%] xl:w-[100%]" style={{ backgroundColor: "rgb(22,24,28)" }}>
                 <h4 className="text-gray-200 text-[20px] font-bold px-4">Who to follow</h4>
                 {userData ? (
-                    <div>
+                    <div onClick={handleClick}>
                         {userData.results.slice(0, userNumber).map((user: User) => (
                             <div key={user.login.uuid} className="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-800 transition duration-200">
                                 <Image className="rounded-full" src={user.picture.thumbnail} alt="who to follow image" width="43" height="43" />
@@ -108,7 +113,9 @@ export default function Widgets() {
                     </div>
 
                 )}
-                <button onClick={() => setUserNumber(userNumber + 3)} className="text-blue-400 pl-4 pb-3">Show more</button>
+                {userNumber < 9 &&
+                    <button onClick={() => setUserNumber(userNumber + 3)} className="text-blue-400 pl-4 pb-3">Show more</button>
+                }
             </div>
 
 
