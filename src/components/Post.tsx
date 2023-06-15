@@ -25,14 +25,14 @@ export default function Post({ post }: PostProps) {
     const postRoute = `/post/${post.id}`
 
     const handleDelete = async () => {
-        toast.loading("Deleting...")
+        const toastId = toast.loading("Deleting...")
         if (user && user.id === post.authorId) {
             await axios.delete(`/api/deletePost/${post.id}`)
                 .then(() => {
                     router.refresh()
                 })
                 .finally(() => {
-                    toast.dismiss
+                    toast.dismiss(toastId)
                 })
         } else {
             toast.error("You don't have permission to do that!")
