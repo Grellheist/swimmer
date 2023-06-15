@@ -11,6 +11,7 @@ import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import axios from "axios"
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 export default function Post({ post }: PostProps) {
     const hasPostImage = post.imgUrl !== "";
@@ -23,10 +24,14 @@ export default function Post({ post }: PostProps) {
     const dateOfPost = formatDate(post.createdAt)
     const postRoute = `/post/${post.id}`
     const handleDelete = () => {
-        axios.delete(`/api/deletePost/${post.id}`)
-            .then(() => {
-                router.refresh()
-            })
+        if (user && user.id === post.authorId) {
+            axios.delete(`/api/deletePost/${post.id}`)
+                .then(() => {
+                    router.refresh()
+                })
+        } else {
+            toast.error("You don't have permission to do that!")
+            }
     }
 
     return (
