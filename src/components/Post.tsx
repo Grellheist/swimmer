@@ -9,16 +9,25 @@ import Image from "next/image";
 import formatDate from "@/utils/formatDate"
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
+import axios from "axios"
+import { useRouter } from "next/navigation";
 
 export default function Post({ post }: PostProps) {
     const hasPostImage = post.imgUrl !== "";
     const { user } = useUser()
+    const router = useRouter()
     const [showFullText, setShowFullText] = useState(false);
     const toggleText = () => {
         setShowFullText((prevShowFullText) => !prevShowFullText);
     };
     const dateOfPost = formatDate(post.createdAt)
     const postRoute = `/post/${post.id}`
+    const handleDelete = () => {
+        axios.delete(`/api/deletePost/${post.id}`)
+            .then(() => {
+                router.refresh()
+            })
+    }
 
     return (
         <div className="flex p-3 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
@@ -108,7 +117,7 @@ export default function Post({ post }: PostProps) {
                     <AiFillHeart className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
                     <BsFillBarChartFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
                     {user?.id === post.authorId &&
-                        <BsFillTrashFill className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
+                        <BsFillTrashFill className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" onClick={handleDelete} />
                     }
                 </div>
             </div>
