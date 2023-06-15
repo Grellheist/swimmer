@@ -27,6 +27,7 @@ export default function Input() {
     };
 
     const handleMeow = async () => {
+        toast.loading("Posting...")
         try {
             const response = await fetch("/api/createPost", {
                 method: "POST",
@@ -44,6 +45,7 @@ export default function Input() {
         router.refresh()
         setTextValue("")
         setImgSrc("")
+        toast.dismiss
     };
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -69,7 +71,6 @@ export default function Input() {
             }
         }
     };
-
 
     const deleteImage = () => {
         setImgSrc("")
