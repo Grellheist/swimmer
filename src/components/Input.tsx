@@ -37,7 +37,7 @@ export default function Input() {
                 body: JSON.stringify({ authorId: user?.id, content: textValue, imgUrl: imgSrc }),
             });
             if (!response.ok) {
-                toast.error("Something went wrong")
+                toast.error("Something went wrong. Try reloading the page?")
             }
         } catch (error) {
             console.error("Failed to create entry:", error);
