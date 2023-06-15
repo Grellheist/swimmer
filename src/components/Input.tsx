@@ -12,12 +12,14 @@ import * as Popover from "@radix-ui/react-popover";
 import Spinner from "../../public/spinner.svg"
 import { AiFillCloseCircle } from "react-icons/ai";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function Input() {
     const { user } = useUser();
     const [textValue, setTextValue] = useState("");
     const [imgSrc, setImgSrc] = useState<string | null>("");
     const imagePickerRef = useRef<HTMLInputElement>(null)
+    const router = useRouter()
 
     const handleEmojiSelect = (emojiObject: EmojiClickData) => {
         const emoji = emojiObject.emoji;
@@ -39,7 +41,7 @@ export default function Input() {
         } catch (error) {
             console.error("Failed to create entry:", error);
         }
-        window.location.reload()
+        router.refresh()
         setTextValue("")
         setImgSrc("")
     };
