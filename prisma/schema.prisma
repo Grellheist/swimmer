@@ -15,7 +15,16 @@ model Post {
     imgUrl    String?  @db.LongText
     authorId  String
     likes     Int      @default(0)
+    likesList Like[]
 
     @@index([authorId])
 }
 
+model Like {
+    id     String @id @default(cuid())
+    postId String
+    userId String
+    Post   Post   @relation(fields: [postId], references: [id])
+
+    @@unique([postId, userId])
+}
