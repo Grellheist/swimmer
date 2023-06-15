@@ -20,7 +20,7 @@ export default function RootLayout({
     return (
         <ClerkProvider appearance={{ baseTheme: dark, variables: { colorInputText: "black" } }}>
             <html lang="en" className='scroll-smooth'>
-                <Toaster position='bottom-center' toastOptions={{ style: {background: "#000", color: "#e5e7eb"} }} />
+                <Toaster position='bottom-center' toastOptions={{ style: { background: "#000", color: "#e5e7eb" } }} />
                 <body className={`${inter.className} flex min-h-screen mx-auto`}>
                     <Sidebar />
                     {children}
