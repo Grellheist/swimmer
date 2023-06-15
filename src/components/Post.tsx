@@ -23,9 +23,10 @@ export default function Post({ post }: PostProps) {
     };
     const dateOfPost = formatDate(post.createdAt)
     const postRoute = `/post/${post.id}`
-    const handleDelete = () => {
+
+    const handleDelete = async () => {
         if (user && user.id === post.authorId) {
-            axios.delete(`/api/deletePost/${post.id}`)
+            await axios.delete(`/api/deletePost/${post.id}`)
                 .then(() => {
                     router.refresh()
                 })
