@@ -1,7 +1,7 @@
 import Post from "@/components/Post";
 
 export default function Explore() {
-        const posts = [
+    const posts = [
         {
             id: "1",
             name: "Grellheist",
@@ -59,6 +59,7 @@ export default function Explore() {
                 <Post
                     post={post}
                     key={post.id}
+                    
                 />
             ))}
         </>
