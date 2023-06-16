@@ -111,7 +111,7 @@ export default function Post({ post }: PostProps) {
                         Show more
                     </button>
                 )}
-
+                
                 {/* Post image */}
                 {hasPostImage && post.imgUrl && (
                     <div className="relative w-full">
@@ -131,30 +131,27 @@ export default function Post({ post }: PostProps) {
                         </div>
                     </div>
                 )}
-                {/* Post icons */}
-                <Link href="/explore">
 
-                    {usePathname() === '/explore' ? (
-                        <div className="flex justify-between pt-2" onClick={handleClickOnFakePosts}>
-                            <BsFillChatDotsFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
-                            <FaRetweet className="h-9 w-9 hoverEffect p-2 hover:text-green-500 hover:bg-green-950" />
-                            <AiFillHeart className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
-                            <BsFillBarChartFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
-                        </div>
-                    ) : (
-                        <div className="flex justify-between pt-2">
-                            <BsFillChatDotsFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
-                            <FaRetweet className="h-9 w-9 hoverEffect p-2 hover:text-green-500 hover:bg-green-950" />
-                            <AiFillHeart className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
-                            <BsFillBarChartFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
-                            {user?.id === post.authorId &&
-                                <BsFillTrashFill className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" onClick={handleDelete} />
-                            }
-                        </div>
-                    )}
-                </Link>
+                {/* Post icons */}
+                {usePathname() === '/explore' ? (
+                    <div className="flex justify-between pt-2" onClick={handleClickOnFakePosts}>
+                        <BsFillChatDotsFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
+                        <FaRetweet className="h-9 w-9 hoverEffect p-2 hover:text-green-500 hover:bg-green-950" />
+                        <AiFillHeart className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
+                        <BsFillBarChartFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
+                    </div>
+                ) : (
+                    <div className="flex justify-between pt-2">
+                        <BsFillChatDotsFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
+                        <FaRetweet className="h-9 w-9 hoverEffect p-2 hover:text-green-500 hover:bg-green-950" />
+                        <AiFillHeart className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
+                        <BsFillBarChartFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
+                        {user?.id === post.authorId &&
+                            <BsFillTrashFill className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" onClick={handleDelete} />
+                        }
+                    </div>
+                )}
             </div>
         </div>
-
     );
 }
