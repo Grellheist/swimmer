@@ -113,25 +113,27 @@ export default function Post({ post }: PostProps) {
                     </button>
                 )}
 
-                {/* Post image */}
-                {hasPostImage && post.imgUrl && (
-                    <div className="relative w-full">
-                        <div
-                            className="pb-[100%] overflow-hidden rounded-2xl"
-                            style={{ position: "relative" }}
-                        >
-                            <Image
-                                src={post.imgUrl}
-                                alt="post image"
-                                className="absolute inset-0 object-cover w-full h-full"
-                                width="500"
-                                height="500"
-                                priority={true}
-                                quality={75}
-                            />
+                <Link href={postRoute(currentRoute)} >
+                    {/* Post image */}
+                    {hasPostImage && post.imgUrl && (
+                        <div className="relative w-full">
+                            <div
+                                className="pb-[100%] overflow-hidden rounded-2xl"
+                                style={{ position: "relative" }}
+                            >
+                                <Image
+                                    src={post.imgUrl}
+                                    alt="post image"
+                                    className="absolute inset-0 object-cover w-full h-full"
+                                    width="500"
+                                    height="500"
+                                    priority={true}
+                                    quality={75}
+                                />
+                            </div>
                         </div>
-                    </div>
-                )}
+                    )}
+                </Link>
 
                 {/* Post icons */}
                 {usePathname() === '/explore' ? (
