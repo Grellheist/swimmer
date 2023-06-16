@@ -1,6 +1,6 @@
 import getUser from "@/utils/getUser"
 import getSinglePost from "@/utils/getSinglePost"
-import Image from "next/image"
+import Post from "@/components/Post"
 
 export default async function page({ params }: { params: { id: string } }) {
     const post = await getSinglePost(params.id)
@@ -9,27 +9,9 @@ export default async function page({ params }: { params: { id: string } }) {
             <div>404</div>
         )
     }
-    const { userImg, username, name } = await getUser(post.authorId)
+    const user = await getUser(post.authorId)
+    const combinedProps = { ...post, ...user }
     return (
-        <div>
-            <Image
-                src={userImg}
-                alt="User image!"
-                height={800}
-                width={800}
-            />
-            {name}
-            @{username}
-            {post.content}
-            {post.imgUrl &&
-                <Image
-                    src={post.imgUrl}
-                    alt="Post image!"
-                    height={800}
-                    width={800}
-                />
-            }
-
-        </div>
+        <Post post={combinedProps} />
     )
 }

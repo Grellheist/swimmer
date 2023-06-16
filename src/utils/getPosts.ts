@@ -12,6 +12,7 @@ export default async function getPosts() {
             ...post,
             createdAt: post.createdAt.toISOString()
         }))
+
         return safePosts
     } catch (err) {
         console.log(err)

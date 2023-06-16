@@ -95,7 +95,7 @@ export default function Post({ post }: PostProps) {
                 <Link href={postRoute(currentRoute)} >
                     {/* Post text */}
                     <p
-                        className={`text-[15px] mt-0 sm:text-[16px] mb-2 overflow-hidden ${showFullText ? "" : "line-clamp-2"
+                        className={`text-[15px] mt-0 sm:text-[16px] mb-2 overflow-hidden ${showFullText  ? "" : "line-clamp-2"
                             }`}
                         style={{ wordBreak: "break-word" }}
                     >
