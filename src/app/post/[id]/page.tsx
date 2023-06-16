@@ -4,7 +4,11 @@ import Image from "next/image"
 
 export default async function page({ params }: { params: { id: string } }) {
     const post = await getSinglePost(params.id)
-    if (!post) return <div>404</div>
+    if (!post) {
+        return (
+            <div>404</div>
+        )
+    }
     const { userImg, username, name } = await getUser(post.authorId)
     return (
         <div>

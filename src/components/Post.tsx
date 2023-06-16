@@ -10,7 +10,7 @@ import formatDate from "@/utils/formatDate"
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import axios from "axios"
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 export default function Post({ post }: PostProps) {
@@ -22,7 +22,14 @@ export default function Post({ post }: PostProps) {
         setShowFullText((prevShowFullText) => !prevShowFullText);
     };
     const dateOfPost = formatDate(post.createdAt)
-    const postRoute = `/post/${post.id}`
+    const currentRoute = usePathname()
+    const postRoute = (currentRoute: string) => {
+        if (currentRoute === '/explore') {
+            return '/explore'
+        } else {
+            return `/post/${post.id}`
+        }
+    }
 
     const handleDelete = async () => {
         const toastId = toast.loading("Deleting...")
@@ -59,7 +66,7 @@ export default function Post({ post }: PostProps) {
                 />
             )}
             <div className="flex flex-col flex-grow">
-                <Link href={postRoute} >
+                <Link href={postRoute(currentRoute)} >
                     {/* Post header */}
                     <div className="flex justify-between">
                         <div className="flex space-x-1 whitespace-nowrap overflow-hidden">
