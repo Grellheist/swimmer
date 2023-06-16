@@ -49,7 +49,7 @@ export default function Input() {
     };
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        if (e.key === "Enter" && !e.shiftKey) {
+        if (e.key === "Enter" && !e.shiftKey && textValue.trim().length <= 400) {
             e.preventDefault()
             handleMeow()
         }
@@ -142,7 +142,12 @@ export default function Input() {
                                 </Popover.Content>
                             </Popover.Root>
                         </div>
-                        <button onClick={handleMeow} disabled={textValue.trim().length === 0 && imgSrc === ""} className="disabled:opacity-75 bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md enabled:hover:brightness-95">
+                        {textValue.trim().length > 0 &&
+                            <div>{textValue.trim().length}/400</div>
+                        }
+                        <button onClick={handleMeow}
+                            disabled={(textValue.trim().length === 0 && imgSrc === "") || textValue.trim().length > 400}
+                            className="disabled:opacity-75 bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md enabled:hover:brightness-95">
                             Meow
                         </button>
                     </div>
