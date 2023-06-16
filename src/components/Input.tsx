@@ -52,6 +52,9 @@ export default function Input() {
         if (e.key === "Enter" && !e.shiftKey && textValue.trim().length <= 400) {
             e.preventDefault()
             handleMeow()
+        } else if (e.key === "Enter" && !e.shiftKey && textValue.trim().length >= 400) {
+            e.preventDefault()
+            toast.error("The character limit is 400 characters!")
         }
     }
 
@@ -76,26 +79,28 @@ export default function Input() {
         setImgSrc("")
     }
 
-    if (!user) {
-        return (
-            <div className="flex items-center justify-center mb-4">
-                <Image src={Spinner} height={45} width={45} alt="Loading..." />
-            </div>
-        )
-    }
-
     return (
         <SignedIn>
             <div className="flex border-b border-gray-600 p-3 space-x-3">
-                <Link href={`/profile/${user.username}`}>
-                    <Image
-                        src={user.imageUrl}
-                        alt="user image"
-                        className="rounded-full xl:mr-2 w-11 h-11"
-                        width="150"
-                        height="150"
-                    />
-                </Link>
+                {user ?
+                    (
+                        <Link href={`/profile/${user.username}`}>
+                            <Image
+                                src={user.imageUrl}
+                                alt="user image"
+                                className="rounded-full xl:mr-2 w-11 h-11"
+                                width="150"
+                                height="150"
+                            />
+                        </Link>
+                    ) : (
+                        <Image
+                            src={Spinner}
+                            alt="Loading..."
+                            width={40}
+                            height={40}
+                        />
+                    )}
                 <div className="w-full divide-y divide-gray-600">
                     <div className="">
                         <textarea
@@ -143,7 +148,14 @@ export default function Input() {
                             </Popover.Root>
                         </div>
                         {textValue.trim().length > 0 &&
-                            <div>{textValue.trim().length}/400</div>
+                            (
+                                <div className={`text-gray-200
+                                ${textValue.trim().length >= 390 && textValue.trim().length <= 400 && "text-yellow-500"}
+                                ${textValue.trim().length > 400 && "text-red-500"}
+                                `}>
+                                    {textValue.trim().length}/400
+                                </div>
+                            )
                         }
                         <button onClick={handleMeow}
                             disabled={(textValue.trim().length === 0 && imgSrc === "") || textValue.trim().length > 400}
@@ -153,6 +165,6 @@ export default function Input() {
                     </div>
                 </div>
             </div>
-        </SignedIn>
+        </SignedIn >
     );
 }
