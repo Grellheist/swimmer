@@ -97,6 +97,7 @@ export default function Post({ post }: PostProps) {
                     <p
                         className={`text-[15px] mt-0 sm:text-[16px] mb-2 overflow-hidden ${showFullText ? "" : "line-clamp-2"
                             }`}
+                        style={{ wordBreak: "break-word" }}
                     >
                         {post.content}
                     </p>
@@ -111,7 +112,7 @@ export default function Post({ post }: PostProps) {
                         Show more
                     </button>
                 )}
-                
+
                 {/* Post image */}
                 {hasPostImage && post.imgUrl && (
                     <div className="relative w-full">
