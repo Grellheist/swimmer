@@ -1,8 +1,9 @@
 "use client"
 import { useUser } from "@clerk/nextjs"
 import Image from "next/image"
+import getUser from "@/utils/getUser"
 
-export default async function Profile() {
+export default async function Profile({ params }: { params: { id: string } }) {
     const { user } = useUser()
     if (!user) return <div>404</div>
 
