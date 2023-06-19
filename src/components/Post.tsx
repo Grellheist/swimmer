@@ -155,8 +155,8 @@ export default function Post({ post }: PostProps) {
                                 <BsFillChatDotsFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
                             </Dialog.Trigger>
                             <Dialog.Portal>
+                                <Dialog.Overlay className="bg-black fixed inset-0 transition-opacity duration-150 ease-in-out"/>
                                 <Dialog.Content>
-
                                 </Dialog.Content>
                             </Dialog.Portal>
                         </Dialog.Root>
