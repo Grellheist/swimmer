@@ -2,8 +2,7 @@ import Input from '@/components/Input'
 import Post from '@/components/Post'
 import getPosts from '@/utils/getPosts'
 import getUser from '@/utils/getUser'
-import { motion } from 'framer-motion'
-import { Providers } from "./providers"
+import { Providers } from "@/utils/providers"
 
 export default async function Home() {
     const posts = await getPosts()

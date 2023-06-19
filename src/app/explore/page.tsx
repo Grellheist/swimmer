@@ -1,4 +1,5 @@
 import Post from "@/components/Post";
+import { Providers } from "@/utils/providers"
 
 export default function Explore() {
     const posts = [
@@ -55,13 +56,11 @@ export default function Explore() {
     ];
     return (
         <>
-            {posts.map((post) => (
-                <Post
-                    post={post}
-                    key={post.id}
-                    
-                />
-            ))}
+            <Providers>
+                {posts.map((post) => (
+                    <Post post={post} key={post.id} />
+                ))}
+            </Providers>
         </>
     )
 }

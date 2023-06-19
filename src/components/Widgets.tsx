@@ -6,6 +6,7 @@ import { Article, NewsData, User, UserData } from './types'
 import Image from "next/image";
 import Spinner from "../../public/spinner.svg"
 import { toast } from "react-hot-toast";
+import { Providers } from "@/utils/providers";
 
 export default function Widgets() {
     const [articleNumber, setArticleNumber] = useState(3);
@@ -75,48 +76,52 @@ export default function Widgets() {
             </div>
 
             {/* News Section */}
-            <div className="space-y-3 rounded-xl pt-2 w-[75%] xl:w-[100%]" style={{ backgroundColor: "rgb(22,24,28)" }}>
-                <h4 className="text-gray-200 text-[20px] font-bold px-4">What&apos;s happening</h4>
-                {newsData ? (
-                    <div>
-                        {newsData.articles.slice(0, articleNumber).map((article: Article) => (
-                            <News key={article.title} article={article} />
-                        ))}
-                    </div>
-                ) : (
-                    <div className="flex items-center justify-center font-bold">
-                        <Image src={Spinner} height={45} width={45} alt="Loading..." />
-                    </div>
-                )}
-                <button onClick={() => setArticleNumber(articleNumber + 3)} className="text-blue-400 pl-4 pb-3">Show more</button>
-            </div>
+            <Providers>
+                <div className="space-y-3 rounded-xl pt-2 w-[75%] xl:w-[100%]" style={{ backgroundColor: "rgb(22,24,28)" }}>
+                    <h4 className="text-gray-200 text-[20px] font-bold px-4">What&apos;s happening</h4>
+                    {newsData ? (
+                        <div>
+                            {newsData.articles.slice(0, articleNumber).map((article: Article) => (
+                                <News key={article.title} article={article} />
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="flex items-center justify-center font-bold">
+                            <Image src={Spinner} height={45} width={45} alt="Loading..." />
+                        </div>
+                    )}
+                    <button onClick={() => setArticleNumber(articleNumber + 3)} className="text-blue-400 pl-4 pb-3">Show more</button>
+                </div>
+            </Providers>
 
             {/* Random User Section */}
-            <div className="sticky top-16 space-y-3 rounded-xl pt-2 w-[75%] xl:w-[100%]" style={{ backgroundColor: "rgb(22,24,28)" }}>
-                <h4 className="text-gray-200 text-[20px] font-bold px-4">Who to follow</h4>
-                {userData ? (
-                    <div onClick={handleClick}>
-                        {userData.results.slice(0, userNumber).map((user: User) => (
-                            <div key={user.login.uuid} className="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-800 transition duration-200">
-                                <Image className="rounded-full" src={user.picture.thumbnail} alt="who to follow image" width="43" height="43" />
-                                <div className="truncate ml-4 leading-5">
-                                    <h4 className="font-bold hover:underline text-[14px] truncate">{user.name.first + " " + user.name.last}</h4>
-                                    <h5 className="text-[13px] text-gray-500 truncate">@{user.login.username}</h5>
+            <Providers>
+                <div className="sticky top-16 space-y-3 rounded-xl pt-2 w-[75%] xl:w-[100%]" style={{ backgroundColor: "rgb(22,24,28)" }}>
+                    <h4 className="text-gray-200 text-[20px] font-bold px-4">Who to follow</h4>
+                    {userData ? (
+                        <div onClick={handleClick}>
+                            {userData.results.slice(0, userNumber).map((user: User) => (
+                                <div key={user.login.uuid} className="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-800 transition duration-200">
+                                    <Image className="rounded-full" src={user.picture.thumbnail} alt="who to follow image" width="43" height="43" />
+                                    <div className="truncate ml-4 leading-5">
+                                        <h4 className="font-bold hover:underline text-[14px] truncate">{user.name.first + " " + user.name.last}</h4>
+                                        <h5 className="text-[13px] text-gray-500 truncate">@{user.login.username}</h5>
+                                    </div>
+                                    <button className="ml-auto bg-gray-200 text-black font-semibold text-sm rounded-full px-3.5 py-1.5 hover:brightness-95">Follow</button>
                                 </div>
-                                <button className="ml-auto bg-gray-200 text-black font-semibold text-sm rounded-full px-3.5 py-1.5 hover:brightness-95">Follow</button>
-                            </div>
-                        ))}
-                    </div>
-                ) : (
-                    <div className="flex items-center justify-center font-bold">
-                        <Image src={Spinner} height={45} width={45} alt="Loading..." />
-                    </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="flex items-center justify-center font-bold">
+                            <Image src={Spinner} height={45} width={45} alt="Loading..." />
+                        </div>
 
-                )}
-                {userNumber < 9 &&
-                    <button onClick={() => setUserNumber(userNumber + 3)} className="text-blue-400 pl-4 pb-3">Show more</button>
-                }
-            </div>
+                    )}
+                    {userNumber < 9 &&
+                        <button onClick={() => setUserNumber(userNumber + 3)} className="text-blue-400 pl-4 pb-3">Show more</button>
+                    }
+                </div>
+            </Providers>
 
 
         </div>
