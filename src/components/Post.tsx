@@ -12,7 +12,6 @@ import Link from "next/link";
 import axios from "axios"
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-import { Providers } from "@/utils/providers";
 
 export default function Post({ post }: PostProps) {
     const hasPostImage = post.imgUrl !== "";
