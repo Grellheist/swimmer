@@ -42,10 +42,10 @@ export default function Input() {
         } catch (error) {
             console.error("Failed to create entry:", error);
         }
-        router.refresh()
         setTextValue("")
         setImgSrc("")
         toast.dismiss(toastId)
+        router.refresh()
     };
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
