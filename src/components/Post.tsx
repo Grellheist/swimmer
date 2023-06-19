@@ -12,6 +12,7 @@ import Link from "next/link";
 import axios from "axios"
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import * as Dialog from "@radix-ui/react-dialog";
 
 export default function Post({ post }: PostProps) {
     const hasPostImage = post.imgUrl !== "";
@@ -149,7 +150,16 @@ export default function Post({ post }: PostProps) {
                     </div>
                 ) : (
                     <div className="flex justify-between pt-2">
-                        <BsFillChatDotsFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
+                        <Dialog.Root>
+                            <Dialog.Trigger asChild>
+                                <BsFillChatDotsFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
+                            </Dialog.Trigger>
+                            <Dialog.Portal>
+                                <Dialog.Content>
+
+                                </Dialog.Content>
+                            </Dialog.Portal>
+                        </Dialog.Root>
                         <FaRetweet onClick={handleNotImplemented} className="h-9 w-9 hoverEffect p-2 hover:text-green-500 hover:bg-green-950" />
                         <AiFillHeart className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
                         <BsFillBarChartFill onClick={handleNotImplemented} className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
