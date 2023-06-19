@@ -56,11 +56,9 @@ export default function Explore() {
     ];
     return (
         <>
-            <Providers>
-                {posts.map((post) => (
-                    <Post post={post} key={post.id} />
-                ))}
-            </Providers>
+            {posts.map((post) => (
+                <Post post={post} key={post.id} />
+            ))}
         </>
     )
 }

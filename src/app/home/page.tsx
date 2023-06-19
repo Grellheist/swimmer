@@ -2,7 +2,6 @@ import Input from '@/components/Input'
 import Post from '@/components/Post'
 import getPosts from '@/utils/getPosts'
 import getUser from '@/utils/getUser'
-import { Providers } from "@/utils/providers"
 
 export default async function Home() {
     const posts = await getPosts()
@@ -25,11 +24,9 @@ export default async function Home() {
     return (
         <>
             <Input />
-            <Providers>
-                {postsWithUserInformation.map((post) => (
-                    <Post key={post.id} post={post} />
-                ))}
-            </Providers>
+            {postsWithUserInformation.map((post) => (
+                <Post key={post.id} post={post} />
+            ))}
         </>
     )
 }
