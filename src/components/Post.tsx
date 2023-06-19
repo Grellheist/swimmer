@@ -35,6 +35,10 @@ export default function Post({ post }: PostProps) {
         toast.error("Sorry, you can't interact with mock posts. Log in to see the real posts.")
     }
 
+    const handleNotImplemented = () => {
+        toast.error("Function not implemented.")
+    }
+
     const handleDelete = async () => {
         const toastId = toast.loading("Deleting...")
         if (user && user.id === post.authorId) {
@@ -88,7 +92,7 @@ export default function Post({ post }: PostProps) {
                     </div>
                     {/* Icon */}
                     <div className="flex items-center">
-                        <HiOutlineDotsHorizontal className="h-8 hoverEffect w-8 p-2 mt-0 text-gray-500 hover:text-sky-500 hover:bg-sky-950" />
+                        <HiOutlineDotsHorizontal onClick={handleNotImplemented} className="h-8 hoverEffect w-8 p-2 mt-0 text-gray-500 hover:text-sky-500 hover:bg-sky-950" />
                     </div>
                 </div>
 
@@ -146,9 +150,9 @@ export default function Post({ post }: PostProps) {
                 ) : (
                     <div className="flex justify-between pt-2">
                         <BsFillChatDotsFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
-                        <FaRetweet className="h-9 w-9 hoverEffect p-2 hover:text-green-500 hover:bg-green-950" />
+                        <FaRetweet onClick={handleNotImplemented} className="h-9 w-9 hoverEffect p-2 hover:text-green-500 hover:bg-green-950" />
                         <AiFillHeart className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
-                        <BsFillBarChartFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
+                        <BsFillBarChartFill onClick={handleNotImplemented} className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
                         {user?.id === post.authorId &&
                             <BsFillTrashFill className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" onClick={handleDelete} />
                         }
