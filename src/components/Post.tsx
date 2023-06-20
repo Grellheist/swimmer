@@ -57,17 +57,9 @@ export default function Post({ post }: PostProps) {
 
     return (
         <div className="flex p-3 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
-            {post.userImg ? (
+            {post.userImg && (
                 <Image
                     src={post.userImg}
-                    alt="User image"
-                    className="rounded-full h-12 w-12 mr-4 hover:brightness-95"
-                    width="45"
-                    height="45"
-                />
-            ) : (
-                <Image
-                    src="https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.jpg"
                     alt="User image"
                     className="rounded-full h-12 w-12 mr-4 hover:brightness-95"
                     width="45"
@@ -159,9 +151,31 @@ export default function Post({ post }: PostProps) {
                                 <Dialog.Content>
                                     <div className="max-w-lg w-[90%] fixed top-24 left-[50%] z-50 translate-x-[-50%] bg-black h-[300px] rounded-xl shadow-md">
                                         <Dialog.Close>
-                                            <AiOutlineClose className="h-11 w-11 m-2 font-bold hoverEffect" />
+                                            <AiOutlineClose className="h-11 w-11 m-2 hoverEffect" />
                                         </Dialog.Close>
-                                        <h1>{post.username}</h1>
+                                        <div className="flex ml-4 relative">
+                                            <span className="w-0.5 h-full z-[-1] absolute left-[22px] top-14 bg-gray-700"/>
+                                            {post.userImg && (
+                                                <Image
+                                                    src={post.userImg}
+                                                    alt="User image"
+                                                    className="rounded-full h-12 w-12 mr-4"
+                                                    width="45"
+                                                    height="45"
+                                                />
+                                            )}
+                                            <div className="flex space-x-1 whitespace-nowrap overflow-hidden">
+                                                <h4 className="font-bold text-[15px] sm:text-[16px] truncate line-clamp-none max-w-[150px] md:max-w-[250px]">
+                                                    {post.name}
+                                                </h4>
+                                                <span className="text-sm sm:text-[15px] text-gray-500 truncate line-clamp-none max-w-[60px] md:max-w-[150px]">
+                                                    @{post.username} ·{" "}
+                                                </span>
+                                                <span className="text-sm sm:text-[15px] hover:underline text-gray-500">
+                                                    {dateOfPost}
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </Dialog.Content>
                             </Dialog.Portal>
