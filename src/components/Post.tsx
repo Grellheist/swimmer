@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react";
-import { AiFillHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineClose } from "react-icons/ai";
 import { BsFillBarChartFill, BsFillChatDotsFill, BsFillTrashFill } from "react-icons/bs";
 import { FaRetweet } from "react-icons/fa";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
@@ -151,12 +151,18 @@ export default function Post({ post }: PostProps) {
                 ) : (
                     <div className="flex justify-between pt-2">
                         <Dialog.Root>
-                            <Dialog.Trigger asChild>
+                            <Dialog.Trigger>
                                 <BsFillChatDotsFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
                             </Dialog.Trigger>
                             <Dialog.Portal>
-                                <Dialog.Overlay className="bg-black fixed inset-0 transition-opacity duration-150 ease-in-out"/>
+                                <Dialog.Overlay className="bg-blue-300 opacity-20 z-50 fixed inset-0" />
                                 <Dialog.Content>
+                                    <div className="max-w-lg w-[90%] fixed top-24 left-[50%] z-50 translate-x-[-50%] bg-black h-[300px] rounded-xl shadow-md">
+                                        <Dialog.Close>
+                                            <AiOutlineClose className="h-11 w-11 m-2 font-bold hoverEffect" />
+                                        </Dialog.Close>
+                                        <h1>{post.username}</h1>
+                                    </div>
                                 </Dialog.Content>
                             </Dialog.Portal>
                         </Dialog.Root>
