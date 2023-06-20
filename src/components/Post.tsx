@@ -13,6 +13,8 @@ import axios from "axios"
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import * as Dialog from "@radix-ui/react-dialog";
+import * as Popover from "@radix-ui/react-popover";
+import Spinner from "../../public/spinner.svg"
 
 export default function Post({ post }: PostProps) {
     const hasPostImage = post.imgUrl !== "";
@@ -151,10 +153,12 @@ export default function Post({ post }: PostProps) {
                                 <Dialog.Content>
                                     <div className="max-w-lg w-[90%] fixed top-24 left-[50%] z-50 translate-x-[-50%] bg-black h-[300px] rounded-xl shadow-md">
                                         <Dialog.Close>
-                                            <AiOutlineClose className="h-11 w-11 m-2 hoverEffect" />
+                                            <div className="hoverEffect w-12 h-12 m-2 flex items-center justify-center">
+                                                <AiOutlineClose className="h-[23px] w-[20px] p-0" />
+                                            </div>
                                         </Dialog.Close>
                                         <div className="flex ml-4 relative">
-                                            <span className="w-0.5 h-full z-[-1] absolute left-[22px] top-14 bg-gray-700"/>
+                                            <span className="w-0.5 h-full z-[-1] absolute left-[22px] top-14 bg-gray-700" />
                                             {post.userImg && (
                                                 <Image
                                                     src={post.userImg}
