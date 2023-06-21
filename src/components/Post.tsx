@@ -1,9 +1,9 @@
 "use client"
-import { useState } from "react";
-import { AiFillHeart, AiOutlineClose } from "react-icons/ai";
-import { BsFillBarChartFill, BsFillChatDotsFill, BsFillTrashFill } from "react-icons/bs";
+import { useRef, useState } from "react";
+import { AiFillCloseCircle, AiFillHeart, AiOutlineClose } from "react-icons/ai";
+import { BsEmojiSmile, BsFillBarChartFill, BsFillChatDotsFill, BsFillTrashFill } from "react-icons/bs";
 import { FaRetweet } from "react-icons/fa";
-import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import { HiOutlineDotsHorizontal, HiOutlinePhotograph } from "react-icons/hi";
 import { PostProps } from "./types"
 import Image from "next/image";
 import formatDate from "@/utils/formatDate"
@@ -15,15 +15,26 @@ import { toast } from "react-hot-toast";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as Popover from "@radix-ui/react-popover";
 import Spinner from "../../public/spinner.svg"
+import EmojiPicker, { EmojiClickData, Theme } from "emoji-picker-react";
 
 export default function Post({ post }: PostProps) {
     const hasPostImage = post.imgUrl !== "";
     const { user } = useUser()
     const router = useRouter()
+    const [textValue, setTextValue] = useState("");
+    const [imgSrc, setImgSrc] = useState<string | null>("");
+    const imagePickerRef = useRef<HTMLInputElement>(null)
     const [showFullText, setShowFullText] = useState(false);
+
     const toggleText = () => {
         setShowFullText((prevShowFullText) => !prevShowFullText);
     };
+
+    const handleEmojiSelect = (emojiObject: EmojiClickData) => {
+        const emoji = emojiObject.emoji;
+        setTextValue((prevTextValue) => prevTextValue + emoji);
+    };
+
     const dateOfPost = formatDate(post.createdAt)
     const currentRoute = usePathname()
     const postRoute = (currentRoute: string) => {
@@ -55,6 +66,36 @@ export default function Post({ post }: PostProps) {
         } else {
             toast.error("You don't have permission to do that!")
         }
+    }
+
+    const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === "Enter" && !e.shiftKey && textValue.trim().length <= 400) {
+            e.preventDefault()
+        } else if (e.key === "Enter" && !e.shiftKey && textValue.trim().length >= 400) {
+            e.preventDefault()
+            toast.error("The character limit is 400 characters!")
+        }
+    }
+
+    const handleImageClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const fileType = file.type;
+            if (fileType.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    const imageData = reader.result as string;
+                    setImgSrc(imageData);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                toast.error("Invalid file type. Please upload an image.");
+            }
+        }
+    };
+
+    const deleteImage = () => {
+        setImgSrc("")
     }
 
     return (
@@ -148,36 +189,108 @@ export default function Post({ post }: PostProps) {
                                                 <AiOutlineClose className="h-[23px] w-[20px] p-0" />
                                             </div>
                                         </Dialog.Close>
-                                        <div>
-                                            <div className="flex ml-4 relative">
-                                                <span className="w-0.5 h-full z-[-1] absolute left-[22px] top-14 bg-gray-700" />
-                                                {post.userImg && (
-                                                    <Image
-                                                        src={post.userImg}
-                                                        alt="User image"
-                                                        className="rounded-full h-12 w-12 mr-4"
-                                                        width="45"
-                                                        height="45"
+                                        <div className="flex ml-4 relative">
+                                            <span className="w-0.5 h-full z-[-1] absolute left-[22px] top-14 bg-gray-700" />
+                                            {post.userImg && (
+                                                <Image
+                                                    src={post.userImg}
+                                                    alt="User image"
+                                                    className="rounded-full h-12 w-12 mr-4"
+                                                    width="45"
+                                                    height="45"
+                                                />
+                                            )}
+                                            <div className="flex space-x-1 whitespace-nowrap overflow-hidden">
+                                                <h4 className="font-bold text-[15px] sm:text-[16px] truncate line-clamp-none max-w-[150px] md:max-w-[250px]">
+                                                    {post.name}
+                                                </h4>
+                                                <span className="text-sm sm:text-[15px] text-gray-500 truncate line-clamp-none max-w-[60px] md:max-w-[150px]">
+                                                    @{post.username} ·{" "}
+                                                </span>
+                                                <span className="text-sm sm:text-[15px] hover:underline text-gray-500">
+                                                    {dateOfPost}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <p
+                                            className="text-[15px] mt-0 sm:text-[16px] overflow-hidden"
+                                            style={{ wordBreak: "break-word" }}
+                                        >
+                                            {post.content}
+                                        </p>
+                                        <div className="flex p-3 space-x-3">
+                                            {user &&
+                                                <Image
+                                                    src={user.imageUrl}
+                                                    alt="user image"
+                                                    className="rounded-full xl:mr-2 w-11 h-11"
+                                                    width="150"
+                                                    height="150"
+                                                />
+                                            }
+                                            <div className="w-full">
+                                                <div className="">
+                                                    <textarea
+                                                        className="w-full border-none focus:ring-0 text-gray-200 bg-black text-lg tracking-wide min-h-[50px] resize-none"
+                                                        placeholder="Meow your reply!"
+                                                        rows={2}
+                                                        value={textValue}
+                                                        onChange={(e) => setTextValue(e.target.value)}
+                                                        onKeyUp={handleKeyPress}
                                                     />
+                                                </div>
+                                                {imgSrc && (
+                                                    <div className="mt-2 relative">
+                                                        <div className="bg-white backdrop-blur w-8 h-8 rounded-full absolute top-2 left-6 z-10 opacity-80 hover:brightness-125">
+                                                            <AiFillCloseCircle onClick={deleteImage} className="hover:cursor-pointer w-full h-full text-black hover:brightness-125 opacity-80" />
+                                                        </div>
+                                                        <Image
+                                                            src={imgSrc}
+                                                            alt="uploaded image"
+                                                            className="mx-auto rounded"
+                                                            width={500}
+                                                            height={500}
+                                                        />
+                                                    </div>
                                                 )}
-                                                <div className="flex space-x-1 whitespace-nowrap overflow-hidden">
-                                                    <h4 className="font-bold text-[15px] sm:text-[16px] truncate line-clamp-none max-w-[150px] md:max-w-[250px]">
-                                                        {post.name}
-                                                    </h4>
-                                                    <span className="text-sm sm:text-[15px] text-gray-500 truncate line-clamp-none max-w-[60px] md:max-w-[150px]">
-                                                        @{post.username} ·{" "}
-                                                    </span>
-                                                    <span className="text-sm sm:text-[15px] hover:underline text-gray-500">
-                                                        {dateOfPost}
-                                                    </span>
+                                                <div className="flex items-center justify-between pt-2.5">
+                                                    <div className="flex">
+                                                        <div onClick={() => imagePickerRef?.current?.click()}>
+                                                            <HiOutlinePhotograph className="h-10 w-10 hoverEffect p-2 text-blue-500 hover:bg-gray-900" />
+                                                            <input type="file" accept="image/*" hidden ref={imagePickerRef} onChange={handleImageClick} />
+                                                        </div>
+                                                        <Popover.Root>
+                                                            <Popover.Trigger asChild>
+                                                                <button>
+                                                                    <BsEmojiSmile className="h-10 w-10 hoverEffect p-2 text-blue-500 hover:bg-gray-900" />
+                                                                </button>
+                                                            </Popover.Trigger>
+                                                            <Popover.Content style={{ zIndex: 1 }}>
+                                                                <EmojiPicker
+                                                                    onEmojiClick={handleEmojiSelect}
+                                                                    theme={Theme.DARK}
+                                                                    lazyLoadEmojis={true}
+                                                                />
+                                                            </Popover.Content>
+                                                        </Popover.Root>
+                                                    </div>
+                                                    {textValue.trim().length > 0 &&
+                                                        (
+                                                            <div className={`text-gray-200
+                                                                        ${textValue.trim().length >= 390 && textValue.trim().length <= 400 && "text-yellow-500"}
+                                                                        ${textValue.trim().length > 400 && "text-red-500"}
+                                                                            `}>
+                                                                {textValue.trim().length}/400
+                                                            </div>
+                                                        )
+                                                    }
+                                                    <button
+                                                        disabled={(textValue.trim().length === 0 && imgSrc === "") || textValue.trim().length > 400}
+                                                        className="disabled:opacity-75 bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md enabled:hover:brightness-95">
+                                                        Reply
+                                                    </button>
                                                 </div>
                                             </div>
-                                            <p
-                                                className="text-[15px] mt-0 sm:text-[16px] overflow-hidden"
-                                                style={{ wordBreak: "break-word" }}
-                                            >
-                                                {post.content}
-                                            </p>
                                         </div>
                                     </div>
                                 </Dialog.Content>
