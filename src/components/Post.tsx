@@ -69,30 +69,24 @@ export default function Post({ post }: PostProps) {
                 />
             )}
             <div className="flex flex-col flex-grow">
-                {/* Post header */}
                 <div className="flex justify-between">
                     <div className="flex space-x-1 whitespace-nowrap overflow-hidden">
-                        {/* Name */}
                         <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline truncate line-clamp-none max-w-[150px] md:max-w-[250px]">
                             {post.name}
                         </h4>
-                        {/* Username */}
                         <span className="text-sm sm:text-[15px] text-gray-500 truncate line-clamp-none max-w-[60px] md:max-w-[150px]">
                             @{post.username} ·{" "}
                         </span>
-                        {/* Timestamp */}
                         <span className="text-sm sm:text-[15px] hover:underline text-gray-500">
                             {dateOfPost}
                         </span>
                     </div>
-                    {/* Icon */}
                     <div className="flex items-center">
                         <HiOutlineDotsHorizontal onClick={handleNotImplemented} className="h-8 hoverEffect w-8 p-2 mt-0 text-gray-500 hover:text-sky-500 hover:bg-sky-950" />
                     </div>
                 </div>
 
                 <Link href={postRoute(currentRoute)} >
-                    {/* Post text */}
                     <p
                         className={`text-[15px] mt-0 sm:text-[16px] mb-2 overflow-hidden ${showFullText ? "" : "line-clamp-2"
                             }`}
@@ -102,7 +96,6 @@ export default function Post({ post }: PostProps) {
                     </p>
                 </Link >
 
-                {/* Show more button */}
                 {!showFullText && post.content && post.content?.length > 100 && (
                     <button
                         className="flex justify-end text-sm text-sky-500 hover:underline mb-1"
@@ -113,7 +106,6 @@ export default function Post({ post }: PostProps) {
                 )}
 
                 <Link href={postRoute(currentRoute)} >
-                    {/* Post image */}
                     {hasPostImage && post.imgUrl && (
                         <div className="relative w-full">
                             <div
@@ -134,7 +126,6 @@ export default function Post({ post }: PostProps) {
                     )}
                 </Link>
 
-                {/* Post icons */}
                 {usePathname() === '/explore' ? (
                     <div className="flex justify-between pt-2" onClick={handleClickOnFakePosts}>
                         <BsFillChatDotsFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
