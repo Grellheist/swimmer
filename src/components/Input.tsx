@@ -121,8 +121,8 @@ export default function Input() {
                                 src={imgSrc}
                                 alt="uploaded image"
                                 className="mx-auto rounded"
-                                width={500}
-                                height={500}
+                                width={300}
+                                height={300}
                             />
                         </div>
                     )}
