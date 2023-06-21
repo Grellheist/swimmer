@@ -183,7 +183,7 @@ export default function Post({ post }: PostProps) {
                             <Dialog.Portal>
                                 <Dialog.Overlay className="bg-blue-300 opacity-20 z-50 fixed inset-0" />
                                 <Dialog.Content>
-                                    <div className="max-w-lg w-[90%] fixed top-24 left-[50%] z-50 translate-x-[-50%] bg-black h-[300px] rounded-xl shadow-md">
+                                    <div className="max-w-lg w-[90%] fixed top-24 left-[50%] z-50 translate-x-[-50%] bg-black rounded-xl shadow-md">
                                         <Dialog.Close>
                                             <div className="hoverEffect w-12 h-12 m-2 flex items-center justify-center">
                                                 <AiOutlineClose className="h-[23px] w-[20px] p-0" />
@@ -213,7 +213,7 @@ export default function Post({ post }: PostProps) {
                                             </div>
                                         </div>
                                         <p
-                                            className="text-[15px] mt-0 sm:text-[16px] overflow-hidden"
+                                            className="text-[15px] mt-0 sm:text-[16px] ml-16 mb-2 overflow-hidden"
                                             style={{ wordBreak: "break-word" }}
                                         >
                                             {post.content}
@@ -247,7 +247,7 @@ export default function Post({ post }: PostProps) {
                                                         <Image
                                                             src={imgSrc}
                                                             alt="uploaded image"
-                                                            className="mx-auto rounded"
+                                                            className="mx-auto rounded ml-1"
                                                             width={500}
                                                             height={500}
                                                         />
