@@ -113,14 +113,14 @@ export default function Input() {
                         />
                     </div>
                     {imgSrc && (
-                        <div className="mt-2 relative max-h-[200px] overflow-scroll">
+                        <div className="mt-2 relative">
                             <div className="bg-white backdrop-blur w-8 h-8 rounded-full absolute top-2 left-6 z-10 opacity-80 hover:brightness-125">
                                 <AiFillCloseCircle onClick={deleteImage} className="hover:cursor-pointer w-full h-full text-black hover:brightness-125 opacity-80" />
                             </div>
                             <Image
                                 src={imgSrc}
                                 alt="uploaded image"
-                                className="mx-auto rounded max-w-full h-auto"
+                                className="mx-auto rounded"
                                 width={300}
                                 height={300}
                             />
