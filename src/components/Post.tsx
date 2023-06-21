@@ -148,31 +148,32 @@ export default function Post({ post }: PostProps) {
                                                 <AiOutlineClose className="h-[23px] w-[20px] p-0" />
                                             </div>
                                         </Dialog.Close>
-                                        <div className="flex ml-4 relative">
-                                            <span className="w-0.5 h-full z-[-1] absolute left-[22px] top-14 bg-gray-700" />
-                                            {post.userImg && (
-                                                <Image
-                                                    src={post.userImg}
-                                                    alt="User image"
-                                                    className="rounded-full h-12 w-12 mr-4"
-                                                    width="45"
-                                                    height="45"
-                                                />
-                                            )}
-                                            <div className="flex space-x-1 whitespace-nowrap overflow-hidden">
-                                                <h4 className="font-bold text-[15px] sm:text-[16px] truncate line-clamp-none max-w-[150px] md:max-w-[250px]">
-                                                    {post.name}
-                                                </h4>
-                                                <span className="text-sm sm:text-[15px] text-gray-500 truncate line-clamp-none max-w-[60px] md:max-w-[150px]">
-                                                    @{post.username} ·{" "}
-                                                </span>
-                                                <span className="text-sm sm:text-[15px] hover:underline text-gray-500">
-                                                    {dateOfPost}
-                                                </span>
+                                        <div>
+                                            <div className="flex ml-4 relative">
+                                                <span className="w-0.5 h-full z-[-1] absolute left-[22px] top-14 bg-gray-700" />
+                                                {post.userImg && (
+                                                    <Image
+                                                        src={post.userImg}
+                                                        alt="User image"
+                                                        className="rounded-full h-12 w-12 mr-4"
+                                                        width="45"
+                                                        height="45"
+                                                    />
+                                                )}
+                                                <div className="flex space-x-1 whitespace-nowrap overflow-hidden">
+                                                    <h4 className="font-bold text-[15px] sm:text-[16px] truncate line-clamp-none max-w-[150px] md:max-w-[250px]">
+                                                        {post.name}
+                                                    </h4>
+                                                    <span className="text-sm sm:text-[15px] text-gray-500 truncate line-clamp-none max-w-[60px] md:max-w-[150px]">
+                                                        @{post.username} ·{" "}
+                                                    </span>
+                                                    <span className="text-sm sm:text-[15px] hover:underline text-gray-500">
+                                                        {dateOfPost}
+                                                    </span>
+                                                </div>
                                             </div>
                                             <p
-                                                className={`text-[15px] mt-0 sm:text-[16px] mb-2 overflow-hidden ${showFullText ? "" : "line-clamp-2"
-                                                    }`}
+                                                className="text-[15px] mt-0 sm:text-[16px] overflow-hidden"
                                                 style={{ wordBreak: "break-word" }}
                                             >
                                                 {post.content}
