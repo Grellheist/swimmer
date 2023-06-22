@@ -200,25 +200,27 @@ export default function Post({ post }: PostProps) {
                                                     height="45"
                                                 />
                                             )}
-                                            <div className="flex space-x-1 whitespace-nowrap overflow-hidden">
-                                                <h4 className="font-bold text-[15px] sm:text-[16px] truncate line-clamp-none max-w-[150px] md:max-w-[250px]">
-                                                    {post.name}
-                                                </h4>
-                                                <span className="text-sm sm:text-[15px] text-gray-500 truncate line-clamp-none max-w-[60px] md:max-w-[150px]">
-                                                    @{post.username} ·{" "}
-                                                </span>
-                                                <span className="text-sm sm:text-[15px] hover:underline text-gray-500">
-                                                    {dateOfPost}
-                                                </span>
+                                            <div>
+                                                <div className="flex space-x-1 whitespace-nowrap overflow-hidden">
+                                                    <h4 className="font-bold text-[15px] sm:text-[16px] truncate line-clamp-none max-w-[150px] md:max-w-[250px]">
+                                                        {post.name}
+                                                    </h4>
+                                                    <span className="text-sm sm:text-[15px] text-gray-500 truncate line-clamp-none max-w-[60px] md:max-w-[150px]">
+                                                        @{post.username} ·{" "}
+                                                    </span>
+                                                    <span className="text-sm sm:text-[15px] hover:underline text-gray-500">
+                                                        {dateOfPost}
+                                                    </span>
+                                                </div>
+                                                <p
+                                                    className="text-[15px] sm:text-[16px] mb-2 overflow-hidden"
+                                                    style={{ wordBreak: "break-word" }}
+                                                >
+                                                    {post.content}
+                                                </p>
                                             </div>
                                         </div>
-                                        <p
-                                            className="text-[15px] mt-0 sm:text-[16px] ml-16 mb-2 overflow-hidden"
-                                            style={{ wordBreak: "break-word" }}
-                                        >
-                                            {post.content}
-                                        </p>
-                                        <div className="flex p-3 space-x-3">
+                                        <div className="flex p-2 ml-2 mt-6 space-x-3">
                                             {user &&
                                                 <Image
                                                     src={user.imageUrl}
@@ -228,6 +230,7 @@ export default function Post({ post }: PostProps) {
                                                     height="150"
                                                 />
                                             }
+
                                             <div className="w-full">
                                                 <div className="">
                                                     <textarea
