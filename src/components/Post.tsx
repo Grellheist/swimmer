@@ -183,7 +183,7 @@ export default function Post({ post }: PostProps) {
                             <Dialog.Portal>
                                 <Dialog.Overlay className="bg-blue-300 opacity-20 z-50 fixed inset-0" />
                                 <Dialog.Content>
-                                    <div className="max-w-lg w-[90%] fixed top-24 left-[50%] z-50 translate-x-[-50%] bg-black rounded-xl shadow-md">
+                                    <div className="max-w-2xl w-[100%] fixed top-24 left-[50%] z-50 translate-x-[-50%] bg-black rounded-xl shadow-md">
                                         <Dialog.Close>
                                             <div className="hoverEffect w-12 h-12 m-2 flex items-center justify-center">
                                                 <AiOutlineClose className="h-[23px] w-[20px] p-0" />
@@ -195,7 +195,7 @@ export default function Post({ post }: PostProps) {
                                                 <Image
                                                     src={post.userImg}
                                                     alt="User image"
-                                                    className="rounded-full h-12 w-12 mr-4"
+                                                    className="rounded-full h-12 w-12 mr-4 pointer-events-none"
                                                     width="45"
                                                     height="45"
                                                 />
@@ -208,16 +208,17 @@ export default function Post({ post }: PostProps) {
                                                     <span className="text-sm sm:text-[15px] text-gray-500 truncate line-clamp-none max-w-[60px] md:max-w-[150px]">
                                                         @{post.username} ·{" "}
                                                     </span>
-                                                    <span className="text-sm sm:text-[15px] hover:underline text-gray-500">
+                                                    <span className="text-sm sm:text-[15px] text-gray-500">
                                                         {dateOfPost}
                                                     </span>
                                                 </div>
                                                 <p
-                                                    className="text-[15px] sm:text-[16px] mb-2 overflow-hidden"
+                                                    className="text-[15px] sm:text-[16px] mr-4 mb-2 overflow-hidden"
                                                     style={{ wordBreak: "break-word" }}
                                                 >
                                                     {post.content}
                                                 </p>
+                                                <p className="text-gray-500 text-[15px]">Replying to <span className="text-blue-500 hover:cursor-pointer">@{post.username}</span></p>
                                             </div>
                                         </div>
                                         <div className="flex p-2 ml-2 mt-6 space-x-3">
@@ -225,7 +226,7 @@ export default function Post({ post }: PostProps) {
                                                 <Image
                                                     src={user.imageUrl}
                                                     alt="user image"
-                                                    className="rounded-full xl:mr-2 w-11 h-11"
+                                                    className="rounded-full xl:mr-2 w-11 h-11 pointer-events-none"
                                                     width="150"
                                                     height="150"
                                                 />
