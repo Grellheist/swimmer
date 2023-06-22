@@ -13,6 +13,8 @@ export default function Widgets() {
     const [inputFocused, setInputFocused] = useState(false);
     const [newsData, setNewsData] = useState<NewsData | null>(null);
     const [userData, setUserData] = useState<UserData | null>(null);
+    const [input, setInput] = useState("")
+
 
     const handleInputFocus = () => {
         setInputFocused(true);
@@ -47,6 +49,13 @@ export default function Widgets() {
         randomUserResults();
         fetchNewsData();
     }, []);
+    const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            e.preventDefault()
+            toast.error("There's nothing to search!")
+            setInput("")
+        }
+    }
 
     const handleClick = () => {
         toast.error("Sorry, these are not real people.")
@@ -54,7 +63,6 @@ export default function Widgets() {
 
     return (
         <div className="xl:w-[600px] hidden xl:inline ml-8 space-y-5">
-            {/* Search Input */}
             <div className="w-[90%] xl:w-[100%] sticky top-0 bg-black py-1.5 z-50">
                 <div className="flex items-center p-3 rounded-full relative">
                     <div
@@ -70,11 +78,12 @@ export default function Widgets() {
                         style={{ backgroundColor: "rgb(32,35,39)" }}
                         onFocus={handleInputFocus}
                         onBlur={handleInputBlur}
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        onKeyUp={handleKeyPress}
                     />
                 </div>
             </div>
-
-            {/* News Section */}
             <div className="space-y-3 rounded-xl pt-2 w-[75%] xl:w-[100%]" style={{ backgroundColor: "rgb(22,24,28)" }}>
                 <h4 className="text-gray-200 text-[20px] font-bold px-4">What&apos;s happening</h4>
                 {newsData ? (
@@ -90,8 +99,6 @@ export default function Widgets() {
                 )}
                 <button onClick={() => setArticleNumber(articleNumber + 3)} className="text-blue-400 pl-4 pb-3">Show more</button>
             </div>
-
-            {/* Random User Section */}
             <div className="sticky top-16 space-y-3 rounded-xl pt-2 w-[75%] xl:w-[100%]" style={{ backgroundColor: "rgb(22,24,28)" }}>
                 <h4 className="text-gray-200 text-[20px] font-bold px-4">Who to follow</h4>
                 {userData ? (
@@ -111,15 +118,11 @@ export default function Widgets() {
                     <div className="flex items-center justify-center font-bold">
                         <Image src={Spinner} height={45} width={45} alt="Loading..." />
                     </div>
-
                 )}
                 {userNumber < 9 &&
                     <button onClick={() => setUserNumber(userNumber + 3)} className="text-blue-400 pl-4 pb-3">Show more</button>
                 }
             </div>
-
-
         </div>
     );
 }
-
