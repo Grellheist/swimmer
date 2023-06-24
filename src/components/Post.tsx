@@ -1,20 +1,20 @@
 "use client"
+import { PostProps } from "./types"
 import { useRef, useState } from "react";
+import { useUser } from "@clerk/nextjs";
+import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import axios from "axios"
+import { toast } from "react-hot-toast";
+import * as Dialog from "@radix-ui/react-dialog";
+import * as Popover from "@radix-ui/react-popover";
+import formatDate from "@/utils/formatDate"
+import EmojiPicker, { EmojiClickData, Theme } from "emoji-picker-react";
 import { AiFillCloseCircle, AiFillHeart, AiOutlineClose } from "react-icons/ai";
 import { BsEmojiSmile, BsFillBarChartFill, BsFillChatDotsFill, BsFillTrashFill } from "react-icons/bs";
 import { FaRetweet } from "react-icons/fa";
 import { HiOutlineDotsHorizontal, HiOutlinePhotograph } from "react-icons/hi";
-import { PostProps } from "./types"
-import Image from "next/image";
-import formatDate from "@/utils/formatDate"
-import { useUser } from "@clerk/nextjs";
-import Link from "next/link";
-import axios from "axios"
-import { usePathname, useRouter } from "next/navigation";
-import { toast } from "react-hot-toast";
-import * as Dialog from "@radix-ui/react-dialog";
-import * as Popover from "@radix-ui/react-popover";
-import EmojiPicker, { EmojiClickData, Theme } from "emoji-picker-react";
 
 export default function Post({ post }: PostProps) {
     const hasPostImage = post.imgUrl !== "";
