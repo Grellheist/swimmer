@@ -76,6 +76,24 @@ export default function Post({ post }: PostProps) {
         }
     }
 
+    const handleLike = async () => {
+        try {
+            const response = await fetch("/api/createLike", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ userId: user?.id, postId: post.id }),
+            });
+            if (!response.ok) {
+                toast.error("Something went wrong. Try reloading the page?")
+            }
+        } catch (error) {
+            console.error("Failed to create entry:", error);
+        }
+    };
+
+
     const handleImageClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
@@ -318,7 +336,7 @@ export default function Post({ post }: PostProps) {
                             </Dialog.Portal>
                         </Dialog.Root>
                         <FaRetweet onClick={handleNotImplemented} className="h-9 w-9 hoverEffect p-2 hover:text-green-500 hover:bg-green-950" />
-                        <AiFillHeart className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
+                        <AiFillHeart onClick={handleLike} className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
                         <BsFillBarChartFill onClick={handleNotImplemented} className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
                         {user?.id === post.authorId &&
                             <BsFillTrashFill className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" onClick={handleDelete} />
