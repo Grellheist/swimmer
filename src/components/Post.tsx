@@ -14,7 +14,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as Popover from "@radix-ui/react-popover";
-import Spinner from "../../public/spinner.svg"
 import EmojiPicker, { EmojiClickData, Theme } from "emoji-picker-react";
 
 export default function Post({ post }: PostProps) {
