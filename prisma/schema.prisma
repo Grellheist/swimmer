@@ -9,18 +9,28 @@ datasource db {
 }
 
 model Post {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    content   String?  @db.VarChar(400)
-    imgUrl    String?  @db.LongText
-    authorId  String
-    likes     Int      @default(0)
-    likesList Like[]
+    id          String    @id @default(cuid())
+    createdAt   DateTime  @default(now())
+    content     String?   @db.VarChar(400)
+    imgUrl      String?   @db.LongText
+    authorId    String
+    likes       Int       @default(0)
+    likesList   Like[]
+    commentList Comment[]
 
     @@index([authorId])
 }
 
 model Like {
+    id     String @id @default(cuid())
+    postId String
+    userId String
+    Post   Post   @relation(fields: [postId], references: [id])
+
+    @@unique([postId, userId])
+}
+
+model Comment {
     id     String @id @default(cuid())
     postId String
     userId String
