@@ -218,6 +218,24 @@ export default function Post({ post }: PostProps) {
                                                 >
                                                     {post.content}
                                                 </p>
+                                                {hasPostImage && post.imgUrl && (
+                                                    <div className="relative w-full">
+                                                        <div
+                                                            className="pb-[100%] overflow-hidden rounded-2xl"
+                                                            style={{ position: "relative" }}
+                                                        >
+                                                            <Image
+                                                                src={post.imgUrl}
+                                                                alt="post image"
+                                                                className="absolute inset-0 object-cover w-full h-full"
+                                                                width="500"
+                                                                height="500"
+                                                                priority={true}
+                                                                quality={75}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                )}
                                                 <p className="text-gray-500 text-[15px]">Replying to <span className="text-blue-500 hover:cursor-pointer">@{post.username}</span></p>
                                             </div>
                                         </div>
