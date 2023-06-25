@@ -93,6 +93,27 @@ export default function Post({ post }: PostProps) {
         }
     };
 
+    const handleComment = async () => {
+        const toastId = toast.loading("Replying...")
+        try {
+            const response = await fetch("/api/createComment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ userId: user?.id, postId: post.id, content: textValue, imgUrl: imgSrc }),
+            });
+            if (!response.ok) {
+                toast.error("Something went wrong. Try reloading the page?")
+            }
+        } catch (error) {
+            console.error("Failed to create entry:", error);
+        }
+        setTextValue("")
+        setImgSrc("")
+        toast.dismiss(toastId)
+        router.refresh()
+    };
 
     const handleImageClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
@@ -325,6 +346,7 @@ export default function Post({ post }: PostProps) {
                                                     }
                                                     <button
                                                         disabled={(textValue.trim().length === 0 && imgSrc === "") || textValue.trim().length > 400}
+                                                        onClick={handleComment}
                                                         className="disabled:opacity-75 bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md enabled:hover:brightness-95">
                                                         Reply
                                                     </button>
