@@ -16,7 +16,7 @@ import { BsEmojiSmile, BsFillBarChartFill, BsFillChatDotsFill, BsFillTrashFill }
 import { FaRetweet } from "react-icons/fa";
 import { HiOutlineDotsHorizontal, HiOutlinePhotograph } from "react-icons/hi";
 
-export default function Post({ post }: PostProps, isPostPage: Boolean) {
+export default function Post({ post }: PostProps, isPostPage?: Boolean) {
     const hasPostImage = post.imgUrl !== "";
     const { user } = useUser()
     const router = useRouter()
