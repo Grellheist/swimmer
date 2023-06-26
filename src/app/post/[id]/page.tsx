@@ -12,6 +12,6 @@ export default async function page({ params }: { params: { id: string } }) {
     const user = await getUser(post.authorId)
     const combinedProps = { ...post, ...user }
     return (
-        <Post post={combinedProps} />
+        <Post post={combinedProps} isPostPage />
     )
 }
