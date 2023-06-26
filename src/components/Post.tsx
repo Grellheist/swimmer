@@ -175,7 +175,7 @@ export default function Post({ post }: PostProps, isPostPage: Boolean) {
                     </p>
                 </Link >
 
-                {!isPostPage && !showFullText && post.content && post.content?.length > 100 && (
+                {!isPostPage && !showFullText && post.content && post.content?.length > 153 && (
                     <button
                         className="flex justify-end text-sm text-sky-500 hover:underline mb-1"
                         onClick={toggleText}
