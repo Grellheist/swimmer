@@ -16,7 +16,7 @@ import { BsEmojiSmile, BsFillBarChartFill, BsFillChatDotsFill, BsFillTrashFill }
 import { FaRetweet } from "react-icons/fa";
 import { HiOutlineDotsHorizontal, HiOutlinePhotograph } from "react-icons/hi";
 
-export default function Post({ post }: PostProps, isPostPage?: Boolean) {
+export default function Post({ post }: PostProps) {
     const hasPostImage = post.imgUrl !== "";
     const { user } = useUser()
     const router = useRouter()
@@ -175,7 +175,7 @@ export default function Post({ post }: PostProps, isPostPage?: Boolean) {
                     </p>
                 </Link >
 
-                {!isPostPage && !showFullText && post.content && post.content?.length > 153 && (
+                {!showFullText && post.content && post.content?.length > 153 && (
                     <button
                         className="flex justify-end text-sm text-sky-500 hover:underline mb-1"
                         onClick={toggleText}
