@@ -93,11 +93,6 @@ export default function Post({ post }: PostProps) {
         } catch (error) {
             console.error("Failed to create entry:", error);
         }
-        if (hasLiked) {
-            setHasLiked(false)
-        } else {
-            setHasLiked(true)
-        }
         router.refresh()
     };
 
@@ -143,14 +138,6 @@ export default function Post({ post }: PostProps) {
     const deleteImage = () => {
         setImgSrc("")
     }
-
-    const checkIfLiked = async () => {
-        const result = await getUserLikedPost(user?.id, post.id)
-        if (result?.id) {
-            setHasLiked(true)
-        }
-    }
-    checkIfLiked()
 
     return (
         <div className="flex p-3 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
