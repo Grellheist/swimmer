@@ -9,6 +9,9 @@ import { useUser } from '@clerk/nextjs'
 export default async function Home() {
     const posts = await getPosts()
     const { user } = useUser()
+    if (!user) {
+        return <div>404</div>
+    }
     if (!posts) {
         throw new Error("Something went wrong")
     }
@@ -26,11 +29,8 @@ export default async function Home() {
     const postsWithUserInformation = await Promise.all(
         posts.map(async (post) => {
             const { userImg, username, name } = await fetchUserInformation(post.authorId)
-            if (user) {
-                const liked = await hasUserLiked(user.id, post.id)
-                return { ...post, liked, userImg, username, name }
-            }
-            return { ...post, userImg, username, name }
+            const liked = await hasUserLiked(user.id, post.id)
+            return { ...post, liked, userImg, username, name }
         })
     )
 
