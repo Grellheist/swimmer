@@ -91,6 +91,7 @@ export default function Post({ post }: PostProps) {
         } catch (error) {
             console.error("Failed to create entry:", error);
         }
+        router.refresh()
     };
 
     const handleComment = async () => {
