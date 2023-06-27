@@ -78,7 +78,7 @@ export default function Post({ post }: PostProps) {
 
     const handleLike = async () => {
         try {
-            const response = await fetch("/api/createLike", {
+            const response = await fetch("/api/toggleLike", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -165,7 +165,7 @@ export default function Post({ post }: PostProps) {
                     </div>
                 </div>
 
-                <Link href={postRoute(currentRoute)} >
+                <Link href={postRoute(currentRoute)} passHref >
                     <p
                         className={`text-[15px] mt-0 sm:text-[16px] mb-2 overflow-hidden ${showFullText ? "" : "line-clamp-2"
                             }`}
