@@ -2,18 +2,17 @@ import { prisma } from "@/lib/prisma";
 
 export default async function checkIfUserLiked(userId: string, postId: string) {
     try {
-        const like = await prisma.like.findFirst({
+        const result = await prisma.like.findFirst({
             where: {
                 userId,
                 postId,
             },
         });
-        if (!like) {
-            return null
+        console.log(result)
+        if (result) {
+            return true
         }
-        const safeObj = {...like}
-        console.log(safeObj)
-        return safeObj
+        return false
     } catch (err) {
         console.error(err);
     }
