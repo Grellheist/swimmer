@@ -17,11 +17,31 @@ export async function POST(request: Request) {
                 userId
             }
         })
+        await prisma.post.update({
+            where: {
+                id: postId,
+            },
+            data: {
+                likeCount: {
+                    decrement: 1,
+                }
+            }
+        })
         return NextResponse.json(data)
     } else {
         const data = await prisma.like.delete({
             where: {
                 id: existingLike.id
+            }
+        })
+        await prisma.post.update({
+            where: {
+                id: postId,
+            },
+            data: {
+                likeCount: {
+                    increment: 1,
+                }
             }
         })
         return NextResponse.json(data)
