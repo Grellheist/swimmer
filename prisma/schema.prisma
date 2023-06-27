@@ -39,5 +39,5 @@ model Comment {
     imgUrl    String?  @db.LongText
     Post      Post     @relation(fields: [postId], references: [id])
 
-    @@unique([postId, userId])
+    @@index([postId, userId])
 }
