@@ -15,6 +15,7 @@ import { AiFillCloseCircle, AiFillHeart, AiOutlineClose } from "react-icons/ai";
 import { BsEmojiSmile, BsFillBarChartFill, BsFillChatDotsFill, BsFillTrashFill } from "react-icons/bs";
 import { FaRetweet } from "react-icons/fa";
 import { HiOutlineDotsHorizontal, HiOutlinePhotograph } from "react-icons/hi";
+import getUserLikedPost from "@/utils/getUserLikedPost"
 
 export default function Post({ post }: PostProps) {
     const hasPostImage = post.imgUrl !== "";
@@ -136,6 +137,8 @@ export default function Post({ post }: PostProps) {
     const deleteImage = () => {
         setImgSrc("")
     }
+
+    const hasLiked = getUserLikedPost()
 
     return (
         <div className="flex p-3 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
@@ -359,8 +362,14 @@ export default function Post({ post }: PostProps) {
                             </Dialog.Portal>
                         </Dialog.Root>
                         <FaRetweet onClick={handleNotImplemented} className="h-9 w-9 hoverEffect p-2 hover:text-green-500 hover:bg-green-950" />
-                        <AiFillHeart onClick={handleLike} className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
-                        <span>{post.likeCount}</span>
+                        <div>
+                            {hasLiked ? (
+                                <AiFillHeart onClick={handleLike} className="h-9 w-9 hoverEffect p-2 text-red-500 hover:bg-red-950" />
+                            ) : (
+                                <AiFillHeart onClick={handleLike} className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
+                            )}
+                            <span>{post.likeCount}</span>
+                        </div>
                         <BsFillBarChartFill onClick={handleNotImplemented} className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
                         {user?.id === post.authorId &&
                             <BsFillTrashFill className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" onClick={handleDelete} />
