@@ -8,13 +8,14 @@ export default async function checkIfUserLiked(userId: string, postId: string) {
                 postId,
             },
         });
-        if (like?.id) {
-            return true
+        if (!like) {
+            return null
         }
-        return false
+        const safeObj = {...like}
+        console.log(safeObj)
+        return safeObj
     } catch (err) {
         console.error(err);
-        throw new Error("Failed to check user's like status.");
     }
 }
 
