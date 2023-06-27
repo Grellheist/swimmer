@@ -43,7 +43,7 @@ export type PostType = {
     authorId: string;
     id: string;
     likeCount: number;
-    likeId?: string | undefined;
+    likeId?: string | null;
 };
 
 export type PostProps = {
