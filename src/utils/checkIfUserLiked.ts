@@ -9,11 +9,9 @@ export default async function checkIfUserLiked(userId: string, postId: string) {
             },
         });
         if (!like) {
-            throw new Error("")
+            return false
         }
-        return {
-            likeId: like.userId
-        }
+        return true
     } catch (err) {
         console.error(err);
         throw new Error("Failed to check user's like status.");
