@@ -113,8 +113,8 @@ export default function Post({ post }: PostProps) {
         }
         setTextValue("")
         setImgSrc("")
-        toast.dismiss(toastId)
         setTimeout(() => {
+            toast.dismiss(toastId)
             router.push(`/post/${post.id}`)
         }, 1000)
     };
