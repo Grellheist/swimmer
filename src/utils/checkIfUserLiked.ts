@@ -8,8 +8,11 @@ export default async function checkIfUserLiked(userId: string, postId: string) {
                 postId,
             },
         });
+        if (!like) {
+            throw new Error("")
+        }
         return {
-            likeId: like?.userId
+            likeId: like.userId
         }
     } catch (err) {
         console.error(err);
