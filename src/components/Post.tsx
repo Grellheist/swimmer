@@ -359,6 +359,7 @@ export default function Post({ post }: PostProps) {
                         </Dialog.Root>
                         <FaRetweet onClick={handleNotImplemented} className="h-9 w-9 hoverEffect p-2 hover:text-green-500 hover:bg-green-950" />
                         <AiFillHeart onClick={handleLike} className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
+                        <span>{post.likeCount}</span>
                         <BsFillBarChartFill onClick={handleNotImplemented} className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
                         {user?.id === post.authorId &&
                             <BsFillTrashFill className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" onClick={handleDelete} />
