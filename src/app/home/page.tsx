@@ -25,7 +25,6 @@ export default async function Home() {
         posts.map(async (post) => {
             const { userImg, username, name } = await fetchUserInformation(post.authorId)
             const liked = await userHasLiked(post.authorId, post.id)
-            console.log(liked)
             return { ...post, liked, userImg, username, name }
         })
     )

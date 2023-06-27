@@ -8,8 +8,8 @@ export default async function checkIfUserLiked(userId: string, postId: string) {
                 postId,
             },
         });
-        if (!like) {
-            return false
+        if (like) {
+            return true
         }
         return true
     } catch (err) {
