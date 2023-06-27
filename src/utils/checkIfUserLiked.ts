@@ -8,7 +8,7 @@ export default async function checkIfUserLiked(userId: string, postId: string) {
                 postId,
             },
         });
-        if (like) {
+        if (like?.id) {
             return true
         }
         return false
