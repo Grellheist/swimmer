@@ -93,6 +93,11 @@ export default function Post({ post }: PostProps) {
         } catch (error) {
             console.error("Failed to create entry:", error);
         }
+        if (hasLiked) {
+            setHasLiked(false)
+        } else {
+            setHasLiked(true)
+        }
         router.refresh()
     };
 
