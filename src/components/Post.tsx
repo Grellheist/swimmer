@@ -114,7 +114,9 @@ export default function Post({ post }: PostProps) {
         setTextValue("")
         setImgSrc("")
         toast.dismiss(toastId)
-        router.push(`/post/${post.id}`)
+        setTimeout(() => {
+            router.push(`/post/${post.id}`)
+        }, 1000)
     };
 
     const handleImageClick = (event: React.ChangeEvent<HTMLInputElement>) => {
