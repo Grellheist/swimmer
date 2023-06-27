@@ -15,7 +15,6 @@ import { AiFillCloseCircle, AiFillHeart, AiOutlineClose } from "react-icons/ai";
 import { BsEmojiSmile, BsFillBarChartFill, BsFillChatDotsFill, BsFillTrashFill } from "react-icons/bs";
 import { FaRetweet } from "react-icons/fa";
 import { HiOutlineDotsHorizontal, HiOutlinePhotograph } from "react-icons/hi";
-import getUserLikedPost from "@/utils/getUserLikedPost"
 
 export default function Post({ post }: PostProps) {
     const hasPostImage = post.imgUrl !== "";
@@ -25,7 +24,7 @@ export default function Post({ post }: PostProps) {
     const [imgSrc, setImgSrc] = useState<string | null>("");
     const imagePickerRef = useRef<HTMLInputElement>(null)
     const [showFullText, setShowFullText] = useState(false);
-    const [hasLiked, setHasLiked] = useState(false)
+    const [hasLiked, setHasLiked] = useState(true)
 
     const toggleText = () => {
         setShowFullText((prevShowFullText) => !prevShowFullText);
@@ -361,13 +360,13 @@ export default function Post({ post }: PostProps) {
                             </Dialog.Portal>
                         </Dialog.Root>
                         <FaRetweet onClick={handleNotImplemented} className="h-9 w-9 hoverEffect p-2 hover:text-green-500 hover:bg-green-950" />
-                        <div>
+                        <div className="flex items-center">
                             {hasLiked ? (
                                 <AiFillHeart onClick={handleLike} className="h-9 w-9 hoverEffect p-2 text-red-500 hover:bg-red-950" />
                             ) : (
                                 <AiFillHeart onClick={handleLike} className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
                             )}
-                            <span>{post.likeCount}</span>
+                            {post.likeCount > 0 && <span className={`${hasLiked && "text-red-500"} text-sm select-none`}>{post.likeCount}</span>}
                         </div>
                         <BsFillBarChartFill onClick={handleNotImplemented} className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
                         {user?.id === post.authorId &&
