@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma"
 
-export default async function getUserLikedPost(userId: string, postId: string) {
+export default async function getUserLikedPost(userId: string | undefined, postId: string) {
     try {
         const like = await prisma.like.findFirst({
             where: {
@@ -8,7 +8,7 @@ export default async function getUserLikedPost(userId: string, postId: string) {
                 postId
             }
         })
-    return Boolean(like)
+    return like
     } catch (error) {
         console.error(error)
         throw new Error ("Failed to fetch user like status")

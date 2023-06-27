@@ -25,6 +25,7 @@ export default function Post({ post }: PostProps) {
     const [imgSrc, setImgSrc] = useState<string | null>("");
     const imagePickerRef = useRef<HTMLInputElement>(null)
     const [showFullText, setShowFullText] = useState(false);
+    const [hasLiked, setHasLiked] = useState(false)
 
     const toggleText = () => {
         setShowFullText((prevShowFullText) => !prevShowFullText);
@@ -138,7 +139,13 @@ export default function Post({ post }: PostProps) {
         setImgSrc("")
     }
 
-    const hasLiked = getUserLikedPost()
+    const checkIfLiked = async () => {
+        const result = await getUserLikedPost(user?.id, post.id)
+        if (result?.id) {
+            setHasLiked(true)
+        }
+    }
+    checkIfLiked()
 
     return (
         <div className="flex p-3 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
