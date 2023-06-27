@@ -8,7 +8,6 @@ export default async function checkIfUserLiked(userId: string, postId: string) {
                 postId,
             },
         });
-        console.log(result)
         if (result) {
             return true
         }
