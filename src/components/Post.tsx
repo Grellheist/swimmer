@@ -138,12 +138,6 @@ export default function Post({ post }: PostProps) {
         setImgSrc("")
     }
 
-    if (post.likeId === user?.id) {
-        setHasLiked(true)
-    } else {
-        setHasLiked(false)
-    }
-
     return (
         <div className="flex p-3 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
             {post.userImg && (
