@@ -23,7 +23,7 @@ export async function POST(request: Request) {
             },
             data: {
                 likeCount: {
-                    decrement: 1,
+                    increment: 1,
                 }
             }
         })
@@ -40,7 +40,7 @@ export async function POST(request: Request) {
             },
             data: {
                 likeCount: {
-                    increment: 1,
+                    decrement: 1,
                 }
             }
         })
