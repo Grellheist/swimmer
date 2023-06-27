@@ -43,7 +43,6 @@ export type PostType = {
     authorId: string;
     id: string;
     likeCount: number;
-    liked?: boolean;
 };
 
 export type PostProps = {
