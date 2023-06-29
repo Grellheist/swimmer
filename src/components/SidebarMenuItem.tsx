@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation"
 
 export default function SidebarMenuItem({ text, Icon }: SidebarMenuItemProps) {
     return (
-        <Link href={`/${text.toLowerCase()}`} className='hoverEffect flex items-center justify-center xl:justify-start space-x-3' >
+        <div className='hoverEffect flex items-center justify-center xl:justify-start space-x-3' >
             <Icon className='mr-3 text-[28px]' />
             <span className={`${usePathname().startsWith(`/${text.toLowerCase()}`) ? "font-semibold" : ""} hidden xl:inline text-[22px]`}>{text}</span>
-        </Link >
+        </div>
     )
 }

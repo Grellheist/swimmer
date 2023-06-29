@@ -22,9 +22,14 @@ import {
 } from "@clerk/nextjs"
 import Spinner from "../../public/spinner.svg"
 import * as Popover from "@radix-ui/react-popover"
+import { toast } from "react-hot-toast"
 
 export default function Sidebar() {
     const { user } = useUser();
+
+    const handleNotImplemented = () => {
+        toast.error("Page not implemented!")
+    }
 
     return (
         <div className="select-none hidden sm:flex flex-col p-2 sm:ml-3 xl:items-start fixed h-full" >
@@ -34,9 +39,13 @@ export default function Sidebar() {
 
             <div className="mt-4 mb-2.5 xl:items-start">
                 <SignedIn>
-                    <SidebarMenuItem text="Home" Icon={AiFillHome} />
+                    <Link href="/home">
+                        <SidebarMenuItem text="Home" Icon={AiFillHome} />
+                    </Link>
                 </SignedIn>
-                <SidebarMenuItem text="Explore" Icon={FaHashtag} />
+                <Link href="/explore">
+                    <SidebarMenuItem text="Explore" Icon={FaHashtag} />
+                </Link>
                 <ClerkLoading>
                     <SignedOut>
                         <div className="ml-24 mt-8 mx-auto">
@@ -52,12 +61,16 @@ export default function Sidebar() {
                     </SignedOut>
                 </ClerkLoaded>
                 <SignedIn>
-                    <SidebarMenuItem text="Notifications" Icon={AiFillBell} />
-                    <SidebarMenuItem text="Messages" Icon={GrMail} />
-                    <div className="hidden 2xl:block">
+                    <div onClick={handleNotImplemented}>
+                        <SidebarMenuItem text="Notifications" Icon={AiFillBell} />
+                    </div>
+                    <div onClick={handleNotImplemented}>
+                        <SidebarMenuItem text="Messages" Icon={GrMail} />
+                    </div>
+                    <div onClick={handleNotImplemented} className="hidden 2xl:block">
                         <SidebarMenuItem text="Lists" Icon={RiFileListFill} />
                     </div>
-                    <div className="hidden 2xl:block">
+                    <div onClick={handleNotImplemented} className="hidden 2xl:block">
                         <SidebarMenuItem text="Bookmarks" Icon={BsFillBookmarkFill} />
                     </div>
                     <ClerkLoaded>
@@ -68,7 +81,9 @@ export default function Sidebar() {
                             </Link >
                         }
                     </ClerkLoaded>
-                    <SidebarMenuItem text="More" Icon={HiDotsCircleHorizontal} />
+                    <Link href="/more">
+                        <SidebarMenuItem text="More" Icon={HiDotsCircleHorizontal} />
+                    </Link>
                 </SignedIn>
                 <SignedOut>
                     <SignInButton mode="modal">
