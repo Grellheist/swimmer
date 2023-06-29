@@ -26,6 +26,8 @@ export default function Post({ post }: PostProps) {
     const [showFullText, setShowFullText] = useState(false);
     const [open, setOpen] = useState(false)
 
+    const isExplore = usePathname() === "/explore"
+
     const toggleText = () => {
         setShowFullText((prevShowFullText) => !prevShowFullText);
     };
@@ -144,47 +146,39 @@ export default function Post({ post }: PostProps) {
         setImgSrc("")
     }
 
+    const handleUserImageClick = () => {
+        if (isExplore) {
+            toast.error("You can't interact with mock posts!")
+        } else {
+            router.push(`/profile/${post.authorId}`)
+        }
+    }
+
     return (
         <div className="flex p-3 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
-
-            {post.userImg && (
+            {post.userImg &&
                 <Image
                     src={post.userImg}
                     alt="User image"
                     className="rounded-full h-12 w-12 mr-4 hover:brightness-95"
                     width="45"
                     height="45"
+                    onClick={handleUserImageClick}
                 />
-            )}
+            }
             <div className="flex flex-col flex-grow">
                 <div className="flex justify-between">
-                    {usePathname() === '/explore' ? (
-                        <div className="flex space-x-1 whitespace-nowrap overflow-hidden">
-                            <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline truncate line-clamp-none max-w-[150px] md:max-w-[250px]">
-                                {post.name}
-                            </h4>
-                            <span className="text-sm sm:text-[15px] text-gray-500 truncate line-clamp-none max-w-[60px] md:max-w-[150px]">
-                                @{post.username} ·{" "}
-                            </span>
-                            <span className="text-sm sm:text-[15px] hover:underline text-gray-500">
-                                {dateOfPost}
-                            </span>
-                        </div>
-                    ) : (
-                        <Link href={`/profile/${post.authorId}`}>
-                            <div className="flex space-x-1 whitespace-nowrap overflow-hidden">
-                                <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline truncate line-clamp-none max-w-[150px] md:max-w-[250px]">
-                                    {post.name}
-                                </h4>
-                                <span className="text-sm sm:text-[15px] text-gray-500 truncate line-clamp-none max-w-[60px] md:max-w-[150px]">
-                                    @{post.username} ·{" "}
-                                </span>
-                                <span className="text-sm sm:text-[15px] hover:underline text-gray-500">
-                                    {dateOfPost}
-                                </span>
-                            </div>
-                        </Link>
-                    )}
+                    <div onClick={handleUserImageClick} className="flex space-x-1 whitespace-nowrap overflow-hidden">
+                        <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline truncate line-clamp-none max-w-[150px] md:max-w-[250px]">
+                            {post.name}
+                        </h4>
+                        <span className="text-sm sm:text-[15px] text-gray-500 truncate line-clamp-none max-w-[60px] md:max-w-[150px]">
+                            @{post.username} ·{" "}
+                        </span>
+                        <span className="text-sm sm:text-[15px] hover:underline text-gray-500">
+                            {dateOfPost}
+                        </span>
+                    </div>
                     <div className="flex items-center">
                         <HiOutlineDotsHorizontal onClick={handleNotImplemented} className="h-8 hoverEffect w-8 p-2 mt-0 text-gray-500 hover:text-sky-500 hover:bg-sky-950" />
                     </div>
