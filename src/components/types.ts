@@ -51,6 +51,18 @@ export type PostProps = {
     post: PostType;
 };
 
+export type CommentType = {
+    id: string;
+    postId: string;
+    userId: string;
+    createdAt: string;
+    content: string | null;
+    imgUrl: string | null;
+};
+
+export type CommentProps = {
+    comment: CommentType;
+};
 export type SidebarMenuItemProps = {
     text: string;
     Icon: IconType;
