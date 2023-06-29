@@ -24,6 +24,7 @@ export default function Post({ post }: PostProps) {
     const [imgSrc, setImgSrc] = useState<string | null>("");
     const imagePickerRef = useRef<HTMLInputElement>(null)
     const [showFullText, setShowFullText] = useState(false);
+    const [open, setOpen] = useState(false)
 
     const toggleText = () => {
         setShowFullText((prevShowFullText) => !prevShowFullText);
@@ -118,6 +119,8 @@ export default function Post({ post }: PostProps) {
             toast.dismiss(toastId)
             router.push(`/post/${post.id}`)
         }, 1000)
+        router.refresh()
+        setOpen(false)
     };
 
     const handleImageClick = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -219,7 +222,7 @@ export default function Post({ post }: PostProps) {
                     </div>
                 ) : (
                     <div className="flex justify-between pt-2">
-                        <Dialog.Root>
+                        <Dialog.Root open={open} onOpenChange={setOpen}>
                             <Dialog.Trigger>
                                 <div className="flex items-center">
                                     <BsFillChatDotsFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
