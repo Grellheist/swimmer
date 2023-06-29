@@ -12,6 +12,16 @@ export async function POST(request: Request) {
             postId
         },
     });
+    await prisma.post.update({
+        where: {
+            id: postId,
+        },
+        data: {
+            commentCount: {
+                increment: 1,
+            }
+        }
+    })
     return NextResponse.json(data)
 }
 
