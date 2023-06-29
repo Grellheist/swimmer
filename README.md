@@ -39,6 +39,10 @@ pretty good.
 - Figured out how to fetch all the info I need, now just the final push. All
   that's left now is to allow users to post images, and create the other routes.
 
+- About 99% done with this project, might be finishing it soon. However, my
+  current job is kinda preventing me from putting more effort into this project
+  for now, so I'll take my time.
+
 ### Disclaimer
 
 I was going to brand this as Swimmer with a fish as the pet but my
