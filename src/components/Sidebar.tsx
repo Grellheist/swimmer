@@ -133,7 +133,7 @@ export default function Sidebar() {
                     </div>
                     <ClerkLoaded>
                         {user && user.username &&
-                            <Link href={`/profile/${user.username}`} className='hoverEffect flex items-center justify-center xl:justify-start space-x-3' >
+                            <Link href={`/profile/${user.id}`} className='hoverEffect flex items-center justify-center xl:justify-start space-x-3' >
                                 <FaUserAlt className='mr-3 text-[28px]' />
                                 <span className={'hidden xl:inline text-[22px]'}>Profile</span>
                             </Link >
