@@ -221,7 +221,12 @@ export default function Post({ post }: PostProps) {
                     <div className="flex justify-between pt-2">
                         <Dialog.Root>
                             <Dialog.Trigger>
-                                <BsFillChatDotsFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
+                                <div className="flex items-center">
+                                    <BsFillChatDotsFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
+                                    {post.commentCount > 0 &&
+                                        <span className="text-sm select-none">{post.commentCount}</span>
+                                    }
+                                </div>
                             </Dialog.Trigger>
                             <Dialog.Portal>
                                 <Dialog.Overlay className="bg-blue-300 opacity-20 z-50 fixed inset-0" />
@@ -369,7 +374,11 @@ export default function Post({ post }: PostProps) {
                             ) : (
                                 <AiFillHeart onClick={handleLike} className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
                             )}
-                            {post.likeCount > 0 && <span className={`${post.hasLiked && "text-red-500"} text-sm select-none`}>{post.likeCount}</span>}
+                            {post.likeCount > 0 &&
+                                <span className={`${post.hasLiked && "text-red-500"} text-sm select-none`}>
+                                    {post.likeCount}
+                                </span>
+                            }
                         </div>
                         <BsFillBarChartFill onClick={handleNotImplemented} className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
                         {user?.id === post.authorId &&
@@ -378,6 +387,6 @@ export default function Post({ post }: PostProps) {
                     </div>
                 )}
             </div>
-        </div>
+        </div >
     );
 }
