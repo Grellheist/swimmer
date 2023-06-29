@@ -77,6 +77,7 @@ export default function Post({ post }: PostProps) {
     }
 
     const handleLike = async () => {
+        const toastId = toast.loading("Please wait...")
         try {
             const response = await fetch("/api/toggleLike", {
                 method: "POST",
@@ -91,6 +92,7 @@ export default function Post({ post }: PostProps) {
         } catch (error) {
             console.error("Failed to create entry:", error);
         }
+        toast.dismiss(toastId)
         router.refresh()
     };
 
