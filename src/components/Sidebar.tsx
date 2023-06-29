@@ -86,6 +86,7 @@ export default function Sidebar() {
         setImgSrc("")
         toast.dismiss(toastId)
         router.refresh()
+        setOpen(false)
     };
 
     return (
