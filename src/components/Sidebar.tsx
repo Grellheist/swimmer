@@ -1,12 +1,12 @@
 "use client"
 import SidebarMenuItem from "./SidebarMenuItem"
-import { AiFillHome, AiFillBell } from "react-icons/ai"
+import { AiFillHome, AiFillBell, AiOutlineClose, AiFillCloseCircle } from "react-icons/ai"
 import { FaHashtag, FaSignInAlt, FaUserAlt } from "react-icons/fa"
 import { GrMail } from "react-icons/gr"
-import { BsFillBookmarkFill } from "react-icons/bs"
+import { BsEmojiSmile, BsFillBookmarkFill } from "react-icons/bs"
 import { RiFileListFill } from "react-icons/ri"
 import { RxCross2 } from "react-icons/rx"
-import { HiDotsCircleHorizontal, HiDotsHorizontal } from "react-icons/hi"
+import { HiDotsCircleHorizontal, HiDotsHorizontal, HiOutlinePhotograph } from "react-icons/hi"
 import { IoLogoOctocat } from "react-icons/io"
 import { MdBrokenImage } from "react-icons/md"
 import Link from "next/link"
@@ -22,14 +22,71 @@ import {
 } from "@clerk/nextjs"
 import Spinner from "../../public/spinner.svg"
 import * as Popover from "@radix-ui/react-popover"
+import * as Dialog from "@radix-ui/react-dialog"
 import { toast } from "react-hot-toast"
+import { useRef, useState } from "react"
+import EmojiPicker, { EmojiClickData, Theme } from "emoji-picker-react"
+import { useRouter } from "next/navigation"
 
 export default function Sidebar() {
     const { user } = useUser();
+    const [open, setOpen] = useState(false)
+    const [textValue, setTextValue] = useState("")
+    const [imgSrc, setImgSrc] = useState<string | null>("");
+    const imagePickerRef = useRef<HTMLInputElement>(null)
+    const router = useRouter()
+
+    const handleEmojiSelect = (emojiObject: EmojiClickData) => {
+        const emoji = emojiObject.emoji;
+        setTextValue((prevTextValue) => prevTextValue + emoji);
+    };
 
     const handleNotImplemented = () => {
         toast.error("Page not implemented!")
     }
+
+    const handleImageClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const fileType = file.type;
+            if (fileType.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    const imageData = reader.result as string;
+                    setImgSrc(imageData);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                toast.error("Invalid file type. Please upload an image.");
+            }
+        }
+    };
+
+    const deleteImage = () => {
+        setImgSrc("")
+    }
+
+    const handleMeow = async () => {
+        const toastId = toast.loading("Posting...")
+        try {
+            const response = await fetch("/api/createPost", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ authorId: user?.id, content: textValue, imgUrl: imgSrc }),
+            });
+            if (!response.ok) {
+                toast.error("Something went wrong. Try reloading the page?")
+            }
+        } catch (error) {
+            console.error("Failed to create entry:", error);
+        }
+        setTextValue("")
+        setImgSrc("")
+        toast.dismiss(toastId)
+        router.refresh()
+    };
 
     return (
         <div className="select-none hidden sm:flex flex-col p-2 sm:ml-3 xl:items-start fixed h-full" >
@@ -93,7 +150,100 @@ export default function Sidebar() {
             </div>
 
             <SignedIn>
-                <button className="bg-blue-500 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">Meow</button>
+                <Dialog.Root open={open} onOpenChange={setOpen}>
+                    <Dialog.Trigger>
+                        <button className="bg-blue-500 rounded-full w-64 h-14 mt-6 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">
+                            Meow
+                        </button>
+                    </Dialog.Trigger>
+                    <Dialog.Portal>
+                        <Dialog.Overlay className="bg-blue-300 opacity-20 z-50 fixed inset-0" />
+                        <Dialog.Content>
+                            <div className="max-w-2xl w-[100%] fixed top-24 left-[50%] z-50 translate-x-[-50%] bg-black rounded-xl shadow-md">
+                                <Dialog.Close>
+                                    <div className="hoverEffect w-12 h-12 m-2 flex items-center justify-center">
+                                        <AiOutlineClose className="h-[23px] w-[20px] p-0" />
+                                    </div>
+                                </Dialog.Close>
+                                <div className="flex p-2 ml-2 mt-6 space-x-3">
+                                    {user &&
+                                        <Image
+                                            src={user.imageUrl}
+                                            alt="user image"
+                                            className="rounded-full xl:mr-2 w-11 h-11 pointer-events-none"
+                                            width="150"
+                                            height="150"
+                                        />
+                                    }
+
+                                    <div className="w-full">
+                                        <div className="">
+                                            <textarea
+                                                className="w-full border-none focus:ring-0 text-gray-200 bg-black text-lg tracking-wide min-h-[50px] resize-none"
+                                                placeholder="What is happening?!"
+                                                rows={2}
+                                                value={textValue}
+                                                onChange={(e) => setTextValue(e.target.value)}
+                                            />
+                                        </div>
+                                        {imgSrc && (
+                                            <div className="mt-2 relative max-h-20 lg:max-h-40 xl:max-h-60 overflow-y-scroll">
+                                                <div className="bg-white backdrop-blur w-8 h-8 rounded-full absolute top-2 left-6 z-10 opacity-80 hover:brightness-125">
+                                                    <AiFillCloseCircle onClick={deleteImage} className="hover:cursor-pointer w-full h-full text-black hover:brightness-125 opacity-80" />
+                                                </div>
+                                                <Image
+                                                    src={imgSrc}
+                                                    alt="uploaded image"
+                                                    className="mx-auto rounded ml-1"
+                                                    width={500}
+                                                    height={500}
+                                                />
+                                            </div>
+                                        )}
+                                        <div className="flex items-center justify-between pt-2.5">
+                                            <div className="flex">
+                                                <div onClick={() => imagePickerRef?.current?.click()}>
+                                                    <HiOutlinePhotograph className="h-10 w-10 hoverEffect p-2 text-blue-500 hover:bg-gray-900" />
+                                                    <input type="file" accept="image/*" hidden ref={imagePickerRef} onChange={handleImageClick} />
+                                                </div>
+                                                <Popover.Root>
+                                                    <Popover.Trigger asChild>
+                                                        <button>
+                                                            <BsEmojiSmile className="h-10 w-10 hoverEffect p-2 text-blue-500 hover:bg-gray-900" />
+                                                        </button>
+                                                    </Popover.Trigger>
+                                                    <Popover.Content style={{ zIndex: 1 }}>
+                                                        <EmojiPicker
+                                                            onEmojiClick={handleEmojiSelect}
+                                                            theme={Theme.DARK}
+                                                            lazyLoadEmojis={true}
+                                                        />
+                                                    </Popover.Content>
+                                                </Popover.Root>
+                                            </div>
+                                            {textValue.trim().length > 0 &&
+                                                (
+                                                    <div className={`text-gray-200
+                                                                        ${textValue.trim().length >= 390 && textValue.trim().length <= 400 && "text-yellow-500"}
+                                                                        ${textValue.trim().length > 400 && "text-red-500"}
+                                                                            `}>
+                                                        {textValue.trim().length}/400
+                                                    </div>
+                                                )
+                                            }
+                                            <button
+                                                disabled={(textValue.trim().length === 0 && imgSrc === "") || textValue.trim().length > 400}
+                                                onClick={handleMeow}
+                                                className="disabled:opacity-75 bg-blue-500 text-gray-200 px-4 py-1.5 rounded-full font-bold shadow-md enabled:hover:brightness-95">
+                                                Meow
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </Dialog.Content>
+                    </Dialog.Portal>
+                </Dialog.Root>
 
                 <ClerkLoading>
                     <div className="ml-24 mt-auto mb-4 mx-auto">
