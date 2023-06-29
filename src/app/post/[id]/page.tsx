@@ -17,12 +17,26 @@ export default async function page({ params }: { params: { id: string } }) {
         )
     }
     const user = await getUser(post.authorId)
-    const combinedProps = { ...post, ...user }
+    const postProps = { ...post, ...user }
+
+    const fetchUserInformation = async (authorId: string) => {
+        const { userImg, username, name } = await getUser(authorId)
+        return { userImg, username, name }
+    }
+
+    const commentsWithUserInformation = await Promise.all(
+        comments.map(async (comment) => {
+            const { userImg, username, name } = await fetchUserInformation(comment.userId)
+            return { ...comment, userImg, username, name }
+        })
+    )
+
+
     return (
         <div>
-            <Post post={combinedProps} />
-            {comments.map((comment) => (
-                <Comment key={comment.id} />
+            <Post post={postProps} />
+            {commentsWithUserInformation.map((comment) => (
+                <Comment key={comment.id} comment={comment} />
             ))}
         </div>
     )

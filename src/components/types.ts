@@ -52,6 +52,9 @@ export type PostProps = {
 };
 
 export type CommentType = {
+    name: string | null;
+    username: string | null;
+    userImg?: string;
     id: string;
     postId: string;
     userId: string;
