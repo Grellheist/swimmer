@@ -2,7 +2,7 @@
 
 This is a Twitter Clone, not to be taken seriously. 
 
-It is being developed to be put on my Portfolio and for learning purposes. It
+It was developed to be put on my Portfolio and for learning purposes. It
 will not be maintained after finished.
 
 ## Challenges
@@ -42,6 +42,13 @@ pretty good.
 - About 99% done with this project, might be finishing it soon. However, my
   current job is kinda preventing me from putting more effort into this project
   for now, so I'll take my time.
+
+- Hey it's done, the website is finished. I'm very proud with the results, but I
+  do see where it could get better. For instance, I've made a lot of API calls
+      to the database and that makes the performance tank quite a bit.
+
+- Btw I stole Theo's <a href="https://github.com/t3dotgg/chirp">Chirp</a>
+  profile page styling, because I still suck at styling.
 
 ### Disclaimer
 
