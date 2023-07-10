@@ -228,7 +228,14 @@ export default function Post({ post }: PostProps) {
                     <div className="flex justify-between pt-2" onClick={handleClickOnFakePosts}>
                         <BsFillChatDotsFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
                         <FaRetweet className="h-9 w-9 hoverEffect p-2 hover:text-green-500 hover:bg-green-950" />
-                        <AiFillHeart className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
+                         <div className="flex items-center">
+                            <AiFillHeart className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
+                            {post.likeCount > 0 &&
+                                <span className={`${post.hasLiked && "text-red-500"} text-sm select-none`}>
+                                    {post.likeCount}
+                                </span>
+                            }
+                        </div>
                         <BsFillBarChartFill className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
                     </div>
                 ) : (
