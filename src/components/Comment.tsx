@@ -38,7 +38,7 @@ export default function Comment({ comment }: CommentProps) {
     }
 
     const handleUserImageClick = () => {
-        router.push(`/profile/${comment.authorId}`)
+        router.push(`/profile/${comment.userId}`)
     }
     
     return (
