@@ -37,6 +37,10 @@ export default function Comment({ comment }: CommentProps) {
         }
     }
 
+    const handleUserImageClick = () => {
+        router.push(`/profile/${comment.authorId}`)
+    }
+    
     return (
         <div className="flex p-3 cursor-pointer border-b border-gray-600 hover:bg-slate-950 hover:transition">
             {comment.userImg && (
@@ -46,11 +50,12 @@ export default function Comment({ comment }: CommentProps) {
                     className="rounded-full h-12 w-12 mr-4 hover:brightness-95"
                     width="45"
                     height="45"
+                    onClick={handleUserImageClick}
                 />
             )}
             <div className="flex flex-col flex-grow">
                 <div className="flex justify-between">
-                    <div className="flex space-x-1 whitespace-nowrap overflow-hidden">
+                    <div className="flex space-x-1 whitespace-nowrap overflow-hidden" onClick={handleUserImageClick}>
                         <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline truncate line-clamp-none max-w-[150px] md:max-w-[250px]">
                             {comment.name}
                         </h4>
@@ -91,7 +96,9 @@ export default function Comment({ comment }: CommentProps) {
                         </div>
                     </div>
                 )}
-
+                        {user?.id === comment.authorId &&
+                            <BsFillTrashFill className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" onClick={handleDelete} />
+                        }
             </div>
         </div >
     )
