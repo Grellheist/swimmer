@@ -96,7 +96,7 @@ export default function Comment({ comment }: CommentProps) {
                         </div>
                     </div>
                 )}
-                        {user?.id === comment.authorId &&
+                        {user?.id === comment.userId &&
                             <BsFillTrashFill className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" onClick={handleDelete} />
                         }
             </div>
