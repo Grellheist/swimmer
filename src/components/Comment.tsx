@@ -92,17 +92,6 @@ export default function Comment({ comment }: CommentProps) {
                     </div>
                 )}
 
-                <div className="flex justify-between pt-2">
-                    <div className="flex items-center">
-                        <BsFillChatDotsFill onClick={handleNotImplemented} className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
-                    </div>
-                    <FaRetweet onClick={handleNotImplemented} className="h-9 w-9 hoverEffect p-2 hover:text-green-500 hover:bg-green-950" />
-                    <AiFillHeart onClick={handleNotImplemented} className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
-                    <BsFillBarChartFill onClick={handleNotImplemented} className="h-9 w-9 hoverEffect p-2 hover:text-sky-500" />
-                    {user?.id === comment.userId &&
-                        <BsFillTrashFill onClick={handleDelete} className="h-9 w-9 hoverEffect p-2 hover:text-red-500 hover:bg-red-950" />
-                    }
-                </div>
             </div>
         </div >
     )
